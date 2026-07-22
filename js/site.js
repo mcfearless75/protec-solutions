@@ -512,6 +512,33 @@
     );
   }
 
+  /* ---------- stat band: cursor glow + staggered sweep ---------- */
+  function initStatBand() {
+    const bands = $$(".stat-band");
+    if (!bands.length) return;
+    bands.forEach((band) => {
+      band.addEventListener("pointermove", (e) => {
+        const stat = e.target.closest(".stat");
+        if (!stat) return;
+        const r = stat.getBoundingClientRect();
+        stat.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+        stat.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+      }, { passive: true });
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        band.classList.add("in");
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          band.classList.add("in");
+          io.disconnect();
+        }
+      }, { threshold: 0.4 });
+      io.observe(band);
+    });
+  }
+
   /* ---------- smooth in-page anchors with header offset ---------- */
   function initAnchors() {
     document.addEventListener("click", (e) => {
@@ -536,6 +563,7 @@
     initCanvas();
     initPalette();
     initAssistant();
+    initStatBand();
     initAnchors();
     document.body.classList.add("grain");
   }

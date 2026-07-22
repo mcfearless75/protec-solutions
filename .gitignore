@@ -1,3 +1,9 @@
 ChatGPT Image*.png
 js/data.js
 .claude/
+
+# local AI-tooling config — not part of the site, never belongs in this repo
+.claude-flow/
+.swarm/
+.mcp.json
+CLAUDE.md

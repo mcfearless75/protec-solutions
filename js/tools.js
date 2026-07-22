@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    PROTEC SOLUTIONS — interactive tool suite
    Every tool runs entirely client-side. No API, no backend.
    Each initialiser exits quietly if its markup isn't on the page.
@@ -203,7 +203,7 @@
       }
 
       plot(untreated, "#ef6a5a", "rgba(239,106,90,0.10)");
-      plot(treated, "#47e08a", "rgba(71,224,138,0.12)");
+      plot(treated, "#45db66", "rgba(69,219,102,0.12)");
 
       if (progress >= 1) {
         const finalU = untreated[30], finalT = treated[30];

@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    PROTEC SOLUTIONS — site engine
    Header, reveals, particle field, command palette, AI assistant.
    ============================================================ */
@@ -155,7 +155,7 @@
 
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = near ? "rgba(56,182,242,0.8)" : "rgba(154,163,178,0.30)";
+        ctx.fillStyle = near ? "rgba(42,212,240,0.8)" : "rgba(154,163,178,0.30)";
         ctx.fill();
       }
 
@@ -168,7 +168,7 @@
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(56,182,242,${alpha})`;
+            ctx.strokeStyle = `rgba(42,212,240,${alpha})`;
             ctx.lineWidth = 0.6 * dpr;
             ctx.stroke();
           }

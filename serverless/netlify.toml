@@ -1,0 +1,10 @@
+# Netlify config for the ProTec AI proxy.
+# This file only makes sense if serverless/ is deployed as its OWN
+# Netlify site (separate from the GitHub Pages static site). See
+# serverless/README.md for the full walkthrough.
+
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"

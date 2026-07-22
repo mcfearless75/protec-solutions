@@ -6,8 +6,38 @@
 (() => {
   "use strict";
 
+  /* ============================================================
+     LIVE AI ENDPOINT — disabled by default
+     ============================================================
+     Leave this as an empty string and the assistant behaves exactly
+     as it always has: pure client-side keyword matching against
+     js/knowledge.js, no network calls, nothing to configure.
+
+     To switch on the real Claude API, deploy the proxy in
+     serverless/ (see serverless/README.md), then paste the deployed
+     URL in here, e.g.:
+
+       const PROTEC_AI_ENDPOINT = "https://your-site.netlify.app/.netlify/functions/protec-ai";
+
+     When set, the assistant calls that endpoint first and only
+     falls back to the existing keyword matcher if the call fails
+     (network error, timeout, rate limit, proxy down) — so the
+     widget can never appear broken to a visitor either way.
+     ============================================================ */
+  const PROTEC_AI_ENDPOINT = "";
+
   const KB = window.PROTEC_KB;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // native CSS scroll-driven animations (animation-timeline: view()) --
+  // see the "NATIVE SCROLL-DRIVEN REVEALS" block at the end of
+  // css/style.css. When supported, that CSS handles .reveal entirely on
+  // the compositor, so initReveal() below skips its own
+  // IntersectionObserver loop rather than fighting the CSS for the same
+  // element/class.
+  const supportsScrollTimeline =
+    typeof CSS !== "undefined" &&
+    typeof CSS.supports === "function" &&
+    CSS.supports("animation-timeline", "view()");
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -67,6 +97,35 @@
     if (!items.length) return;
     if (reduceMotion || !("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add("in"));
+      return;
+    }
+    // Native CSS scroll-driven reveal takes over when supported, so we
+    // skip the .in observer rather than fight it for the same opacity.
+    // But we do NOT walk away entirely: a scroll-driven animation whose
+    // range end is never reached holds a partial value forever, at a
+    // cascade priority above any normal declaration, which would leave
+    // content permanently invisible with no way to recover. The CSS
+    // ranges are chosen to always be reachable; this watchdog exists so
+    // that a wrong assumption degrades to "no animation" rather than
+    // "no content". It should never fire in practice.
+    if (supportsScrollTimeline) {
+      const watch = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio < 0.5) return;
+            const el = entry.target;
+            // give the animation a moment, then check it actually resolved
+            setTimeout(() => {
+              if (!el.isConnected) return;
+              const opacity = parseFloat(getComputedStyle(el).opacity);
+              if (opacity < 0.9) el.classList.add("reveal-force");
+            }, 700);
+            watch.unobserve(el);
+          });
+        },
+        { threshold: [0.5] }
+      );
+      items.forEach((el) => watch.observe(el));
       return;
     }
     const io = new IntersectionObserver(
@@ -434,9 +493,12 @@
       }
 
       // product name direct hit
-      const product = KB.products.find((p) =>
-        q.includes(p.id) || q.includes(p.name.toLowerCase().split(" ")[1] || " ")
-      );
+      const product = KB.products.find((p) => {
+        if (q.includes(p.id)) return true;
+        // second word of the product name, e.g. "GS75" in "Goldshield GS75 ..."
+        const distinctive = p.name.toLowerCase().split(" ")[1];
+        return Boolean(distinctive) && q.includes(distinctive);
+      });
       if (product && bestScore < 24) {
         return `**${product.name}**\n\n${product.blurb}\n\n• Coverage — ${product.coveragePerLitre} m² per litre\n• Durability — up to ${product.durabilityDays} days\n• Certification — ${product.certs.join(", ")}\n\nSuitable for: ${product.surfaces.join(", ")}.\n\n[Book a site survey](contact.html#book) for a firm quote against your floor area.`;
       }
@@ -444,18 +506,76 @@
       return bestScore >= 8 ? best.answer : KB.fallback;
     }
 
+    function pickQuickPrompts() {
+      return PROMPTS.filter(() => Math.random() > 0.35).slice(0, 3).length
+        ? PROMPTS.sort(() => Math.random() - 0.5).slice(0, 3)
+        : PROMPTS.slice(0, 3);
+    }
+
+    /* running transcript sent to the live endpoint for short-term context.
+       Only used when PROTEC_AI_ENDPOINT is set — the default keyword-match
+       path below ignores it entirely. */
+    let liveHistory = [];
+    const MAX_LIVE_HISTORY_TURNS = 8;
+
+    /* calls the deployed serverless/ proxy — see serverless/README.md.
+       Throws on any failure so the caller can fall back to resolve(). */
+    async function fetchLiveReply(message, history) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      try {
+        const res = await fetch(PROTEC_AI_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, history }),
+          signal: controller.signal
+        });
+        if (!res.ok) throw new Error("AI endpoint returned status " + res.status);
+        const data = await res.json();
+        if (!data || typeof data.reply !== "string" || !data.reply.trim()) {
+          throw new Error("AI endpoint returned an empty reply");
+        }
+        return data.reply;
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    }
+
     function ask(text) {
       if (!text.trim()) return;
-      push(text, "user");
+      const submitted = text;
+      push(submitted, "user");
       input.value = "";
       const bubble = thinking();
+
+      /* ---------- live Claude API path (only when configured) ---------- */
+      if (PROTEC_AI_ENDPOINT) {
+        const historyForRequest = liveHistory.slice(-MAX_LIVE_HISTORY_TURNS * 2);
+        fetchLiveReply(submitted, historyForRequest)
+          .then((reply) => {
+            bubble.innerHTML = format(reply);
+            log.scrollTop = log.scrollHeight;
+            liveHistory.push({ role: "user", content: submitted }, { role: "assistant", content: reply });
+            liveHistory = liveHistory.slice(-MAX_LIVE_HISTORY_TURNS * 2);
+            renderQuick(pickQuickPrompts());
+          })
+          .catch(() => {
+            // live endpoint unreachable/erroring — fall back to the same
+            // keyword matcher the site has always used, so the widget
+            // never appears broken to a visitor
+            bubble.innerHTML = format(resolve(submitted));
+            log.scrollTop = log.scrollHeight;
+            renderQuick(pickQuickPrompts());
+          });
+        return;
+      }
+
+      /* ---------- default path: unchanged client-side keyword matching ---------- */
       const delay = reduceMotion ? 120 : 420 + Math.random() * 380;
       setTimeout(() => {
-        bubble.innerHTML = format(resolve(text));
+        bubble.innerHTML = format(resolve(submitted));
         log.scrollTop = log.scrollHeight;
-        renderQuick(PROMPTS.filter(() => Math.random() > 0.35).slice(0, 3).length
-          ? PROMPTS.sort(() => Math.random() - 0.5).slice(0, 3)
-          : PROMPTS.slice(0, 3));
+        renderQuick(pickQuickPrompts());
       }, delay);
     }
     window.protecAsk = (text) => { openPanel(); ask(text); };

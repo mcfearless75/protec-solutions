@@ -11,3 +11,7 @@ ruvector.db
 *.db
 *.db-shm
 *.db-wal
+
+# serverless AI proxy — never commit real secrets
+serverless/.env
+serverless/node_modules/

@@ -1,4 +1,29 @@
 User-agent: *
 Allow: /
 
+# AI answer engines and assistants — explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://www.protec-solutions.co.uk/sitemap.xml
+
+# LLM-readable site summary (see https://llmstxt.org)
+# https://www.protec-solutions.co.uk/llms.txt

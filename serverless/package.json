@@ -1,0 +1,12 @@
+{
+  "name": "protec-ai-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless proxy so the ProTec Solutions site assistant can call the real Claude API server-side, without ever exposing the API key to the browser.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node railway/server.js"
+  }
+}

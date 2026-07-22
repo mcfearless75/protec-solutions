@@ -1272,3 +1272,316 @@ input[type="range"]:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .to-top { transition: opacity 0.2s; transform: none; }
 }
+
+/* ============================================================
+   CROSS-DOCUMENT VIEW TRANSITIONS
+   Native @view-transition for same-origin navigation between pages.
+   Header, logo and footer morph in place; main content moves with
+   intent (old page eases up + out, new page eases up + in) using
+   the site's --ease-expo curve. Persistent fixed chrome (canvas,
+   grain, AI widget, palette, toast, dot-nav, back-to-top) is given
+   its own transition name so it stays put rather than being baked
+   into the root snapshot and appearing to fly during the root
+   animation. Everything below is a no-op in browsers that don't
+   support the View Transitions API -- navigation just happens
+   normally. Entirely disabled for prefers-reduced-motion: reduce.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* ---- persistent brand elements: morph, don't cross-fade ---- */
+  .site-header { view-transition-name: protec-header; }
+  .site-header .logo img { view-transition-name: protec-logo; }
+  .site-footer { view-transition-name: protec-footer; }
+
+  /* ---- fixed chrome: pin in place, keep out of the root motion ---- */
+  #bg-canvas { view-transition-name: protec-bg-canvas; }
+  .grain::before { view-transition-name: protec-grain; }
+  .ai-fab { view-transition-name: protec-ai-fab; }
+  .ai-panel { view-transition-name: protec-ai-panel; }
+  .palette-overlay { view-transition-name: protec-palette; }
+  .toast { view-transition-name: protec-toast; }
+  .dotnav { view-transition-name: protec-dotnav; }
+  .to-top { view-transition-name: protec-to-top; }
+  /* The mobile nav is a full-viewport fixed overlay AND a DOM child of
+     .site-header. Tapping a link inside it navigates immediately, so the
+     0.5s slide-closed transition has barely started when the outgoing
+     snapshot is captured. Without its own name it gets flattened into
+     the compact .site-header box and squashed through the header morph
+     on every in-menu navigation. */
+  .nav { view-transition-name: protec-nav-overlay; }
+
+  /* Pinned chrome should hold still, not ease/scale with the root --
+     force an instant, near-invisible cross-fade instead of the UA's
+     default 0.25s fade so identical fixed UI never visibly blinks. */
+  ::view-transition-group(protec-bg-canvas),
+  ::view-transition-group(protec-grain),
+  ::view-transition-group(protec-ai-fab),
+  ::view-transition-group(protec-ai-panel),
+  ::view-transition-group(protec-palette),
+  ::view-transition-group(protec-toast),
+  ::view-transition-group(protec-dotnav),
+  ::view-transition-group(protec-nav-overlay),
+  ::view-transition-group(protec-to-top) {
+    animation-duration: 0.01ms;
+  }
+
+  /* ---- header / logo / footer: quick, confident morph ---- */
+  ::view-transition-group(protec-header),
+  ::view-transition-group(protec-logo),
+  ::view-transition-group(protec-footer) {
+    animation-duration: 0.3s;
+    animation-timing-function: var(--ease-expo);
+  }
+
+  /* ---- root (page content): old leaves up + shrinks slightly,
+     new arrives from below + settles -- distinct, not a lazy dissolve ---- */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.32s;
+    animation-timing-function: var(--ease-expo);
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    animation-name: protec-leave;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: protec-arrive;
+  }
+
+  @keyframes protec-leave {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.985); }
+  }
+
+  @keyframes protec-arrive {
+    from { opacity: 0; transform: translateY(20px) scale(1.01); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+/* ============================================================
+   NATIVE SCROLL-DRIVEN REVEALS (progressive enhancement)
+   Runs entirely on the compositor via animation-timeline: view()
+   in browsers that support it. js/site.js feature-detects with
+   CSS.supports('animation-timeline','view()') and skips its own
+   IntersectionObserver reveal loop (initReveal()) whenever this
+   block is active, so the two mechanisms never fight over the
+   same element. Browsers without support are completely
+   untouched: they keep the existing .reveal / .reveal.in
+   JS-driven rules further up this file exactly as they were.
+
+   Wrapped in `prefers-reduced-motion: no-preference` so reduced-
+   motion users always fall through to the existing
+   `@media (prefers-reduced-motion: reduce) { .reveal {...} }`
+   rule above -- opacity:1, transform:none, transition:none,
+   content immediately visible, no animation of any kind.
+
+   Design note -- opacity only, no rise: a CSS animation with
+   fill-mode "both" that has finished its active range keeps
+   holding its end-state value at a cascade priority ABOVE any
+   normal-priority transform declaration on that same element --
+   including the :hover lift on .card/.panel and the JS-driven
+   pointermove tilt on .product-card (both of which also carry
+   .reveal / .reveal-dN in the page markup). If this animation
+   touched `transform`, those hover/tilt effects would silently
+   stop working forever after the first reveal, in every browser
+   that supports this feature. Animating opacity only sidesteps
+   that collision entirely while still delivering a real, visible,
+   compositor-driven reveal. transform is neutralised to a static
+   `none` (not animated) so supporting browsers don't sit
+   permanently offset by the 28px the JS fallback starts from.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+
+    @keyframes protec-reveal-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* RANGE SAFETY (do not widen these without re-checking):
+       the end point of every range below must be reachable given the
+       page's actual maximum scroll distance. A `cover N%` end point is
+       NOT guaranteed reachable for the last elements on a page: if the
+       document cannot scroll far enough, the animation never reaches
+       100%, and because `fill-mode: both` holds the animation's current
+       value at a cascade priority ABOVE normal declarations, such an
+       element would sit permanently at partial (or zero) opacity with
+       no way for any CSS rule or class to override it.
+       `entry N%` end points complete as soon as the element has entered
+       the viewport by that fraction, which is always reachable for
+       anything that becomes visible at all. Every .reveal lives inside
+       <main>, with the site footer below it, so full entry is always
+       achievable. See also the watchdog in js/site.js initReveal(). */
+    .reveal {
+      opacity: 0;
+      transform: none;
+      transition: none;
+      animation: protec-reveal-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+    .reveal-d1 { animation-range: entry 8% entry 65%; }
+    .reveal-d2 { animation-range: entry 16% entry 75%; }
+    .reveal-d3 { animation-range: entry 24% entry 85%; }
+
+    /* Escape hatch for the watchdog in js/site.js. A filling animation
+       outranks normal declarations, so simply setting opacity:1 cannot
+       rescue a stuck element -- the animation itself has to be removed.
+       This only ever applies if the watchdog finds an element visible
+       but still transparent, which should never happen. */
+    .reveal.reveal-force {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* ---- stat-sweep underline fill ----
+       The named view-timeline is sourced from .stat (a full-size
+       grid cell, ~150-200px tall) rather than self-timing the 3px
+       -tall sweep bar: animation-timeline: view() applied directly
+       to the bar would size its entry/cover percentages against
+       the bar's own ~3px height, so the fill would snap almost
+       instantly instead of animating over a visible scroll
+       distance. Sourcing the timeline from the ancestor .stat cell
+       reproduces the same gradual, staggered fill the JS/
+       .stat-band.in version gives. No transform/hover collision
+       risk here -- width on this element is never touched by any
+       other rule, hover state, or script. */
+    .stat {
+      view-timeline: --protec-stat-tl block;
+    }
+    /* entry-based end points for the same reachability reason as
+       .reveal above: a stat band near the foot of a short page must
+       still be able to complete its sweep. */
+    .stat-sweep i {
+      transition: none;
+      animation: protec-sweep-fill linear both;
+      animation-timeline: --protec-stat-tl;
+      animation-range: entry 0% entry 60%;
+    }
+    .stat:nth-child(2) .stat-sweep i { animation-range: entry 8% entry 70%; }
+    .stat:nth-child(3) .stat-sweep i { animation-range: entry 16% entry 80%; }
+    .stat:nth-child(4) .stat-sweep i { animation-range: entry 24% entry 90%; }
+
+    @keyframes protec-sweep-fill {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+  }
+}
+
+/* ============================================================
+   MECHANISM VISUALISATION (goldshield.html "How it works")
+   Raw-WebGL scroll-scrubbed diagram of the three-stage
+   antimicrobial mechanism, lazy-initialised by js/mechanism.js
+   only once this panel scrolls into view. The panel itself is
+   never display:none by default -- it needs real layout so the
+   IntersectionObserver in mechanism.js can see it arrive -- so
+   the pre-JS / no-WebGL state is a designed empty panel (gradient
+   surface, caption, stage buttons) rather than a blank box. If
+   WebGL is unavailable, js/mechanism.js hides this whole block
+   and the existing static .card grid below carries the
+   explanation on its own.
+   ============================================================ */
+.mech-viz {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: clamp(2.2rem, 4.5vw, 3.6rem);
+}
+.mech-canvas-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: radial-gradient(120% 140% at 50% 0%, var(--bg-panel), var(--bg-raised) 70%);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  max-height: 460px;
+}
+@media (max-width: 640px) {
+  .mech-canvas-wrap { aspect-ratio: 4 / 5; max-height: 420px; }
+}
+.mech-canvas-wrap canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-expo);
+}
+.mech-canvas-wrap.is-ready canvas { opacity: 1; }
+.mech-stage-label {
+  position: absolute;
+  left: clamp(1rem, 3vw, 1.8rem);
+  top: clamp(1rem, 3vw, 1.8rem);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  pointer-events: none;
+}
+.mech-stage-num {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  border: 1px solid rgba(42, 212, 240, 0.4);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+}
+.mech-stage-name {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.mech-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.mech-btn {
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+  color: var(--text-dim);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.mech-btn:hover { border-color: var(--gold); color: var(--text); }
+.mech-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.mech-btn.is-active { background: var(--gold); border-color: var(--gold); color: #04131f; }
+
+/* card highlight synced to the active stage */
+.grid-3 .card.mech-active {
+  border-color: var(--gold);
+  background: var(--bg-panel);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mech-canvas-wrap canvas { transition: none; }
+  .mech-btn { transition: none; }
+}
+
+/* visually-hidden text alternative, kept in the accessibility tree */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

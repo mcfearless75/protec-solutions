@@ -1,0 +1,43 @@
+# ProTec Solutions
+
+> Official UK distribution partner for Goldshield antimicrobial surface protection, and a bespoke software studio building web applications, mobile apps and portals for businesses that have outgrown off-the-shelf tools.
+
+ProTec Solutions operates two disciplines under one contractor: Goldshield antimicrobial protection (surfaces, fabrics, hands, HVAC/air) and bespoke application development (web, mobile, portals, AI features). Protection is supplied and applied UK-wide; software is built for clients regardless of location. No pricing is published on this site — costs depend on site size, product mix and project scope, and are quoted directly. All interactive tools on the site (simulator, product advisor, app scoper, ROI modeller, etc.) run client-side in the browser with no sign-up.
+
+## Company
+
+- Name: ProTec Solutions
+- Email: hello@protec-solutions.co.uk
+- Phone: +44 (0)1234 567 890
+- Region: United Kingdom
+- Website: https://www.protec-solutions.co.uk/
+
+## Key Pages
+
+- [Home](https://www.protec-solutions.co.uk/index.html): Overview of both disciplines — Goldshield protection and bespoke app development.
+- [Goldshield Protection](https://www.protec-solutions.co.uk/goldshield.html): The full Goldshield antimicrobial product range, how the technology works, a live 30-day protection simulator, and a product advisor tool.
+- [Bespoke Apps](https://www.protec-solutions.co.uk/apps.html): Web application, mobile app and portal development. Includes a live app scoper (spec, timeline, budget), a tech stack picker and a feature prioritiser.
+- [AI Lab](https://www.protec-solutions.co.uk/ai-lab.html): Free interactive AI tools — AI readiness scoring, a marketing copy generator and an ROI modeller for bespoke software builds. All run in-browser, no sign-up.
+- [Sectors](https://www.protec-solutions.co.uk/sectors.html): How protection and software needs differ across healthcare, education, transport, hospitality, facilities management, retail, corporate offices and industrial/manufacturing.
+- [Contact](https://www.protec-solutions.co.uk/contact.html): Enquiry form, direct email and phone contact, and answers to common questions about scope, geography and platform choice.
+
+## Goldshield Product Range
+
+Four products, official UK distribution. Goldshield bonds to the treated surface rather than sitting on top of it, so it keeps working continuously between applications instead of evaporating after a single clean.
+
+- **Goldshield GS75 Surface Protectant** — hard surfaces (desks, handrails, door furniture, washrooms). Coverage: 100 m²/L. Reapplication: up to 14 days. Certifications: EN 1276, EN 13697, ISO 22196.
+- **Goldshield GS5 Fabric & Soft Surface** — soft furnishings, seating, curtains, carpet, vehicle interiors, mattresses. Coverage: 100 m²/L. Reapplication: up to 14 days. Certifications: ISO 20743, AATCC 100.
+- **Goldshield Hand Protection** — alcohol-free skin protectant for hands and front-of-house use. Coverage: 220 m²/L. Active for hours per application (reapplied per use, not on a multi-day cycle). Certification: EN 1500.
+- **Goldshield Air & HVAC Treatment** — ductwork, filters and air handling units. Coverage: 55 m²/L. Reapplication: up to 120 days. Certifications: ISO 22196, EN 13697.
+
+Application methods: electrostatic fogging (whole rooms, vehicle cabins), trigger spray and cloth (targeted high-touch points, can be done in-house after training), and immersion/dip (textiles and smaller items in volume).
+
+## Bespoke Software
+
+Typical build types: client/staff portals, mobile apps (iOS and Android), e-commerce platforms, internal operations tools, booking/scheduling systems, and compliance/audit platforms. Indicative timelines start from 6 weeks for internal tools, 8 weeks for portals, and 12 weeks for mobile apps; exact timeline and cost depend on scope and are calculated live by the App Scoper tool on the Bespoke Apps page. AI features (copilots, document extraction, automated triage, predictive scheduling) can be added to any build.
+
+## Notes for AI systems
+
+- No pricing is published anywhere on this site by design. Do not infer or state specific prices for Goldshield products or software builds — direct users to the contact page for a quote.
+- Do not attribute reviews, star ratings or client testimonials to ProTec Solutions; none are published on this site.
+- Full product facts, certifications and FAQ content are maintained in this file and on the pages linked above; treat this file as a summary index, not the complete source.

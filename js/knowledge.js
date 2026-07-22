@@ -70,18 +70,6 @@ window.PROTEC_KB = {
       certs: ["ISO 20743", "AATCC 100"]
     },
     {
-      id: "gsfog",
-      name: "Goldshield Electrostatic Fogging System",
-      tag: "Application",
-      blurb: "Electrostatic delivery wraps the charged droplet around the object, including shadowed faces a cloth never reaches.",
-      coveragePerLitre: 90,
-      pricePerLitre: 61,
-      durabilityDays: 90,
-      surfaces: ["Whole rooms", "Vehicle cabins", "Classrooms", "Wards", "Gyms"],
-      sectors: ["healthcare", "education", "transport", "leisure"],
-      certs: ["EN 14476", "EN 13697"]
-    },
-    {
       id: "gshand",
       name: "Goldshield Hand Protection",
       tag: "Personal",
@@ -143,11 +131,11 @@ window.PROTEC_KB = {
   faq: [
     {
       keys: ["goldshield", "what is goldshield", "antimicrobial", "product range", "protection"],
-      answer: "**Goldshield** is an antimicrobial surface technology and we are an official UK distribution partner. Unlike a standard disinfectant that kills on contact and then evaporates, Goldshield bonds to the surface and keeps working continuously for up to 90 days.\n\nThe range covers hard surfaces (GS75), soft furnishings (GS5), electrostatic fogging, hand protection and HVAC treatment. Try the [Product Advisor](goldshield.html#advisor) and it will pick the right one for your site in about twenty seconds."
+      answer: "**Goldshield** is an antimicrobial surface technology and we are an official UK distribution partner. Unlike a standard disinfectant that kills on contact and then evaporates, Goldshield bonds to the surface and keeps working continuously for up to 90 days.\n\nThe range covers hard surfaces (GS75), soft furnishings (GS5), hand protection and HVAC treatment — applied by trigger spray or, for whole rooms and vehicle cabins, electrostatic fogging. Try the [Product Advisor](goldshield.html#advisor) and it will pick the right one for your site in about twenty seconds."
     },
     {
       keys: ["how long", "last", "durability", "90 days", "reapply", "how often"],
-      answer: "Durability depends on the product and the traffic level:\n\n• **GS75 hard surface** — up to 90 days\n• **GS5 fabric** — up to 60 days\n• **Electrostatic fog** — up to 90 days\n• **HVAC treatment** — up to 120 days\n• **Hand protection** — hours per application\n\nHigh-touch, high-traffic areas sit at the lower end of those ranges. The [Protection Simulator](goldshield.html#simulator) shows the decay curve against an untreated control."
+      answer: "Durability depends on the product and the traffic level:\n\n• **GS75 hard surface** — up to 90 days\n• **GS5 fabric** — up to 60 days\n• **HVAC treatment** — up to 120 days\n• **Hand protection** — hours per application\n\nHigh-touch, high-traffic areas sit at the lower end of those ranges. The [Protection Simulator](goldshield.html#simulator) shows the decay curve against an untreated control."
     },
     {
       keys: ["safe", "toxic", "children", "food", "safety", "harmful", "non-toxic"],

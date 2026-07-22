@@ -347,12 +347,17 @@
       back.hidden = false;
       const scores = KB.products.map((p) => {
         let s = 0;
-        const map = { hard: "gs75", soft: "gs5", space: "gsfog", air: "gsair", hands: "gshand" };
+        // "space" (whole rooms/vehicles) has no dedicated product — those are
+        // treated by fogging GS75 or GS5, so it defers to the general-purpose
+        // hard-surface product rather than a standalone SKU.
+        const map = { hard: "gs75", soft: "gs5", space: "gs75", air: "gsair", hands: "gshand" };
         if (map[answers.surface] === p.id) s += 50;
         if (p.sectors.includes(answers.sector)) s += 18;
         if (answers.priority === "duration") s += p.durabilityDays / 8;
         if (answers.priority === "cost") s += (100 - p.pricePerLitre) / 3 + p.coveragePerLitre / 12;
-        if (answers.priority === "speed" && p.id === "gsfog") s += 22;
+        // "speed" favours whichever product covers the most area per litre —
+        // fewer refills, faster to finish a job, regardless of application method
+        if (answers.priority === "speed") s += p.coveragePerLitre / 4;
         if (answers.priority === "certs") s += p.certs.length * 7;
         if (answers.traffic === "high") s += p.durabilityDays / 12;
         return { p, s };

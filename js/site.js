@@ -77,6 +77,10 @@
         // constantly-animating background canvas) causes the overlay itself
         // to render translucent, letting page content bleed through the menu
         header.classList.toggle("nav-open", open);
+        // swap hamburger -> close icon so it's visually obvious the same
+        // button now dismisses the menu (see .nav-toggle z-index in
+        // style.css for why this button must stay clickable while open)
+        toggle.classList.toggle("open", open);
         toggle.setAttribute("aria-expanded", String(open));
         document.body.style.overflow = open ? "hidden" : "";
       });
@@ -84,6 +88,7 @@
         if (e.target.tagName === "A") {
           nav.classList.remove("open");
           header.classList.remove("nav-open");
+          toggle.classList.remove("open");
           toggle.setAttribute("aria-expanded", "false");
           document.body.style.overflow = "";
         }

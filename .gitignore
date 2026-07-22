@@ -7,3 +7,7 @@ js/data.js
 .swarm/
 .mcp.json
 CLAUDE.md
+ruvector.db
+*.db
+*.db-shm
+*.db-wal

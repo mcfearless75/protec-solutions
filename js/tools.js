@@ -965,53 +965,89 @@
 
   /* ============================================================
      11. CONTACT FORM  (contact.html#book)
-     Static-site safe: builds a mailto with everything captured.
+     Posts to Formspree; falls back to mailto if unreachable.
+     The form's native action attribute covers no-JS visitors.
      ============================================================ */
   function initContact() {
     const form = $("#contact-form");
     if (!form) return;
     const interestWrap = $("#contact-interest");
+    const interestField = $("#cf-interests");
     let interests = [];
 
-    if (interestWrap) chipMulti(interestWrap, (v) => (interests = v));
+    if (interestWrap) chipMulti(interestWrap, (v) => {
+      interests = v;
+      if (interestField) interestField.value = v.join(", ");
+    });
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form));
       if (!data.name || !data.email) { toast("Name and email please"); return; }
 
-      const body = [
-        `Name: ${data.name}`,
-        `Company: ${data.company || "—"}`,
-        `Email: ${data.email}`,
-        `Phone: ${data.phone || "—"}`,
-        `Sector: ${data.sector || "—"}`,
-        `Interested in: ${interests.length ? interests.join(", ") : "—"}`,
-        `Budget: ${data.budget || "—"}`,
-        ``,
-        `Message:`,
-        data.message || "—"
-      ].join("\n");
-
-      const url = `mailto:${KB.company.email}?subject=${encodeURIComponent(
-        "Website enquiry — " + (data.company || data.name)
-      )}&body=${encodeURIComponent(body)}`;
-
-      window.location.href = url;
-
       const status = $("#contact-status");
-      if (status) {
-        status.hidden = false;
-        status.innerHTML = `
-          <h4>Your email client is opening</h4>
-          <p style="color:var(--text-dim);font-size:.93rem">
-            Everything you entered has been packaged into a message to
-            <strong>${KB.company.email}</strong>. If nothing opened, email us directly and paste the details below.
-          </p>
-          <pre style="margin-top:1rem;white-space:pre-wrap;font-family:var(--font-mono);font-size:.78rem;color:var(--text-dim);background:var(--bg-raised);padding:1rem;border-radius:10px;border:1px solid var(--line)">${body.replace(/[<>&]/g, "")}</pre>`;
-        status.scrollIntoView({ behavior: "smooth", block: "center" });
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form)
+        });
+        if (!res.ok) throw new Error("Formspree responded " + res.status);
+
+        form.reset();
+        if (interestWrap) $$(".chip", interestWrap).forEach((c) => c.classList.remove("selected"));
+        interests = [];
+        if (interestField) interestField.value = "";
+
+        if (status) {
+          status.hidden = false;
+          status.innerHTML = `
+            <h4>Enquiry sent</h4>
+            <p style="color:var(--text-dim);font-size:.93rem">
+              Thanks ${data.name.split(" ")[0].replace(/[<>&]/g, "")} — it has landed in our inbox and
+              you will hear back within one working day. If it is urgent, call
+              <strong>${KB.company.phone}</strong>.
+            </p>`;
+          status.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        toast("Enquiry sent — thank you");
+      } catch (err) {
+        // network or service failure: fall back to a pre-filled email
+        const body = [
+          `Name: ${data.name}`,
+          `Company: ${data.company || "—"}`,
+          `Email: ${data.email}`,
+          `Phone: ${data.phone || "—"}`,
+          `Sector: ${data.sector || "—"}`,
+          `Interested in: ${interests.length ? interests.join(", ") : "—"}`,
+          `Budget: ${data.budget || "—"}`,
+          ``,
+          `Message:`,
+          data.message || "—"
+        ].join("\n");
+
+        if (status) {
+          status.hidden = false;
+          status.innerHTML = `
+            <h4>That didn't go through</h4>
+            <p style="color:var(--text-dim);font-size:.93rem">
+              The form service could not be reached, so nothing was sent. Email us directly instead —
+              the button below opens your email client with everything filled in.
+            </p>
+            <a class="btn btn-gold" style="margin-top:1rem" href="mailto:${KB.company.email}?subject=${encodeURIComponent(
+              "Website enquiry — " + (data.company || data.name)
+            )}&body=${encodeURIComponent(body)}">Open email instead</a>`;
+          status.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        toast("Could not send — use the email fallback");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send enquiry";
       }
-      toast("Enquiry prepared");
     });
   }
 

@@ -546,6 +546,84 @@
     });
   }
 
+  /* ---------- section dot-nav + back to top ---------- */
+  function initSectionNav() {
+    const sections = $$("main section").filter((s) => {
+      // only sections with a real heading are worth jumping to
+      return s.querySelector("h2, h1");
+    });
+
+    // back to top works on every page regardless of section count
+    const toTop = document.createElement("button");
+    toTop.className = "to-top";
+    toTop.type = "button";
+    toTop.setAttribute("aria-label", "Back to top");
+    toTop.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`;
+    toTop.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })
+    );
+    document.body.appendChild(toTop);
+
+    const onScrollTop = () => toTop.classList.toggle("show", window.scrollY > 600);
+    onScrollTop();
+    window.addEventListener("scroll", onScrollTop, { passive: true });
+
+    // dot-nav only earns its place when there are several sections
+    if (sections.length < 3) return;
+
+    const nav = document.createElement("nav");
+    nav.className = "dotnav";
+    nav.setAttribute("aria-label", "Page sections");
+
+    sections.forEach((section, i) => {
+      if (!section.id) section.id = "section-" + (i + 1);
+      // prefer the short kicker ("The mechanism", "Live model") over the
+      // long h2 headline — it reads far better in a compact tooltip
+      const kicker = section.querySelector(".kicker");
+      const heading = section.querySelector("h2, h1");
+      let label;
+      if (section.querySelector("h1")) {
+        label = "Top"; // the hero — its kicker is a strapline, not a section name
+      } else {
+        label = (kicker?.textContent || heading?.textContent || "Section " + (i + 1)).trim();
+        if (label.length > 28) label = label.slice(0, 26).trim() + "…";
+      }
+
+      const a = document.createElement("a");
+      a.href = "#" + section.id;
+      a.innerHTML = `<i aria-hidden="true"></i><span>${label.replace(/[<>&]/g, "")}</span>`;
+      a.setAttribute("aria-label", label);
+      nav.appendChild(a);
+    });
+
+    document.body.appendChild(nav);
+    const dots = $$("a", nav);
+    requestAnimationFrame(() => nav.classList.add("ready"));
+
+    if (!("IntersectionObserver" in window)) return;
+
+    // scroll-spy: mark whichever section currently owns the viewport
+    const visible = new Map();
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => visible.set(e.target, e.intersectionRatio));
+        let best = null, bestRatio = 0;
+        visible.forEach((ratio, el) => {
+          if (ratio > bestRatio) { bestRatio = ratio; best = el; }
+        });
+        if (!best) return;
+        const idx = sections.indexOf(best);
+        dots.forEach((d, i) => {
+          d.classList.toggle("current", i === idx);
+          if (i === idx) d.setAttribute("aria-current", "true");
+          else d.removeAttribute("aria-current");
+        });
+      },
+      { threshold: [0.15, 0.35, 0.6, 0.85], rootMargin: "-70px 0px 0px 0px" }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+
   /* ---------- smooth in-page anchors with header offset ---------- */
   function initAnchors() {
     document.addEventListener("click", (e) => {
@@ -571,6 +649,7 @@
     initPalette();
     initAssistant();
     initStatBand();
+    initSectionNav();
     initAnchors();
     document.body.classList.add("grain");
   }

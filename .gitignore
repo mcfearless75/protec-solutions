@@ -15,3 +15,6 @@ ruvector.db
 # serverless AI proxy — never commit real secrets
 serverless/.env
 serverless/node_modules/
+
+# Local Netlify folder
+.netlify

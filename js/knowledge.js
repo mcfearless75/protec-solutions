@@ -116,8 +116,201 @@ window.PROTEC_KB = {
        url: "https://doi.org/... or the report link. Omit the key entirely if there's no public link.",
        productId: "gs75"   // optional — matches a product id above, shows as a badge on that product's card
      }
+
+     Curated from a September 2025 Goldshield Technologies bibliography of
+     81 independent studies (10 peer-reviewed and published). Not every
+     study is listed here — deliberately excluded: general microbiology/
+     virology papers that don't test a Goldshield product directly, and
+     agriculture trials (citrus, table grapes) that don't match this
+     site's actual sectors. Full bibliography available on request.
+
+     Product mapping, confirmed with Paul: "Goldshield 5" = GS5 (fabric),
+     "Goldshield 75" = GS75 (hard surface), "Goldshield 24" = Hand
+     Protection (alcohol-free). Entries testing "Goldshield 86"/"55"/"101"
+     or the bare active ingredient (QAS) rather than a numbered product
+     are left without a productId rather than force-matched to one of
+     the four current SKUs.
   */
-  evidence: [],
+  evidence: [
+    // ---- peer-reviewed, published ----
+    {
+      type: "peer-reviewed",
+      title: "Evaluation and quantitative microbial risk assessment of a unique antimicrobial agent for hospital surface treatment",
+      source: "American Journal of Infection Control",
+      year: 2015,
+      finding: "Nine-month trial across 18 patient rooms at Oakwood Hospital and Medical Center, Michigan. Infection risk reduced by 4 logs for gram-positive and 3 logs for gram-negative bacteria on high-touch surfaces, suggesting the treatment could prevent 5–10% of hospital-acquired infections.",
+      productId: "gs75"
+    },
+    {
+      type: "peer-reviewed",
+      title: "Long-acting water-stable organosilane agent and its sustained effect on reducing microbial load in an intensive care unit",
+      source: "American Journal of Infection Control",
+      year: 2017,
+      finding: "Five-month randomised, double-blind controlled trial across 18 ICU rooms at Genesys Regional Medical Center, Michigan — the first study of its kind for this technology. Monthly application showed sustained bioburden reduction associated with lower infection risk.",
+      productId: "gs75"
+    },
+    {
+      type: "peer-reviewed",
+      title: "In vitro evaluation of a novel process for reducing bacterial contamination of environmental surfaces",
+      source: "American Journal of Infection Control",
+      year: 2011,
+      finding: "Henry Ford Hospital, Detroit. Tested against MRSA, Pseudomonas aeruginosa and E. coli on fabric, Formica and stainless steel. On fabric, viable bacteria stayed inhibited for 14 days.",
+      productId: "gs5"
+    },
+    {
+      type: "peer-reviewed",
+      title: "Application of a quaternary ammonium agent on surgical face masks before use for pre-decontamination of nosocomial infection-related bio-aerosols",
+      source: "Aerosol Science and Technology",
+      year: 2016,
+      finding: "Tzu Chi University, Taiwan. 99.3% efficiency against three tested bacterial species, maintaining efficacy at least one week after coating.",
+      productId: "gs5"
+    },
+    {
+      type: "peer-reviewed",
+      title: "Effective antiviral coatings for deactivating SARS-CoV-2 virus on N95 respirator masks or filters",
+      source: "Materials Today Advances",
+      year: 2022,
+      finding: "Coated N95, cotton and non-woven materials inactivated Alpha and Beta SARS-CoV-2 variants over three days and across three consecutive viral exposures, with no cytotoxicity found on treated masks.",
+      productId: "gs75"
+    },
+    {
+      type: "peer-reviewed",
+      title: "Antimicrobial Coating Efficacy for Prevention of Pseudomonas aeruginosa Biofilm Growth on ISS Water System Materials",
+      source: "Frontiers in Microbiology",
+      year: 2022,
+      finding: "Montana State University Center for Biofilm Engineering, with NASA's Jet Propulsion Laboratory. 99.999–99.9999% reduction in biofilm accumulation over 24–48 hours across four materials used in the International Space Station's water system, tested in nutrient broth. Efficacy dropped in a potato-starch growth medium, which the researchers attribute to starches masking the coating's mechanism."
+    },
+    {
+      type: "lab-report",
+      title: "Use of antimicrobial coatings to prevent multispecies, multidomain biofilm growth of ISS isolates in wastewater system",
+      source: "73rd International Astronautical Congress (conference proceedings, not a peer-reviewed journal)",
+      year: 2022,
+      finding: "Follow-up ISS wastewater-tank study, Montana State University and NASA JPL. Reduced biofilm accumulation against Pseudomonas aeruginosa and a five-microbe consortium on Inconel and Teflon; showed the greatest log reduction of the coatings tested against P. aeruginosa (2.8 log). Researchers noted further testing is needed over longer periods and in microgravity conditions before drawing firm conclusions."
+    },
+    {
+      type: "peer-reviewed",
+      title: "A standardized procedure for quantitative evaluation of residual viral activity on antiviral treated textiles",
+      source: "Textile Research Journal",
+      year: 2022,
+      finding: "North Carolina State University (Wilson College of Textiles). Used the product to help develop and validate a new standardised test protocol for residual antiviral activity on treated fabrics, showing a significant difference between treated and untreated material.",
+      productId: "gs5"
+    },
+    {
+      type: "peer-reviewed",
+      title: "Effects of Quaternary Ammonium Silane Coatings on Mixed Fungal and Bacterial Biofilms on Tracheoesophageal Shunt Prostheses",
+      source: "Applied and Environmental Microbiology",
+      year: 2006,
+      finding: "University Medical Center Groningen, Netherlands. The active ingredient's coating reduced mixed yeast and bacterial biofilm on silicone rubber medical device material and was found non-toxic in cell culture testing — the first study to show this specific effect on mixed biofilms."
+    },
+    {
+      type: "peer-reviewed",
+      title: "Quaternary ammonium salt coated air filter for bioaerosol removal from building indoor air",
+      source: "Building and Environment",
+      year: 2024,
+      finding: "Oak Ridge National Laboratory. A simple spray-coating method applied to HVAC air filters maintained over 99.9% antibacterial efficiency three months after application, with bacterial and viral filtration efficiency both above 99.9%.",
+      productId: "gsair"
+    },
+
+    // ---- independent lab reports ----
+    {
+      type: "lab-report",
+      title: "Assessment of Antibacterial Efficacy of Goldshield against MRSA and VRE",
+      source: "Dept. of Soil, Water and Environmental Science, University of Arizona (Dr Charles Gerba)",
+      year: 2008,
+      finding: "Tested on stainless steel, plastic, vinyl and ceramic tile. Over 98% residual protection on all surfaces except vinyl (86.7%); 99%+ residual effect against MRSA on stainless steel, plastic and tile after 14 days.",
+      productId: "gs75"
+    },
+    {
+      type: "lab-report",
+      title: "Virucidal Efficacy of Goldshield 5 used for Inanimate Environmental Surfaces",
+      source: "Center for Medicinal Plant Research, Stephen F. Austin State University",
+      year: 2010,
+      finding: "Tested to ASTM E1053/E1482-04 and US EPA protocol against Influenza A H1N1. 2.5 log reduction; treated surfaces showed no viral infectivity after one hour.",
+      productId: "gs5"
+    },
+    {
+      type: "lab-report",
+      title: "Microbiological Analysis Based on EN 1276 — bactericidal activity of chemical disinfectants and antiseptics",
+      source: "MGS Laboratories, UK",
+      year: 2011,
+      finding: "Tested against E. coli, Enterococcus hirae, Staphylococcus aureus and Pseudomonas aeruginosa. Log reductions between 5.03 and 5.25 across all four organisms — comfortably above the standard's pass threshold.",
+      productId: "gshand"
+    },
+    {
+      type: "lab-report",
+      title: "EN 14476 — virucidal quantitative suspension test (chemical disinfectants and antiseptics used in human medicine)",
+      source: "BluTest Laboratories, Glasgow",
+      year: 2015,
+      finding: "Tested against an Ebola virus strain. At least a 4-log reduction, with residual activity maintained for at least 60 minutes.",
+      productId: "gshand"
+    },
+    {
+      type: "lab-report",
+      title: "Microbiological Analysis Based on EN 1500 — hygienic handrub",
+      source: "MGS Laboratories, UK",
+      year: 2012,
+      finding: "Tested against E. coli K12 as a 30- and 60-second hand rub across five participants. Mean log reduction of 2.59.",
+      productId: "gshand"
+    },
+    {
+      type: "lab-report",
+      title: "Antimicrobial Efficacy of Treated Medical Masks Modified for Viruses",
+      source: "Microchem Laboratory, Round Rock, Texas",
+      year: 2016,
+      finding: "AATCC 100 methodology against Influenza A H1N1, human coronavirus 229E and poliovirus 1. 99.68% reduction against H1N1 and 94.38% against the coronavirus strain at first application.",
+      productId: "gs5"
+    },
+    {
+      type: "lab-report",
+      title: "Effectiveness test report of antiviral-treated medical rubber glove / medical mask against SARS-CoV-2",
+      source: "Wuhan Virus Research Institute, Chinese Academy of Sciences",
+      year: 2020,
+      finding: "Independent Chinese Academy of Sciences testing against live SARS-CoV-2. 94.87% virus inactivation on treated gloves and 99.88% on treated masks, versus untreated controls.",
+      productId: "gs5"
+    },
+
+    // ---- real-world site trials ----
+    {
+      type: "site-trial",
+      title: "Assessment of microbiological reduction and residual performance in clinical training areas",
+      source: "Ipswich Hospital, UK (Lead Infection Prevention Nurse)",
+      year: 2015,
+      finding: "Applied to high-touch clinical training surfaces alongside normal hospital cleaning. Reduced contamination was still measurable 2–3 days after application and after normal cleaning had taken place — covering the gap where routine cleaning frequency drops, such as over a weekend.",
+      productId: "gs75"
+    },
+    {
+      type: "site-trial",
+      title: "Goldshield 5 Antimicrobial Test — wheelchairs, stretchers and tray tables",
+      source: "University of Pittsburgh Medical Center, Clinical Support Services",
+      year: 2008,
+      finding: "634 tests using ATP bioburden detection over six weeks. Regular cleaning plus treatment showed a dramatic, sustained reduction in bioburden compared with regular cleaning alone.",
+      productId: "gs5"
+    },
+    {
+      type: "site-trial",
+      title: "Use of ATP Detection Process to Evaluate Residual Efficacy on Treated Surfaces in New York City Schools",
+      source: "New York City Board of Education",
+      year: 2006,
+      finding: "Gymnasiums, weight rooms, classroom desks, sinks and lockers across three schools. 32% of tested spaces failed bacterial testing before treatment; zero failures after treatment, with protection persisting for four weeks.",
+      productId: "gs5"
+    },
+    {
+      type: "site-trial",
+      title: "Microbiological results from a test on a London Underground train",
+      source: "Independent company microbiologist",
+      year: 2015,
+      finding: "High-touch areas including grab rails and seats tested before treatment and again after three weeks in normal passenger service. Sustained, dramatic reduction in bacterial contamination across the whole train.",
+      productId: "gs5"
+    },
+    {
+      type: "site-trial",
+      title: "Residual Surface Protection Test Report — 7-day ATP Cleanliness Evaluation",
+      source: "Sha Tin Hyatt Hotel, Hong Kong (Mono Care Limited, Field Hygiene Specialist)",
+      year: 2025,
+      finding: "Fogger application across high-touch and hidden hotel surfaces. Over 98% average reduction in microbial ATP levels seven days after a single application, with no reapplication or wiping — including hidden, dust-prone areas like air inlets.",
+      productId: "gs75"
+    }
+  ],
 
   /* ---------- app build catalogue ---------- */
   appTypes: [

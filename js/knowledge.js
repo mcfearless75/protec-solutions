@@ -30,7 +30,6 @@ window.PROTEC_KB = {
 
   /* ---------- deep links surfaced by search ---------- */
   actions: [
-    { title: "Coverage Calculator", url: "goldshield.html#calculator", icon: "∑", desc: "Work out product volume and cost for your floor area" },
     { title: "Protection Simulator", url: "goldshield.html#simulator", icon: "◉", desc: "Watch microbial load over 30 days, treated vs untreated" },
     { title: "Product Advisor", url: "goldshield.html#advisor", icon: "◈", desc: "Answer four questions, get the right Goldshield product" },
     { title: "App Scoper", url: "apps.html#scoper", icon: "◑", desc: "Build a live spec, timeline and budget for your app" },
@@ -49,10 +48,10 @@ window.PROTEC_KB = {
       id: "gs75",
       name: "Goldshield GS75 Surface Protectant",
       tag: "Flagship",
-      blurb: "Water-based antimicrobial that bonds to the surface and keeps working for up to 90 days between applications.",
-      coveragePerLitre: 40,
+      blurb: "Water-based antimicrobial that bonds to the surface and keeps working for up to 14 days between applications.",
+      coveragePerLitre: 100,
       pricePerLitre: 68,
-      durabilityDays: 90,
+      durabilityDays: 14,
       surfaces: ["Hard surfaces", "Desks", "Handrails", "Door furniture", "Washrooms"],
       sectors: ["healthcare", "education", "office", "hospitality", "transport"],
       certs: ["EN 1276", "EN 13697", "ISO 22196"]
@@ -62,9 +61,9 @@ window.PROTEC_KB = {
       name: "Goldshield GS5 Fabric & Soft Surface",
       tag: "Textiles",
       blurb: "Designed for soft furnishings, seating, curtains and carpet. Odour control plus continuous antimicrobial action.",
-      coveragePerLitre: 25,
+      coveragePerLitre: 100,
       pricePerLitre: 74,
-      durabilityDays: 60,
+      durabilityDays: 14,
       surfaces: ["Seating", "Carpet", "Curtains", "Vehicle interiors", "Mattresses"],
       sectors: ["hospitality", "transport", "education", "care"],
       certs: ["ISO 20743", "AATCC 100"]
@@ -131,11 +130,11 @@ window.PROTEC_KB = {
   faq: [
     {
       keys: ["goldshield", "what is goldshield", "antimicrobial", "product range", "protection"],
-      answer: "**Goldshield** is an antimicrobial surface technology and we are an official UK distribution partner. Unlike a standard disinfectant that kills on contact and then evaporates, Goldshield bonds to the surface and keeps working continuously for up to 90 days.\n\nThe range covers hard surfaces (GS75), soft furnishings (GS5), hand protection and HVAC treatment — applied by trigger spray or, for whole rooms and vehicle cabins, electrostatic fogging. Try the [Product Advisor](goldshield.html#advisor) and it will pick the right one for your site in about twenty seconds."
+      answer: "**Goldshield** is an antimicrobial surface technology and we are an official UK distribution partner. Unlike a standard disinfectant that kills on contact and then evaporates, Goldshield bonds to the surface and keeps working continuously — up to 120 days for HVAC treatment, 14 days between applications for GS75 and GS5.\n\nThe range covers hard surfaces (GS75), soft furnishings (GS5), hand protection and HVAC treatment — applied by trigger spray or, for whole rooms and vehicle cabins, electrostatic fogging. Try the [Product Advisor](goldshield.html#advisor) and it will pick the right one for your site in about twenty seconds."
     },
     {
       keys: ["how long", "last", "durability", "90 days", "reapply", "how often"],
-      answer: "Durability depends on the product and the traffic level:\n\n• **GS75 hard surface** — up to 90 days\n• **GS5 fabric** — up to 60 days\n• **HVAC treatment** — up to 120 days\n• **Hand protection** — hours per application\n\nHigh-touch, high-traffic areas sit at the lower end of those ranges. The [Protection Simulator](goldshield.html#simulator) shows the decay curve against an untreated control."
+      answer: "Durability depends on the product and the traffic level:\n\n• **GS75 hard surface** — up to 14 days\n• **GS5 fabric** — up to 14 days\n• **HVAC treatment** — up to 120 days\n• **Hand protection** — hours per application\n\nHigh-touch, high-traffic areas sit at the lower end of those ranges. The [Protection Simulator](goldshield.html#simulator) shows the decay curve against an untreated control."
     },
     {
       keys: ["safe", "toxic", "children", "food", "safety", "harmful", "non-toxic"],
@@ -143,7 +142,7 @@ window.PROTEC_KB = {
     },
     {
       keys: ["cost", "price", "how much", "budget", "quote", "pricing", "expensive"],
-      answer: "For protection, cost is driven by area and product. Roughly £61–£79 per litre with coverage between 25 and 220 m² per litre depending on surface type. Run the [Coverage Calculator](goldshield.html#calculator) for a real number against your floor area.\n\nFor software, a typical build lands between **£9.5k and £30k**, with ops tools at the lower end and full mobile apps at the top. The [App Scoper](apps.html#scoper) produces a costed spec in about a minute."
+      answer: "For protection, cost depends on floor area, product and traffic level, so we'd rather give you a real number than an average that's wrong for your site. A quick [site survey](contact.html#book) gets you an exact quote — usually within a day or two of the visit.\n\nFor software, a typical build lands between **£9.5k and £30k**, with ops tools at the lower end and full mobile apps at the top. The [App Scoper](apps.html#scoper) produces a costed spec in about a minute."
     },
     {
       keys: ["app", "build", "development", "software", "bespoke", "web app", "mobile"],

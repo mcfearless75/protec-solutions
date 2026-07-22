@@ -36,75 +36,7 @@
   }
 
   /* ============================================================
-     1. COVERAGE CALCULATOR  (goldshield.html#calculator)
-     ============================================================ */
-  function initCalculator() {
-    const root = $("#calculator");
-    if (!root) return;
-
-    const area = $("#calc-area", root);
-    const areaOut = $("#calc-area-out", root);
-    const productSel = $("#calc-product", root);
-    const trafficWrap = $("#calc-traffic", root);
-    const result = $("#calc-result", root);
-    let traffic = "medium";
-
-    KB.products.forEach((p) => {
-      const opt = document.createElement("option");
-      opt.value = p.id;
-      opt.textContent = p.name;
-      productSel.appendChild(opt);
-    });
-
-    const TRAFFIC = { low: 1, medium: 1.25, high: 1.6 };
-
-    function compute() {
-      const sqm = parseInt(area.value, 10);
-      const product = KB.products.find((p) => p.id === productSel.value) || KB.products[0];
-      const factor = TRAFFIC[traffic];
-
-      const litres = (sqm / product.coveragePerLitre) * factor;
-      const materialCost = litres * product.pricePerLitre;
-      const applicationCost = sqm * 1.85;
-      const total = materialCost + applicationCost;
-      const perYear = Math.ceil(365 / product.durabilityDays);
-      const annual = total * perYear;
-      const perSqmYear = annual / sqm;
-
-      result.hidden = false;
-      result.innerHTML = `
-        <h4>${product.name}</h4>
-        <div class="big">${gbp(total)} <span style="font-size:.4em;color:var(--text-faint)">per treatment</span></div>
-        <table>
-          <tr><td>Area treated</td><td>${sqm.toLocaleString("en-GB")} m²</td></tr>
-          <tr><td>Product required</td><td>${litres.toFixed(1)} litres</td></tr>
-          <tr><td>Material cost</td><td>${gbp(materialCost)}</td></tr>
-          <tr><td>Application &amp; labour</td><td>${gbp(applicationCost)}</td></tr>
-          <tr><td>Protection duration</td><td>up to ${product.durabilityDays} days</td></tr>
-          <tr><td>Treatments per year</td><td>${perYear}</td></tr>
-          <tr><td><strong>Annual programme</strong></td><td><strong>${gbp(annual)}</strong></td></tr>
-          <tr><td>Cost per m² per year</td><td>£${perSqmYear.toFixed(2)}</td></tr>
-        </table>
-        <p style="margin-top:1rem;font-size:.84rem;color:var(--text-faint)">
-          Indicative figures based on ${traffic} traffic loading. A site survey confirms the final quote —
-          volume and multi-site agreements typically reduce this by 12–20%.
-        </p>
-        <a class="btn btn-gold" style="margin-top:1.2rem" href="contact.html#book">Get this quoted properly</a>`;
-    }
-
-    area.addEventListener("input", () => {
-      areaOut.textContent = parseInt(area.value, 10).toLocaleString("en-GB") + " m²";
-      compute();
-    });
-    productSel.addEventListener("change", compute);
-    chipGroup(trafficWrap, (v) => { traffic = v; compute(); });
-
-    areaOut.textContent = parseInt(area.value, 10).toLocaleString("en-GB") + " m²";
-    compute();
-  }
-
-  /* ============================================================
-     2. PROTECTION SIMULATOR  (goldshield.html#simulator)
+     1. PROTECTION SIMULATOR  (goldshield.html#simulator)
      Canvas chart: microbial load over 30 days, treated vs not.
      ============================================================ */
   function initSimulator() {
@@ -268,7 +200,7 @@
   }
 
   /* ============================================================
-     3. PRODUCT ADVISOR  (goldshield.html#advisor)
+     2. PRODUCT ADVISOR  (goldshield.html#advisor)
      Four-question wizard scoring the catalogue.
      ============================================================ */
   function initAdvisor() {
@@ -375,7 +307,6 @@
           <table>
             <tr><td>Coverage</td><td>${top.coveragePerLitre} m² per litre</td></tr>
             <tr><td>Protection window</td><td>up to ${top.durabilityDays} days</td></tr>
-            <tr><td>Indicative price</td><td>£${top.pricePerLitre} per litre</td></tr>
             <tr><td>Certification</td><td>${top.certs.join(", ")}</td></tr>
           </table>
           <p style="margin-top:1rem;font-size:.9rem;color:var(--text-dim)">
@@ -384,7 +315,7 @@
             ${sector ? `<br><span style="color:var(--gold)">Sector note —</span> ${sector.note}` : ""}
           </p>
           <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem">
-            <a class="btn btn-gold" href="#calculator">Cost it up</a>
+            <a class="btn btn-gold" href="contact.html#book">Get it quoted</a>
             <button class="btn btn-ghost" id="adv-restart" type="button">Start again</button>
           </div>
         </div>`;
@@ -400,7 +331,7 @@
   }
 
   /* ============================================================
-     4. APP SCOPER  (apps.html#scoper)
+     3. APP SCOPER  (apps.html#scoper)
      Live spec builder: type + add-ons + urgency -> cost & timeline
      ============================================================ */
   function initScoper() {
@@ -523,7 +454,7 @@
   }
 
   /* ============================================================
-     5. TECH STACK PICKER  (apps.html#stack)
+     4. TECH STACK PICKER  (apps.html#stack)
      ============================================================ */
   function initStack() {
     const root = $("#stack");
@@ -612,7 +543,7 @@
   }
 
   /* ============================================================
-     6. FEATURE PRIORITISER  (apps.html#prioritiser)
+     5. FEATURE PRIORITISER  (apps.html#prioritiser)
      Impact vs effort scatter, rendered live.
      ============================================================ */
   function initPrioritiser() {
@@ -708,7 +639,7 @@
   }
 
   /* ============================================================
-     7. AI READINESS SCORE  (ai-lab.html#readiness)
+     6. AI READINESS SCORE  (ai-lab.html#readiness)
      ============================================================ */
   function initReadiness() {
     const root = $("#readiness");
@@ -785,7 +716,7 @@
   }
 
   /* ============================================================
-     8. COPY GENERATOR  (ai-lab.html#copygen)
+     7. COPY GENERATOR  (ai-lab.html#copygen)
      Template engine with sector and tone variation.
      ============================================================ */
   function initCopyGen() {
@@ -877,7 +808,7 @@
   }
 
   /* ============================================================
-     9. ROI MODELLER  (ai-lab.html#roi)
+     8. ROI MODELLER  (ai-lab.html#roi)
      ============================================================ */
   function initROI() {
     const root = $("#roi");
@@ -946,7 +877,7 @@
   }
 
   /* ============================================================
-     10. SECTOR MATCHER  (sectors.html#matcher)
+     9. SECTOR MATCHER  (sectors.html#matcher)
      ============================================================ */
   function initSectorMatcher() {
     const root = $("#matcher");
@@ -979,14 +910,14 @@
             ${products.map((p) => `<span class="chip" style="cursor:default">${p.name}</span>`).join("")}
           </div>` : ""}
         <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem">
-          <a class="btn btn-gold" href="goldshield.html#calculator">Cost the protection</a>
+          <a class="btn btn-gold" href="goldshield.html#advisor">Find the right product</a>
           <a class="btn btn-ghost" href="apps.html#scoper">Scope the software</a>
         </div>`;
     });
   }
 
   /* ============================================================
-     11. CONTACT FORM  (contact.html#book)
+     10. CONTACT FORM  (contact.html#book)
      Posts to Formspree; falls back to mailto if unreachable.
      The form's native action attribute covers no-JS visitors.
      ============================================================ */
@@ -1076,7 +1007,7 @@
   /* ---------- boot every tool present on the page ---------- */
   function boot() {
     [
-      initCalculator, initSimulator, initAdvisor, initScoper, initStack,
+      initSimulator, initAdvisor, initScoper, initStack,
       initPrioritiser, initReadiness, initCopyGen, initROI,
       initSectorMatcher, initContact
     ].forEach((fn) => {

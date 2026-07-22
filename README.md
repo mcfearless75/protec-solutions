@@ -11,11 +11,11 @@ No build step — every file is served exactly as committed.
 | Page | Interactive tools |
 |------|-------------------|
 | `index.html` | Hero particle field, animated stats, dual proposition |
-| `goldshield.html` | 30-day protection simulator (canvas chart), coverage & cost calculator, 4-question product advisor |
+| `goldshield.html` | 30-day protection simulator (canvas chart), 4-question product advisor |
 | `apps.html` | Live app scoper (cost + timeline + phases), tech stack picker, feature prioritiser with impact/effort quadrant |
 | `ai-lab.html` | AI readiness score, copy generator, ROI modeller |
 | `sectors.html` | Sector matcher across 8 verticals |
-| `contact.html` | Smart enquiry form (mailto — no backend needed) |
+| `contact.html` | Smart enquiry form (posts to Formspree, mailto fallback if unreachable) |
 
 **Site-wide:** ProTec AI assistant (intent matching over `js/knowledge.js`, voice input
 via Web Speech API), Ctrl+K command palette with fuzzy search across pages, tools,
@@ -26,9 +26,9 @@ products and sectors. Everything runs client-side. No API keys, no backend, noth
 ```
 index.html … contact.html   six pages + 404.html
 css/style.css               design system (brand tokens at the top of :root)
-js/knowledge.js             single source of truth: products, pricing, sectors, FAQ
+js/knowledge.js             single source of truth: products, sectors, FAQ
 js/site.js                  header, reveals, canvas, palette, AI assistant
-js/tools.js                 all 11 interactive tools
+js/tools.js                 all 10 interactive tools
 assets/                     brand logos
 CNAME                       www.protec-solutions.co.uk
 ```
@@ -69,4 +69,8 @@ CSS/JS links when changing those files so returning visitors get the fresh asset
 
 - Phone number `+44 (0)1234 567 890` (in page footers and `js/knowledge.js`)
 - Confirm `hello@protec-solutions.co.uk` is a live mailbox
-- Product pricing/coverage figures in `js/knowledge.js` against the actual Goldshield price list
+- `pricePerLitre` in `js/knowledge.js` is unverified and used only internally, to rank
+  products against each other when the Product Advisor's "lowest running cost" option
+  is picked — it is never shown to a visitor. No cost or price figure is displayed
+  anywhere on the site; protection pricing is quote-only via the contact form.
+  Coverage (m²/L) and duration (days) figures ARE shown and are confirmed real data.

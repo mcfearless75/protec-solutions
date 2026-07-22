@@ -431,7 +431,7 @@
         q.includes(p.id) || q.includes(p.name.toLowerCase().split(" ")[1] || " ")
       );
       if (product && bestScore < 24) {
-        return `**${product.name}**\n\n${product.blurb}\n\n• Coverage — ${product.coveragePerLitre} m² per litre\n• Durability — up to ${product.durabilityDays} days\n• Indicative price — £${product.pricePerLitre} per litre\n• Certification — ${product.certs.join(", ")}\n\nSuitable for: ${product.surfaces.join(", ")}.\n\n[Run the coverage calculator](goldshield.html#calculator)`;
+        return `**${product.name}**\n\n${product.blurb}\n\n• Coverage — ${product.coveragePerLitre} m² per litre\n• Durability — up to ${product.durabilityDays} days\n• Certification — ${product.certs.join(", ")}\n\nSuitable for: ${product.surfaces.join(", ")}.\n\n[Book a site survey](contact.html#book) for a firm quote against your floor area.`;
       }
 
       return bestScore >= 8 ? best.answer : KB.fallback;

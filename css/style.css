@@ -113,6 +113,10 @@ h1, h2, h3, h4 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* clip-to-text shaves glyph strokes that overhang the text box;
+     pad the paint area and pull following text back into place */
+  padding-right: 0.08em;
+  margin-right: -0.08em;
 }
 .teal-text { color: var(--teal); }
 
@@ -151,6 +155,7 @@ h1, h2, h3, h4 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  padding-right: 0.1em;
 }
 .logo-word small {
   display: block;
@@ -889,6 +894,7 @@ input[type="range"]:focus-visible {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  padding-right: 0.06em;
 }
 .stat .unit {
   font-family: var(--font-mono);

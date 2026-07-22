@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Protec Solutions</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d10'/%3E%3Cpath d='M16 5l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V9z' fill='none' stroke='%23e8b64c' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <a class="logo" href="/index.html" aria-label="Protec Solutions home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16 4l10 4.5v7.8C26 23 21.5 27 16 28.5 10.5 27 6 23 6 16.3V8.5z" stroke="#e8b64c" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M11.5 16l3.2 3.3 6-6.4" stroke="#3fd6b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>PROTEC <em>SOLUTIONS</em></span>
+  </a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/index.html">Home</a>
+    <a href="/goldshield.html">Goldshield</a>
+    <a href="/apps.html">Bespoke Apps</a>
+    <a href="/ai-lab.html">AI Lab</a>
+    <a href="/sectors.html">Sectors</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+  <div style="display:flex;gap:.6rem;align-items:center">
+    <button class="search-trigger" aria-label="Search the site">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="label">Search</span><kbd>Ctrl K</kbd>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero wrap" style="min-height:70svh;display:flex;flex-direction:column;justify-content:center">
+    <div class="reveal in">
+      <span class="kicker">Error 404</span>
+      <h1>That page has <span class="gold-text">not survived contact</span> with reality.</h1>
+      <p class="lede">
+        Either it moved, or it never existed. Search the site with Ctrl K, ask the assistant,
+        or pick up one of the routes below.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-gold search-trigger" style="border-radius:999px">Search the site</button>
+        <a class="btn btn-ghost" href="/index.html">Back to home</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="grid-3" id="lost-links"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© <span id="year">2026</span> Protec Solutions. United Kingdom.</span>
+      <span><a href="/contact.html" style="color:var(--gold)">hello@protec-solutions.co.uk</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/knowledge.js?v=1"></script>
+<script src="/js/site.js?v=1"></script>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+(() => {
+  const grid = document.getElementById("lost-links");
+  if (!grid || !window.PROTEC_KB) return;
+  grid.innerHTML = window.PROTEC_KB.pages.slice(1).map((p) => `
+    <a class="card reveal in" href="/${p.url}" style="display:block">
+      <div class="icon" aria-hidden="true" style="font-size:1.1rem">${p.icon}</div>
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+    </a>`).join("");
+})();
+</script>
+</body>
+</html>

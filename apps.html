@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bespoke Web &amp; Mobile App Development | Protec Solutions</title>
+<meta name="description" content="Bespoke web applications, mobile apps and portals built around how your business actually works. Live spec builder, stack picker and feature prioritiser.">
+<link rel="canonical" href="https://www.protec-solutions.co.uk/apps.html">
+<meta property="og:title" content="Bespoke Web &amp; Mobile App Development | Protec Solutions">
+<meta property="og:description" content="Portals, booking systems, compliance platforms and mobile apps. Scope yours live in a minute.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d10'/%3E%3Cpath d='M16 5l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V9z' fill='none' stroke='%23e8b64c' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="Protec Solutions home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16 4l10 4.5v7.8C26 23 21.5 27 16 28.5 10.5 27 6 23 6 16.3V8.5z" stroke="#e8b64c" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M11.5 16l3.2 3.3 6-6.4" stroke="#3fd6b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>PROTEC <em>SOLUTIONS</em></span>
+  </a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="goldshield.html">Goldshield</a>
+    <a href="apps.html" class="active">Bespoke Apps</a>
+    <a href="ai-lab.html">AI Lab</a>
+    <a href="sectors.html">Sectors</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div style="display:flex;gap:.6rem;align-items:center">
+    <button class="search-trigger" aria-label="Search the site">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="label">Search</span><kbd>Ctrl K</kbd>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero wrap">
+    <div class="reveal in">
+      <span class="kicker kicker--teal">Bespoke development</span>
+      <h1>Software that fits <span class="teal-text">your process</span>, not someone else's roadmap.</h1>
+      <p class="lede">
+        Off-the-shelf gets you eighty percent and then charges you forever for the twenty percent it will never do.
+        We build the whole hundred, you own the code, and it costs less than you think.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-teal" href="#scoper">Build a live spec</a>
+        <a class="btn btn-ghost" href="#stack">See the stack</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="stat-band reveal">
+      <div><strong><span data-count="6">0</span><span class="unit"> wks</span></strong><span>fastest delivery to live</span></div>
+      <div><strong><span data-count="2">0</span><span class="unit"> wks</span></strong><span>sprint cadence, always demoable</span></div>
+      <div><strong><span data-count="100">0</span><span class="unit">%</span></strong><span>code and data ownership</span></div>
+      <div><strong><span data-count="0">0</span></strong><span>open-ended day rates</span></div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WE BUILD ============ -->
+  <section class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">What we build</span>
+      <h2>Six shapes cover most of what businesses actually need.</h2>
+      <p>If yours is a different shape, that is fine — these are starting points, not a menu you have to order from.</p>
+    </div>
+    <div class="grid-3" id="apptype-grid"></div>
+  </section>
+
+  <!-- ============ SCOPER ============ -->
+  <section class="wrap" id="scoper">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">Live spec builder</span>
+      <h2>Scope your build in about a minute.</h2>
+      <p>
+        Pick the shape, add the features you need, set the pace. Cost, timeline and phase breakdown
+        recalculate as you go, and you can copy the whole spec out at the end.
+      </p>
+    </div>
+
+    <div class="tool reveal">
+      <div class="tool-head">
+        <div class="icon icon--teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></div>
+        <div><h3>App Scoper</h3><p>Indicative cost and timeline from real project data</p></div>
+      </div>
+
+      <div style="display:grid;gap:1.6rem">
+        <div class="field">
+          <label>Project shape</label>
+          <div class="chips" id="scope-type"></div>
+        </div>
+        <div class="field">
+          <label>Add the features you need</label>
+          <div class="chips" id="scope-addons"></div>
+        </div>
+        <div class="field">
+          <label for="scope-users">Expected users — <span id="scope-users-out" style="color:var(--teal)"></span></label>
+          <input type="range" id="scope-users" min="10" max="20000" value="250" step="10">
+        </div>
+        <div class="field">
+          <label>Delivery pace</label>
+          <div class="chips" id="scope-urgency">
+            <button class="chip" data-value="relaxed" type="button">Relaxed</button>
+            <button class="chip selected" data-value="standard" type="button">Standard</button>
+            <button class="chip" data-value="fast" type="button">Accelerated</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-result" id="scope-result" hidden></div>
+    </div>
+  </section>
+
+  <!-- ============ STACK PICKER ============ -->
+  <section class="wrap" id="stack">
+    <div class="sec-head reveal">
+      <span class="kicker">Technology</span>
+      <h2>Stack chosen to fit the project, not the CV.</h2>
+      <p>There is no house framework we bend everything into. Pick a project shape and see what we would actually reach for.</p>
+    </div>
+
+    <div class="tool reveal">
+      <div class="tool-head">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg></div>
+        <div><h3>Tech Stack Picker</h3><p>What we would build it with, and why</p></div>
+      </div>
+      <div class="chips" id="stack-choices" style="margin-bottom:.5rem"></div>
+      <div class="tool-result" id="stack-result" hidden></div>
+    </div>
+  </section>
+
+  <!-- ============ PRIORITISER ============ -->
+  <section class="wrap" id="prioritiser">
+    <div class="sec-head reveal">
+      <span class="kicker">Scope control</span>
+      <h2>The feature list is always too long. This fixes that.</h2>
+      <p>
+        Score each feature on impact and effort. The tool ranks them, plots the quadrant and tells you
+        plainly which ones to cut. Most projects lose a third of the list here, and are better for it.
+      </p>
+    </div>
+
+    <div class="tool reveal">
+      <div class="tool-head">
+        <div class="icon icon--teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20v-5"/></svg></div>
+        <div><h3>Feature Prioritiser</h3><p>Impact against effort, plotted live</p></div>
+      </div>
+
+      <div class="grid-2" style="gap:2rem;align-items:start">
+        <div>
+          <form id="prio-form" style="display:grid;gap:1.1rem">
+            <div class="field">
+              <label for="prio-name">Feature</label>
+              <input type="text" id="prio-name" placeholder="e.g. Automated invoice matching" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="prio-impact">Impact — <span id="prio-impact-out" style="color:var(--teal)"></span> / 10</label>
+              <input type="range" id="prio-impact" min="1" max="10" value="7">
+            </div>
+            <div class="field">
+              <label for="prio-effort">Effort — <span id="prio-effort-out" style="color:var(--gold)"></span> / 10</label>
+              <input type="range" id="prio-effort" min="1" max="10" value="4">
+            </div>
+            <button class="btn btn-teal" type="submit">Add feature</button>
+          </form>
+        </div>
+
+        <div>
+          <div style="position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:var(--radius);background:
+                linear-gradient(to right, rgba(63,214,184,.05), transparent),
+                linear-gradient(to top, rgba(239,106,90,.05), transparent);" id="prio-plot-wrap">
+            <div id="prio-plot" style="position:absolute;inset:8%"></div>
+            <span style="position:absolute;top:8px;left:10px;font-family:var(--font-mono);font-size:.62rem;color:var(--teal)">HIGH IMPACT · LOW EFFORT</span>
+            <span style="position:absolute;bottom:8px;right:10px;font-family:var(--font-mono);font-size:.62rem;color:var(--danger)">LOW IMPACT · HIGH EFFORT</span>
+            <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)"></div>
+            <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.8rem">
+        <div style="font-family:var(--font-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);margin-bottom:.5rem">
+          Ranked by return
+        </div>
+        <div id="prio-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW WE WORK ============ -->
+  <section class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">The working agreement</span>
+      <h2>Four things we commit to in writing.</h2>
+    </div>
+    <div class="grid-2">
+      <article class="card reveal">
+        <h3>Fixed price after discovery</h3>
+        <p style="margin-top:.6rem">Discovery is paid and short. At the end of it you get one number and one date. If we underestimate, that is our problem, not a change request.</p>
+      </article>
+      <article class="card reveal reveal-d1">
+        <h3>Something to click every two weeks</h3>
+        <p style="margin-top:.6rem">Not a status update, not a burndown chart. A working thing on a URL that you can open and use. If a sprint produces nothing demoable, something has gone wrong and we will say so.</p>
+      </article>
+      <article class="card reveal reveal-d2">
+        <h3>You own everything</h3>
+        <p style="margin-top:.6rem">Source code, database, domains, accounts. Handed over on completion with documentation. No hostage licensing, no per-seat fee for software you paid to have built.</p>
+      </article>
+      <article class="card reveal reveal-d3">
+        <h3>We will tell you not to build it</h3>
+        <p style="margin-top:.6rem">If an off-the-shelf product genuinely solves it for a fraction of the cost, that is what you will hear. A bad-fit project is worse for us than no project.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="wrap">
+    <div class="panel panel--teal reveal" style="text-align:center;padding-block:clamp(3rem,6vw,5rem)">
+      <div class="panel-glow" aria-hidden="true" style="left:50%;right:auto;transform:translateX(-50%);top:-50%"></div>
+      <span class="kicker kicker--teal" style="justify-content:center">Next step</span>
+      <h2 style="font-size:var(--text-h2);max-width:22ch;margin-inline:auto">Bring the spec you just built.</h2>
+      <p class="lede" style="margin:1.2rem auto 0">
+        Copy it out of the scoper and send it over. We will come back with a real proposal, or an honest
+        reason why you should not build it at all.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+        <a class="btn btn-teal" href="contact.html#book">Start a project</a>
+        <a class="btn btn-ghost" href="#" data-ask="What tech stack do you use?">Ask about the stack</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 4l10 4.5v7.8C26 23 21.5 27 16 28.5 10.5 27 6 23 6 16.3V8.5z" stroke="#e8b64c" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M11.5 16l3.2 3.3 6-6.4" stroke="#3fd6b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>PROTEC <em>SOLUTIONS</em></span>
+        </a>
+        <p>Official UK distribution for Goldshield antimicrobial protection, and bespoke application development for businesses that have outgrown off-the-shelf.</p>
+      </div>
+      <div>
+        <h4>Protection</h4>
+        <ul>
+          <li><a href="goldshield.html">The range</a></li>
+          <li><a href="goldshield.html#calculator">Coverage calculator</a></li>
+          <li><a href="goldshield.html#simulator">Protection simulator</a></li>
+          <li><a href="goldshield.html#advisor">Product advisor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Software</h4>
+        <ul>
+          <li><a href="apps.html">Bespoke apps</a></li>
+          <li><a href="apps.html#scoper">App scoper</a></li>
+          <li><a href="apps.html#stack">Stack picker</a></li>
+          <li><a href="ai-lab.html">AI Lab</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="sectors.html">Sectors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mailto:hello@protec-solutions.co.uk">hello@protec-solutions.co.uk</a></li>
+          <li><a href="tel:+441234567890">+44 (0)1234 567 890</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Protec Solutions. United Kingdom.</span>
+      <span>Goldshield is a registered trademark of its respective owner.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/knowledge.js?v=1"></script>
+<script src="js/site.js?v=1"></script>
+<script src="js/tools.js?v=1"></script>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+(() => {
+  const grid = document.getElementById("apptype-grid");
+  if (!grid || !window.PROTEC_KB) return;
+  const KB = window.PROTEC_KB;
+  grid.innerHTML = KB.appTypes.map((t) => `
+    <article class="card reveal in">
+      <div class="icon icon--teal">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>
+      </div>
+      <h3>${t.name}</h3>
+      <p>${t.blurb}</p>
+      <p style="margin-top:1rem;font-family:var(--font-mono);font-size:.74rem;color:var(--text-faint)">
+        FROM <span style="color:var(--teal)">${t.baseWeeks} WEEKS</span> ·
+        <span style="color:var(--gold)">£${t.baseCost.toLocaleString("en-GB")}</span>
+      </p>
+    </article>`).join("");
+})();
+</script>
+</body>
+</html>

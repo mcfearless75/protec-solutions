@@ -41,12 +41,19 @@
     if (toggle && nav) {
       toggle.addEventListener("click", () => {
         const open = nav.classList.toggle("open");
+        // drop the header's backdrop-filter blur while the full-screen mobile
+        // nav is open — on some mobile GPU compositors, a blurred/translucent
+        // ancestor behind a transform-based fixed overlay (sitting above the
+        // constantly-animating background canvas) causes the overlay itself
+        // to render translucent, letting page content bleed through the menu
+        header.classList.toggle("nav-open", open);
         toggle.setAttribute("aria-expanded", String(open));
         document.body.style.overflow = open ? "hidden" : "";
       });
       nav.addEventListener("click", (e) => {
         if (e.target.tagName === "A") {
           nav.classList.remove("open");
+          header.classList.remove("nav-open");
           toggle.setAttribute("aria-expanded", "false");
           document.body.style.overflow = "";
         }

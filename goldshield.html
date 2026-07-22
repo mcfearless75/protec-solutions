@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -168,7 +168,7 @@
       <h2>Four products. Every surface a building has.</h2>
     </div>
 
-    <div class="grid-3" id="product-grid"></div>
+    <div class="product-grid" id="product-grid"></div>
   </section>
 
   <!-- ============ ADVISOR ============ -->
@@ -286,34 +286,87 @@
   </div>
 </footer>
 
-<script src="js/knowledge.js?v=8"></script>
-<script src="js/site.js?v=8"></script>
-<script src="js/tools.js?v=8"></script>
+<script src="js/knowledge.js?v=9"></script>
+<script src="js/site.js?v=9"></script>
+<script src="js/tools.js?v=9"></script>
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* render the product catalogue from the knowledge base */
+/* render the product catalogue from the knowledge base — one row,
+   comparative animated meters, cursor-tracking glow and tilt */
 (() => {
   const grid = document.getElementById("product-grid");
   if (!grid || !window.PROTEC_KB) return;
-  grid.innerHTML = window.PROTEC_KB.products.map((p, i) => `
-    <article class="card reveal reveal-d${i % 3}">
+  const products = window.PROTEC_KB.products;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const maxCoverage = Math.max(...products.map((p) => p.coveragePerLitre));
+  const maxDuration = Math.max(...products.map((p) => p.durabilityDays));
+  const pct = (v, max) => Math.max(8, Math.round((v / max) * 100));
+
+  grid.innerHTML = products.map((p, i) => {
+    const delayClass = i === 0 ? "" : ` reveal-d${i}`;
+    return `
+    <article class="card product-card reveal${delayClass}">
       <span class="tag">${p.tag}</span>
       <h3>${p.name}</h3>
       <p>${p.blurb}</p>
-      <table style="width:100%;border-collapse:collapse;font-size:.84rem;margin-top:1rem">
-        <tr><td style="padding:.35rem 0;border-bottom:1px solid var(--line);color:var(--text-faint)">Coverage</td>
-            <td style="padding:.35rem 0;border-bottom:1px solid var(--line);text-align:right;font-weight:600">${p.coveragePerLitre} m²/L</td></tr>
-        <tr><td style="padding:.35rem 0;border-bottom:1px solid var(--line);color:var(--text-faint)">Duration</td>
-            <td style="padding:.35rem 0;border-bottom:1px solid var(--line);text-align:right;font-weight:600">${p.durabilityDays} days</td></tr>
-        <tr><td style="padding:.35rem 0;color:var(--text-faint)">Certification</td>
-            <td style="padding:.35rem 0;text-align:right;font-weight:600">${p.certs.join(", ")}</td></tr>
-      </table>
-      <p style="margin-top:.9rem;font-size:.82rem;color:var(--text-faint)">Used on: ${p.surfaces.join(", ")}</p>
-    </article>`).join("");
-  // let the reveal observer pick these up
-  document.dispatchEvent(new Event("protec:rescan"));
-  grid.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+
+      <div class="pc-row"><span>Coverage</span><span>${p.coveragePerLitre} m²/L</span></div>
+      <div class="meter-sm"><i style="background:linear-gradient(90deg, var(--gold-deep), var(--gold))" data-target="${pct(p.coveragePerLitre, maxCoverage)}"></i></div>
+
+      <div class="pc-row"><span>Duration</span><span>${p.durabilityDays} days</span></div>
+      <div class="meter-sm"><i style="background:linear-gradient(90deg, #1d9e85, var(--teal))" data-target="${pct(p.durabilityDays, maxDuration)}"></i></div>
+
+      <div class="pc-certs">${p.certs.map((c) => `<span class="chip-sm">${c}</span>`).join("")}</div>
+      <p style="margin-top:.9rem;font-size:.8rem;color:var(--text-faint)">Used on: ${p.surfaces.join(", ")}</p>
+    </article>`;
+  }).join("");
+
+  const cards = [...grid.querySelectorAll(".product-card")];
+
+  // fill each card's meters the moment it scrolls into view, in step
+  // with its own fade-in (handled separately by the sitewide .reveal
+  // observer in site.js, which naturally picks these cards up too)
+  if ("IntersectionObserver" in window) {
+    const meterIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll(".meter-sm i").forEach((bar) => {
+          bar.style.width = bar.dataset.target + "%";
+        });
+        meterIO.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+    cards.forEach((c) => meterIO.observe(c));
+  } else {
+    grid.querySelectorAll(".meter-sm i").forEach((bar) => (bar.style.width = bar.dataset.target + "%"));
+  }
+
+  // cursor-tracking glow + gentle 3D tilt, skipped entirely for reduced motion
+  if (!reduceMotion) {
+    cards.forEach((card) => {
+      let raf;
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        card.style.setProperty("--mx", x * 100 + "%");
+        card.style.setProperty("--my", y * 100 + "%");
+        card.classList.add("tracking");
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const rx = (0.5 - y) * 7;
+          const ry = (x - 0.5) * 7;
+          card.style.transform = `translateY(-6px) scale(1.015) perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+      }, { passive: true });
+      card.addEventListener("pointerleave", () => {
+        card.classList.remove("tracking");
+        card.style.transform = "";
+      });
+    });
+  }
 })();
 </script>
 </body>

@@ -24,7 +24,7 @@
      (network error, timeout, rate limit, proxy down) — so the
      widget can never appear broken to a visitor either way.
      ============================================================ */
-  const PROTEC_AI_ENDPOINT = "";
+  const PROTEC_AI_ENDPOINT = "https://protec-ai-proxy.netlify.app/.netlify/functions/protec-ai";
 
   const KB = window.PROTEC_KB;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

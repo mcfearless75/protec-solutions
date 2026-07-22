@@ -94,6 +94,31 @@ window.PROTEC_KB = {
     }
   ],
 
+  /* ---------- independent evidence: peer-reviewed studies, lab reports,
+     site trials ----------
+     Deliberately empty until real citations exist. The Evidence section
+     on goldshield.html only renders when this array is non-empty, so
+     leaving it empty is completely safe — nothing broken or placeholder
+     ever appears on the live site.
+
+     NEVER invent an entry here "to show what it would look like". A
+     fabricated citation is indistinguishable from a real one once it's
+     on the page, and this is exactly the kind of claim that can turn
+     into a false-advertising problem if it's wrong.
+
+     Add real entries in this exact shape:
+     {
+       type: "peer-reviewed" | "lab-report" | "site-trial",
+       title: "Exact study or report title",
+       source: "Journal name, or lab/testing body name",
+       year: 2024,
+       finding: "One plain-English sentence — the actual result, not marketing copy.",
+       url: "https://doi.org/... or the report link. Omit the key entirely if there's no public link.",
+       productId: "gs75"   // optional — matches a product id above, shows as a badge on that product's card
+     }
+  */
+  evidence: [],
+
   /* ---------- app build catalogue ---------- */
   appTypes: [
     { id: "portal", name: "Client / Staff Portal", baseWeeks: 8, baseCost: 14000, blurb: "Secure login, role-based dashboards, document handling, audit trail." },

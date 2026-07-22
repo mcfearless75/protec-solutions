@@ -669,8 +669,11 @@
   /* ---------- section dot-nav + back to top ---------- */
   function initSectionNav() {
     const sections = $$("main section").filter((s) => {
-      // only sections with a real heading are worth jumping to
-      return s.querySelector("h2, h1");
+      // only sections with a real heading, and not hidden (e.g. the
+      // Evidence section on goldshield.html stays hidden until real
+      // citations exist — a hidden section must never appear as a
+      // dot-nav target pointing at invisible content)
+      return s.querySelector("h2, h1") && !s.hidden;
     });
 
     // back to top works on every page regardless of section count

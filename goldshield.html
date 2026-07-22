@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=18">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -319,6 +319,19 @@
     </div>
   </section>
 
+  <!-- ============ EVIDENCE ============
+       Renders only when window.PROTEC_KB.evidence is non-empty — see the
+       inline script near the bottom of this file. No markup below this
+       comment is ever shown with placeholder or example content. -->
+  <section class="wrap" id="evidence" hidden>
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">Independent evidence</span>
+      <h2>Not just our word for it.</h2>
+      <p>Peer-reviewed studies, third-party lab reports and real site trials — the certifications above tell you what standard was met, this is the underlying evidence.</p>
+    </div>
+    <div class="grid-3" id="evidence-list"></div>
+  </section>
+
   <!-- ============ CTA ============ -->
   <section class="wrap">
     <div class="panel panel--gold reveal" style="text-align:center;padding-block:clamp(3rem,6vw,5rem)">
@@ -379,10 +392,10 @@
   </div>
 </footer>
 
-<script src="js/knowledge.js?v=16"></script>
-<script src="js/site.js?v=16"></script>
-<script src="js/tools.js?v=16"></script>
-<script src="js/mechanism.js?v=16"></script>
+<script src="js/knowledge.js?v=18"></script>
+<script src="js/site.js?v=18"></script>
+<script src="js/tools.js?v=18"></script>
+<script src="js/mechanism.js?v=18"></script>
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -461,6 +474,38 @@ document.getElementById("year").textContent = new Date().getFullYear();
       });
     });
   }
+})();
+
+/* render the Evidence section — stays hidden (default in the markup)
+   until window.PROTEC_KB.evidence has real entries in it */
+(() => {
+  const section = document.getElementById("evidence");
+  const list = document.getElementById("evidence-list");
+  const evidence = window.PROTEC_KB && window.PROTEC_KB.evidence;
+  if (!section || !list || !Array.isArray(evidence) || evidence.length === 0) return;
+
+  const TYPE_LABEL = {
+    "peer-reviewed": "Peer-reviewed",
+    "lab-report": "Lab report",
+    "site-trial": "Site trial"
+  };
+
+  list.innerHTML = evidence.map((e, i) => {
+    const products = window.PROTEC_KB.products || [];
+    const product = e.productId ? products.find((p) => p.id === e.productId) : null;
+    return `
+    <article class="card reveal reveal-d${i % 3}">
+      <span class="tag">${TYPE_LABEL[e.type] || e.type}</span>
+      <h3>${e.title}</h3>
+      <p style="margin-top:.6rem;color:var(--text-dim)">${e.finding}</p>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--text-faint)">
+        ${e.source}${e.year ? ", " + e.year : ""}${product ? " · " + product.name : ""}
+      </p>
+      ${e.url ? `<p style="margin-top:.7rem"><a href="${e.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal);font-weight:600;font-size:.88rem">Read the study →</a></p>` : ""}
+    </article>`;
+  }).join("");
+
+  section.hidden = false;
 })();
 </script>
 </body>

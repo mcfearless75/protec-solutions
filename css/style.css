@@ -12,11 +12,11 @@
   --text: #e9ecf1;
   --text-dim: #9aa3b2;
   --text-faint: #626c7d;
-  --gold: #e8b64c;
-  --gold-deep: #c9962e;
-  --gold-soft: rgba(232, 182, 76, 0.12);
-  --teal: #3fd6b8;
-  --teal-soft: rgba(63, 214, 184, 0.1);
+  --gold: #38b6f2;
+  --gold-deep: #1d78c8;
+  --gold-soft: rgba(56, 182, 242, 0.12);
+  --teal: #47e08a;
+  --teal-soft: rgba(71, 224, 138, 0.1);
   --danger: #ef6a5a;
 
   --font-display: "Archivo", sans-serif;
@@ -50,7 +50,7 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--gold); color: #14100a; }
+::selection { background: var(--gold); color: #03101a; }
 
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -109,7 +109,7 @@ h1, h2, h3, h4 {
 }
 
 .gold-text {
-  background: linear-gradient(100deg, #f6d488, var(--gold) 45%, var(--gold-deep));
+  background: linear-gradient(100deg, #8be9ff, var(--gold) 45%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -270,18 +270,18 @@ section { padding-block: var(--space-section); }
 }
 .btn:active { transform: scale(0.97); }
 .btn-gold {
-  background: linear-gradient(120deg, #f2c665, var(--gold-deep));
-  color: #171106;
+  background: linear-gradient(120deg, #4fd1ff, var(--gold-deep));
+  color: #04131f;
 }
-.btn-gold:hover { box-shadow: 0 8px 32px rgba(232, 182, 76, 0.35); transform: translateY(-2px); }
+.btn-gold:hover { box-shadow: 0 8px 32px rgba(56, 182, 242, 0.35); transform: translateY(-2px); }
 .btn-ghost {
   border-color: var(--line-strong);
   color: var(--text);
   background: transparent;
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-.btn-teal { background: var(--teal); color: #06231c; }
-.btn-teal:hover { box-shadow: 0 8px 32px rgba(63, 214, 184, 0.3); transform: translateY(-2px); }
+.btn-teal { background: var(--teal); color: #04200f; }
+.btn-teal:hover { box-shadow: 0 8px 32px rgba(71, 224, 138, 0.3); transform: translateY(-2px); }
 
 /* ---------- section headers ---------- */
 .sec-head { max-width: 760px; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
@@ -306,8 +306,8 @@ section { padding-block: var(--space-section); }
   transition: transform 0.5s var(--ease-expo), border-color 0.4s;
 }
 .panel:hover { transform: translateY(-6px); }
-.panel--gold:hover { border-color: rgba(232, 182, 76, 0.5); }
-.panel--teal:hover { border-color: rgba(63, 214, 184, 0.5); }
+.panel--gold:hover { border-color: rgba(56, 182, 242, 0.5); }
+.panel--teal:hover { border-color: rgba(71, 224, 138, 0.5); }
 .panel h3 { font-size: var(--text-h3); margin-bottom: 0.8rem; }
 .panel p { color: var(--text-dim); font-size: 0.97rem; }
 .panel .panel-glow {
@@ -375,7 +375,7 @@ section { padding-block: var(--space-section); }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
-  border: 1px solid rgba(232, 182, 76, 0.35);
+  border: 1px solid rgba(56, 182, 242, 0.35);
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
   margin-bottom: 0.9rem;
@@ -471,21 +471,21 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 20px; height: 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f2c665, var(--gold-deep));
+  background: linear-gradient(135deg, #4fd1ff, var(--gold-deep));
   border: 3px solid var(--bg);
-  box-shadow: 0 2px 10px rgba(232, 182, 76, 0.45);
+  box-shadow: 0 2px 10px rgba(56, 182, 242, 0.45);
   transition: transform 0.2s var(--ease-expo), box-shadow 0.2s;
 }
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.18);
-  box-shadow: 0 2px 18px rgba(232, 182, 76, 0.7);
+  box-shadow: 0 2px 18px rgba(56, 182, 242, 0.7);
 }
 input[type="range"]::-moz-range-thumb {
   width: 16px; height: 16px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f2c665, var(--gold-deep));
+  background: linear-gradient(135deg, #4fd1ff, var(--gold-deep));
   border: 3px solid var(--bg);
-  box-shadow: 0 2px 10px rgba(232, 182, 76, 0.45);
+  box-shadow: 0 2px 10px rgba(56, 182, 242, 0.45);
   cursor: pointer;
 }
 input[type="range"]::-moz-range-track {
@@ -513,10 +513,10 @@ input[type="range"]:focus-visible {
 .chip.selected {
   background: var(--gold);
   border-color: var(--gold);
-  color: #171106;
+  color: #04131f;
   font-weight: 700;
 }
-.chip.selected--teal { background: var(--teal); border-color: var(--teal); color: #06231c; }
+.chip.selected--teal { background: var(--teal); border-color: var(--teal); color: #04200f; }
 
 /* ---------- footer ---------- */
 .site-footer {
@@ -567,18 +567,18 @@ input[type="range"]:focus-visible {
   width: 62px; height: 62px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, #f2c665, var(--gold-deep));
-  color: #171106;
+  background: linear-gradient(135deg, #4fd1ff, var(--gold-deep));
+  color: #04131f;
   display: grid;
   place-items: center;
-  box-shadow: 0 10px 40px rgba(232, 182, 76, 0.4);
+  box-shadow: 0 10px 40px rgba(56, 182, 242, 0.4);
   transition: transform 0.35s var(--ease-expo);
 }
 .ai-fab:hover { transform: scale(1.08) rotate(6deg); }
 .ai-fab .pulse {
   position: absolute; inset: -6px;
   border-radius: 50%;
-  border: 2px solid rgba(232, 182, 76, 0.5);
+  border: 2px solid rgba(56, 182, 242, 0.5);
   animation: aiPulse 2.4s ease-out infinite;
 }
 @keyframes aiPulse {
@@ -619,9 +619,9 @@ input[type="range"]:focus-visible {
 .ai-avatar {
   width: 38px; height: 38px;
   border-radius: 11px;
-  background: linear-gradient(135deg, #f2c665, var(--gold-deep));
+  background: linear-gradient(135deg, #4fd1ff, var(--gold-deep));
   display: grid; place-items: center;
-  color: #171106;
+  color: #04131f;
   flex-shrink: 0;
 }
 .ai-head-txt strong { font-family: var(--font-display); font-size: 0.98rem; display: block; }
@@ -682,7 +682,7 @@ input[type="range"]:focus-visible {
 .msg-user {
   align-self: flex-end;
   background: var(--gold);
-  color: #171106;
+  color: #04131f;
   font-weight: 500;
   border-bottom-right-radius: 4px;
 }
@@ -741,7 +741,7 @@ input[type="range"]:focus-visible {
   transition: transform 0.25s;
 }
 .ai-input button:hover { transform: scale(1.08); }
-.ai-send { background: var(--gold); color: #171106; }
+.ai-send { background: var(--gold); color: #04131f; }
 .ai-mic { background: var(--bg-panel); border: 1px solid var(--line-strong) !important; color: var(--text-dim); }
 .ai-mic.listening { background: var(--danger); color: #fff; animation: blink 1s infinite; }
 
@@ -917,7 +917,7 @@ input[type="range"]:focus-visible {
 .meter i {
   display: block; height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--gold-deep), #f2c665);
+  background: linear-gradient(90deg, var(--gold-deep), #4fd1ff);
   transition: width 1s var(--ease-expo);
 }
 .meter.teal i { background: linear-gradient(90deg, #1d9e85, var(--teal)); }
@@ -961,7 +961,7 @@ input[type="range"]:focus-visible {
   position: absolute;
   top: -100px; left: 1rem;
   background: var(--gold);
-  color: #171106;
+  color: #04131f;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   z-index: 500;

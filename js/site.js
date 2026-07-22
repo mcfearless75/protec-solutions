@@ -155,7 +155,7 @@
 
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = near ? "rgba(232,182,76,0.75)" : "rgba(154,163,178,0.30)";
+        ctx.fillStyle = near ? "rgba(56,182,242,0.8)" : "rgba(154,163,178,0.30)";
         ctx.fill();
       }
 
@@ -168,7 +168,7 @@
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(232,182,76,${alpha})`;
+            ctx.strokeStyle = `rgba(56,182,242,${alpha})`;
             ctx.lineWidth = 0.6 * dpr;
             ctx.stroke();
           }
@@ -322,7 +322,7 @@
   function initAssistant() {
     const fab = document.createElement("button");
     fab.className = "ai-fab";
-    fab.setAttribute("aria-label", "Open the Protec AI assistant");
+    fab.setAttribute("aria-label", "Open the ProTec AI assistant");
     fab.innerHTML = `<span class="pulse" aria-hidden="true"></span>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/>
@@ -333,7 +333,7 @@
     const panel = document.createElement("div");
     panel.className = "ai-panel";
     panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-label", "Protec AI assistant");
+    panel.setAttribute("aria-label", "ProTec AI assistant");
     panel.innerHTML = `
       <div class="ai-head">
         <div class="ai-avatar" aria-hidden="true">
@@ -341,7 +341,7 @@
             <circle cx="12" cy="12" r="3.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/>
           </svg>
         </div>
-        <div class="ai-head-txt"><strong>Protec AI</strong><span>online · answers instantly</span></div>
+        <div class="ai-head-txt"><strong>ProTec AI</strong><span>online · answers instantly</span></div>
         <button class="ai-close" aria-label="Close assistant">&times;</button>
       </div>
       <div class="ai-log" aria-live="polite"></div>
@@ -460,7 +460,7 @@
         greeted = true;
         setTimeout(() => {
           push(
-            "Hello. I'm the Protec assistant.\n\nI know our **Goldshield** protection range inside out, and I can scope a **bespoke app** build for you. What do you need?",
+            "Hello. I'm the ProTec assistant.\n\nI know our **Goldshield** protection range inside out, and I can scope a **bespoke app** build for you. What do you need?",
             "bot"
           );
           renderQuick(PROMPTS.slice(0, 3));

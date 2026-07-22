@@ -203,7 +203,7 @@
       }
 
       plot(untreated, "#ef6a5a", "rgba(239,106,90,0.10)");
-      plot(treated, "#3fd6b8", "rgba(63,214,184,0.12)");
+      plot(treated, "#47e08a", "rgba(71,224,138,0.12)");
 
       if (progress >= 1) {
         const finalU = untreated[30], finalT = treated[30];
@@ -818,9 +818,9 @@
         ];
       } else {
         blocks = [
-          { h: "Meta title", b: `${biz.charAt(0).toUpperCase() + biz.slice(1)} Specialists | Protec Solutions UK` },
+          { h: "Meta title", b: `${biz.charAt(0).toUpperCase() + biz.slice(1)} Specialists | ProTec Solutions UK` },
           { h: "Meta description", b: `${adj} ${biz} services across the UK. Goldshield antimicrobial protection and bespoke software built around how you actually work. Free consultation.` },
-          { h: "Open Graph title", b: `${biz.charAt(0).toUpperCase() + biz.slice(1)} — done properly | Protec Solutions` }
+          { h: "Open Graph title", b: `${biz.charAt(0).toUpperCase() + biz.slice(1)} — done properly | ProTec Solutions` }
         ];
       }
 

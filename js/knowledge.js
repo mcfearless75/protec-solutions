@@ -7,7 +7,7 @@
 window.PROTEC_KB = {
 
   company: {
-    name: "Protec Solutions",
+    name: "ProTec Solutions",
     domain: "protec-solutions.co.uk",
     email: "hello@protec-solutions.co.uk",
     phone: "+44 (0)1234 567 890",

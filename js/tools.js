@@ -176,17 +176,23 @@
 
       const shown = Math.floor(progress * 30);
 
-      function plot(data, colour, fill) {
+      // Colourblind-safe pairing: amber (dashed) vs blue (solid) rather than
+      // red/green, which collapses to near-identical hues under protanopia
+      // and deuteranopia. The dash pattern is a second, colour-independent cue.
+      function plot(data, colour, fill, dashed) {
         ctx.beginPath();
+        ctx.setLineDash(dashed ? [7, 5] : []);
         for (let d = 0; d <= shown; d++) {
           const x = pad.l + (cw / 30) * d;
           const y = pad.t + ch - (data[d] / 100) * ch;
           d === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
         ctx.strokeStyle = colour;
-        ctx.lineWidth = 2.4;
+        ctx.lineWidth = 2.8;
         ctx.lineJoin = "round";
+        ctx.lineCap = "round";
         ctx.stroke();
+        ctx.setLineDash([]);
 
         ctx.lineTo(pad.l + (cw / 30) * shown, pad.t + ch);
         ctx.lineTo(pad.l, pad.t + ch);
@@ -202,8 +208,8 @@
         }
       }
 
-      plot(untreated, "#ef6a5a", "rgba(239,106,90,0.10)");
-      plot(treated, "#45db66", "rgba(69,219,102,0.12)");
+      plot(untreated, "#e8a33d", "rgba(232,163,61,0.10)", true);
+      plot(treated, "#3d9bf2", "rgba(61,155,242,0.12)", false);
 
       if (progress >= 1) {
         const finalU = untreated[30], finalT = treated[30];
@@ -214,8 +220,8 @@
         stats.innerHTML = `
           <h4>30-day result</h4>
           <table>
-            <tr><td>Untreated surface load (day 30)</td><td style="color:var(--danger)">${finalU.toFixed(0)} index</td></tr>
-            <tr><td>Goldshield protected (day 30)</td><td style="color:var(--teal)">${finalT.toFixed(0)} index</td></tr>
+            <tr><td>Untreated surface load (day 30)</td><td style="color:#e8a33d">${finalU.toFixed(0)} index</td></tr>
+            <tr><td>Goldshield protected (day 30)</td><td style="color:#3d9bf2">${finalT.toFixed(0)} index</td></tr>
             <tr><td>Average load reduction</td><td>${(((avgU - avgT) / avgU) * 100).toFixed(1)}%</td></tr>
             <tr><td><strong>Peak reduction</strong></td><td><strong>${reduction.toFixed(1)}%</strong></td></tr>
           </table>
@@ -624,12 +630,15 @@
       { name: "AI assistant", impact: 9, effort: 6 }
     ];
 
+    // Each verdict gets its own colour AND shape — the quadrant plot below
+    // has no visible text label on its dots, so colour alone would fail for
+    // colourblind users. Shape carries the meaning regardless of colour.
     function verdict(f) {
       const ratio = f.impact / f.effort;
-      if (ratio >= 2) return { label: "Do first", colour: "var(--teal)" };
-      if (ratio >= 1) return { label: "Schedule", colour: "var(--gold)" };
-      if (f.impact >= 7) return { label: "Phase two", colour: "var(--text-dim)" };
-      return { label: "Cut it", colour: "var(--danger)" };
+      if (ratio >= 2) return { label: "Do first", colour: "var(--teal)", shape: "circle" };
+      if (ratio >= 1) return { label: "Schedule", colour: "var(--gold)", shape: "square" };
+      if (f.impact >= 7) return { label: "Phase two", colour: "var(--text-dim)", shape: "ring" };
+      return { label: "Cut it", colour: "var(--danger)", shape: "diamond" };
     }
 
     function render() {
@@ -656,13 +665,21 @@
         })
       );
 
+      const SHAPE_CSS = {
+        circle: "border-radius:50%;background:{c};box-shadow:0 0 0 4px {c}22",
+        square: "border-radius:3px;background:{c};box-shadow:0 0 0 4px {c}22",
+        ring: "border-radius:50%;background:transparent;border:2.5px solid {c};box-shadow:0 0 0 4px {c}22",
+        diamond: "border-radius:2px;background:{c};box-shadow:0 0 0 4px {c}22;transform:translate(-50%,-50%) rotate(45deg)"
+      };
       plot.innerHTML = features
         .map((f) => {
           const v = verdict(f);
           const x = ((f.effort - 1) / 9) * 100;
           const y = 100 - ((f.impact - 1) / 9) * 100;
-          return `<span title="${f.name}" style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);
-            width:13px;height:13px;border-radius:50%;background:${v.colour};box-shadow:0 0 0 4px ${v.colour}22"></span>`;
+          const shapeStyle = SHAPE_CSS[v.shape].replace(/\{c\}/g, v.colour);
+          const transform = v.shape === "diamond" ? "" : "transform:translate(-50%,-50%);";
+          return `<span title="${f.name} — ${v.label}" style="position:absolute;left:${x}%;top:${y}%;${transform}
+            width:13px;height:13px;${shapeStyle}"></span>`;
         })
         .join("");
     }

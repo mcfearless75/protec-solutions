@@ -1294,96 +1294,29 @@ input[type="range"]:focus-visible {
 }
 
 /* ============================================================
-   CROSS-DOCUMENT VIEW TRANSITIONS
-   Native @view-transition for same-origin navigation between pages.
-   Header, logo and footer morph in place; main content moves with
-   intent (old page eases up + out, new page eases up + in) using
-   the site's --ease-expo curve. Persistent fixed chrome (canvas,
-   grain, AI widget, palette, toast, dot-nav, back-to-top) is given
-   its own transition name so it stays put rather than being baked
-   into the root snapshot and appearing to fly during the root
-   animation. Everything below is a no-op in browsers that don't
-   support the View Transitions API -- navigation just happens
-   normally. Entirely disabled for prefers-reduced-motion: reduce.
+   Cross-document View Transitions were here and have been removed.
+   Two mobile bug reports came in against a real device after this
+   shipped: first the mobile nav rendering translucent, then — after
+   a fix that checked out on every computed-style and hit-test check
+   this session's tooling could run, but which the real device proved
+   wrong anyway — the menu becoming genuinely unclosable. The second
+   fix pulled view-transition-name off .nav specifically, but .nav is
+   a DOM child of .site-header, which still carried its own name, and
+   the transparency persisted on the actual phone regardless. An
+   element with an active view-transition-name can behave like
+   transform/filter do — forcing a new compositing layer and
+   containing block for fixed-position descendants — which is the
+   same category of bug already diagnosed and fixed once this session
+   for backdrop-filter, just from a property that wasn't reconsidered
+   the second time.
+   Given two consecutive "verified fixed, still broken on the real
+   device" cycles, this was pulled entirely rather than patched a
+   third time on a theory this session's tools can't actually confirm
+   against real Android Chrome compositing behaviour. Nothing else on
+   the site depended on it. Re-adding it later needs testing against
+   a real device before being called fixed, not computed-style checks
+   in a sandboxed browser tool.
    ============================================================ */
-@media (prefers-reduced-motion: no-preference) {
-
-  @view-transition {
-    navigation: auto;
-  }
-
-  /* ---- persistent brand elements: morph, don't cross-fade ---- */
-  .site-header { view-transition-name: protec-header; }
-  .site-header .logo img { view-transition-name: protec-logo; }
-  .site-footer { view-transition-name: protec-footer; }
-
-  /* ---- fixed chrome: pin in place, keep out of the root motion ---- */
-  #bg-canvas { view-transition-name: protec-bg-canvas; }
-  .grain::before { view-transition-name: protec-grain; }
-  .ai-fab { view-transition-name: protec-ai-fab; }
-  .ai-panel { view-transition-name: protec-ai-panel; }
-  .palette-overlay { view-transition-name: protec-palette; }
-  .toast { view-transition-name: protec-toast; }
-  .dotnav { view-transition-name: protec-dotnav; }
-  .to-top { view-transition-name: protec-to-top; }
-  /* .nav (the mobile overlay) deliberately has NO view-transition-name.
-     It's a fixed, full-viewport child of .site-header, which does have
-     one — naming it separately was tried and removed after a live
-     mobile bug report (menu became unclosable) that couldn't be fully
-     isolated from this change in testing, so it was cut as a precaution
-     rather than kept on unverified confidence. Without its own name it
-     rides along inside the header's transition group, which is a
-     smaller visual glitch than a page that can get stuck. */
-
-  /* Pinned chrome should hold still, not ease/scale with the root --
-     force an instant, near-invisible cross-fade instead of the UA's
-     default 0.25s fade so identical fixed UI never visibly blinks. */
-  ::view-transition-group(protec-bg-canvas),
-  ::view-transition-group(protec-grain),
-  ::view-transition-group(protec-ai-fab),
-  ::view-transition-group(protec-ai-panel),
-  ::view-transition-group(protec-palette),
-  ::view-transition-group(protec-toast),
-  ::view-transition-group(protec-dotnav),
-  ::view-transition-group(protec-to-top) {
-    animation-duration: 0.01ms;
-  }
-
-  /* ---- header / logo / footer: quick, confident morph ---- */
-  ::view-transition-group(protec-header),
-  ::view-transition-group(protec-logo),
-  ::view-transition-group(protec-footer) {
-    animation-duration: 0.3s;
-    animation-timing-function: var(--ease-expo);
-  }
-
-  /* ---- root (page content): old leaves up + shrinks slightly,
-     new arrives from below + settles -- distinct, not a lazy dissolve ---- */
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.32s;
-    animation-timing-function: var(--ease-expo);
-    mix-blend-mode: normal;
-  }
-
-  ::view-transition-old(root) {
-    animation-name: protec-leave;
-  }
-
-  ::view-transition-new(root) {
-    animation-name: protec-arrive;
-  }
-
-  @keyframes protec-leave {
-    from { opacity: 1; transform: translateY(0) scale(1); }
-    to   { opacity: 0; transform: translateY(-16px) scale(0.985); }
-  }
-
-  @keyframes protec-arrive {
-    from { opacity: 0; transform: translateY(20px) scale(1.01); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-}
 
 /* ============================================================
    NATIVE SCROLL-DRIVEN REVEALS (progressive enhancement)

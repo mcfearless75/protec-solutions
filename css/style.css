@@ -137,20 +137,6 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
-/* the full-screen mobile nav is its own opaque layer — the header's blur
-   underneath it serves no purpose while open and is the likely cause of
-   the nav rendering translucent on some mobile compositors */
-.site-header.nav-open {
-  background: var(--bg);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  /* instant, not animated — .site-header's base rule transitions
-     backdrop-filter over --dur (0.6s), which without this override
-     would blur from its current value down to none rather than
-     switching immediately, leaving a visible partial-blur window
-     right as the mobile nav opens */
-  transition: none;
-}
 
 .logo {
   font-family: var(--font-display);
@@ -244,22 +230,53 @@ h1, h2, h3, h4 {
 
 @media (max-width: 860px) {
   .nav-toggle { display: block; }
-  .nav {
+  /* .nav is the DESKTOP inline nav — simply hidden below 860px rather
+     than repurposed as the mobile overlay. Three rounds of "fixed it,
+     still broken on a real phone" all traced back to .nav being a DOM
+     child of .site-header: something on the header (backdrop-filter,
+     then separately view-transition-name) kept leaking into how the
+     fixed-position overlay rendered, in ways this session's testing
+     tools could not detect but a real device kept proving were still
+     there. Rather than keep hunting for the next ancestor property
+     that might cause the same class of bug, the mobile menu is now
+     .mobile-nav below — a physically separate element, NOT nested
+     inside <header>, so there is no ancestor chain left for anything
+     to leak through at all. See .mobile-nav for the actual overlay. */
+  .nav { display: none; }
+  .search-trigger span.label { display: none; }
+}
+
+/* ---------- mobile nav overlay: deliberately NOT inside <header> ---------- */
+.mobile-nav {
+  display: none;
+}
+@media (max-width: 860px) {
+  .mobile-nav {
+    display: flex;
     position: fixed;
     inset: 0;
     z-index: 150;
     background: var(--bg);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 2rem;
     transform: translateY(-100%);
     transition: transform 0.5s var(--ease-expo);
   }
-  .nav.open { transform: translateY(0); }
-  .nav a { font-size: 1.4rem; font-family: var(--font-display); }
-  .search-trigger span.label { display: none; }
+  .mobile-nav.open { transform: translateY(0); }
+  .mobile-nav a {
+    font-size: 1.4rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: color 0.25s;
+  }
+  .mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--text); }
+  .mobile-nav a.active { color: var(--gold); }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-nav { transition: none; }
+  }
 }
 
 /* ---------- layout ---------- */

@@ -67,16 +67,15 @@
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const toggle = $(".nav-toggle");
-    const nav = $(".nav");
-    if (toggle && nav) {
+    // .mobile-nav is a sibling of <header>, not a descendant of it — see
+    // the comment on .nav in style.css for why that separation exists.
+    // .nav-toggle stays inside the header (it's part of the header's
+    // desktop layout too) but the overlay it controls now lives outside
+    // the header entirely.
+    const mobileNav = $(".mobile-nav");
+    if (toggle && mobileNav) {
       toggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("open");
-        // drop the header's backdrop-filter blur while the full-screen mobile
-        // nav is open — on some mobile GPU compositors, a blurred/translucent
-        // ancestor behind a transform-based fixed overlay (sitting above the
-        // constantly-animating background canvas) causes the overlay itself
-        // to render translucent, letting page content bleed through the menu
-        header.classList.toggle("nav-open", open);
+        const open = mobileNav.classList.toggle("open");
         // swap hamburger -> close icon so it's visually obvious the same
         // button now dismisses the menu (see .nav-toggle z-index in
         // style.css for why this button must stay clickable while open)
@@ -84,10 +83,9 @@
         toggle.setAttribute("aria-expanded", String(open));
         document.body.style.overflow = open ? "hidden" : "";
       });
-      nav.addEventListener("click", (e) => {
+      mobileNav.addEventListener("click", (e) => {
         if (e.target.tagName === "A") {
-          nav.classList.remove("open");
-          header.classList.remove("nav-open");
+          mobileNav.classList.remove("open");
           toggle.classList.remove("open");
           toggle.setAttribute("aria-expanded", "false");
           document.body.style.overflow = "";

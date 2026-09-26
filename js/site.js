@@ -767,6 +767,59 @@
   }
 
   /* ---------- boot ---------- */
+  /* ---------- "Ask AI about us" footer block ----------
+     Injected into every page's footer from here so it lives in one place.
+     ChatGPT, Claude and Perplexity accept a ?q= prompt; Gemini has no
+     prefill URL, so we copy the prompt and tell the visitor to paste it. */
+  function initAskAI() {
+    const footerWrap = $(".site-footer .wrap");
+    if (!footerWrap || $(".ask-ai", footerWrap)) return;
+    const SITE = "https://www.protec-solutions.co.uk/";
+    const DEFAULT_PROMPT = "Tell me about ProTec Solutions based on " + SITE +
+      " and " + SITE + "llms.txt. Summarise who they are, what they do, and how to get in touch.";
+    const PROVIDERS = [
+      { name: "ChatGPT", url: q => "https://chatgpt.com/?q=" + encodeURIComponent(q) },
+      { name: "Claude", url: q => "https://claude.ai/new?q=" + encodeURIComponent(q) },
+      { name: "Perplexity", url: q => "https://www.perplexity.ai/search?q=" + encodeURIComponent(q) },
+      { name: "Gemini", url: () => "https://gemini.google.com/app", copy: true },
+    ];
+
+    const block = document.createElement("section");
+    block.className = "ask-ai";
+    block.setAttribute("aria-label", "Ask an AI assistant about ProTec Solutions");
+    block.innerHTML =
+      '<p class="ask-ai__label">Ask AI about us</p>' +
+      '<input class="ask-ai__input" type="text" maxlength="300" ' +
+      'placeholder="Ask anything about ProTec…" aria-label="Your question">' +
+      '<div class="ask-ai__providers">' +
+      PROVIDERS.map((p, i) => '<button type="button" data-i="' + i + '">' + p.name + "</button>").join("") +
+      "</div>";
+    footerWrap.insertBefore(block, footerWrap.firstChild);
+
+    const input = $(".ask-ai__input", block);
+    function prompt() {
+      const q = input.value.trim();
+      return q ? "Using " + SITE + " (and its llms.txt) as the source, answer this about ProTec Solutions: " + q
+               : DEFAULT_PROMPT;
+    }
+    block.addEventListener("click", e => {
+      const btn = e.target.closest("button[data-i]");
+      if (!btn) return;
+      const p = PROVIDERS[+btn.dataset.i];
+      const text = prompt();
+      if (p.copy && navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(
+          () => toast("Prompt copied. Paste it into " + p.name + "."),
+          () => toast("Couldn't copy. Ask " + p.name + " about protec-solutions.co.uk.")
+        );
+      }
+      window.open(p.url(text), "_blank", "noopener");
+    });
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); $("button[data-i='1']", block).click(); }
+    });
+  }
+
   function boot() {
     initHeader();
     initReveal();
@@ -777,6 +830,7 @@
     initStatBand();
     initSectionNav();
     initAnchors();
+    initAskAI();
     document.body.classList.add("grain");
   }
 

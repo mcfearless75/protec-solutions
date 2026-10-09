@@ -9,12 +9,15 @@ window.PROTEC_KB = {
   company: {
     name: "ProTec Solutions",
     domain: "protec-solutions.co.uk",
+    legalName: "PROTEC SOLUTIONS LTD",
+    companyNumber: "17353418",
+    registeredOffice: "80 Birkenhead Road, Meols, Wirral, CH47 0LB",
     email: "hello@protec-solutions.co.uk",
-    phone: "+44 (0)1234 567 890",
     region: "United Kingdom",
     lines: [
       "Official UK distribution for Goldshield antimicrobial protection",
-      "Bespoke web application and mobile app development"
+      "Bespoke web application and mobile app development",
+      "Care home software: CareOps, CareRota and DOBS"
     ]
   },
 
@@ -23,6 +26,10 @@ window.PROTEC_KB = {
     { title: "Home", url: "index.html", icon: "⌂", desc: "Protection and software, engineered together" },
     { title: "Goldshield Protection", url: "goldshield.html", icon: "◈", desc: "Official UK distribution, 24/7 antimicrobial surface protection" },
     { title: "Bespoke Apps", url: "apps.html", icon: "◐", desc: "Web apps, mobile apps and portals built for your sector" },
+    { title: "Care Software", url: "care.html", icon: "✚", desc: "CareOps and CareRota for UK care homes. Works alongside your care records" },
+    { title: "CareOps", url: "careops.html", icon: "☑", desc: "Care home checks, incidents, maintenance and CQC evidence" },
+    { title: "CareRota", url: "carerota.html", icon: "◷", desc: "Care home rota, shift cover cascade and timesheets" },
+    { title: "AI Information", url: "ai-information.html", icon: "ⓘ", desc: "Facts about ProTec for AI assistants" },
     { title: "AI Lab", url: "ai-lab.html", icon: "✦", desc: "Live interactive AI tools you can use right now" },
     { title: "Sectors", url: "sectors.html", icon: "▤", desc: "Healthcare, education, transport, hospitality, facilities" },
     { title: "Contact", url: "contact.html", icon: "✉", desc: "Talk to a human, or let the AI scope it first" }
@@ -39,7 +46,58 @@ window.PROTEC_KB = {
     { title: "Copy Generator", url: "ai-lab.html#copygen", icon: "✎", desc: "Generate on-brand marketing copy instantly" },
     { title: "ROI Modeller", url: "ai-lab.html#roi", icon: "£", desc: "Model return on a bespoke software build" },
     { title: "Sector Matcher", url: "sectors.html#matcher", icon: "▤", desc: "Find the right protection and software mix for your sector" },
-    { title: "Book a Consultation", url: "contact.html#book", icon: "✉", desc: "Fifteen minutes, no pitch deck" }
+    { title: "Book a Consultation", url: "contact.html#book", icon: "✉", desc: "Fifteen minutes, no pitch deck" },
+    { title: "CareOps Sample Report", url: "https://careops.protec-solutions.co.uk/sample-report", icon: "☑", desc: "See what an inspector would see (fictional home)" },
+    { title: "Book a Care Software Demo", url: "contact.html#book", icon: "✚", desc: "Fifteen minutes on CareOps or CareRota" }
+  ],
+
+  /* ---------- care home software we built and run ----------
+     Single source for the product cards on care.html, apps.html and the
+     command palette. Facts only from docs/CARE-UPDATE.md section 3; the
+     claims rules in section 4 of that file apply to every word here. */
+  careProducts: [
+    {
+      id: "careops",
+      name: "CareOps",
+      tag: "Operations & compliance evidence",
+      url: "careops.html",
+      site: "https://careops.protec-solutions.co.uk/",
+      summary: "Scheduled checks by QR poster, fault reporting, incidents, staff compliance and a signed monthly governance pack.",
+      holdsResidentData: false,
+      bullets: [
+        "12 ready-made checks, failures raise a task automatically",
+        "Evidence organised by CQC regulation (Regs 9 to 20A)",
+        "Shared tablet with PIN, no login needed for staff"
+      ]
+    },
+    {
+      id: "carerota",
+      name: "CareRota",
+      tag: "Rotas, cover & timesheets",
+      url: "carerota.html",
+      site: "https://carerota.protec-solutions.co.uk/",
+      summary: "Weekly rota builder with a cover cascade that offers dropped shifts to eligible staff first, clock-in at the door and payroll-ready timesheets.",
+      holdsResidentData: false,
+      bullets: [
+        "Cover checks role, training, 11-hour rest and the 48-hour cap",
+        "Swaps, availability, leave and open shifts",
+        "Timesheets with pay-period lock and payroll reports"
+      ]
+    },
+    {
+      id: "dobs",
+      name: "DOBS",
+      tag: "Clinical observations: separate product",
+      url: "https://dobs.app/",
+      site: "https://dobs.app/",
+      summary: "Digital body maps and resident observations, including vital signs with NEWS2 scoring. A focused clinical tool with its own site.",
+      holdsResidentData: true,
+      bullets: [
+        "Body maps, vital signs, GCS, behaviour, food and fluid, sleep",
+        "Due and overdue status per resident, automated pattern alerts",
+        "Holds resident clinical data, unlike CareOps and CareRota"
+      ]
+    }
   ],
 
   /* ---------- Goldshield product catalogue ---------- */
@@ -334,7 +392,7 @@ window.PROTEC_KB = {
   ],
 
   sectors: [
-    { id: "healthcare", name: "Healthcare & Care", icon: "✚", protection: "GS75 + Fogging + Air", software: "Compliance platform, staff rota, incident capture", note: "Infection control evidence is the deliverable, not the spray." },
+    { id: "healthcare", name: "Healthcare & Care", icon: "✚", protection: "GS75 + Fogging + Air", software: "CareOps (checks, incidents, compliance), CareRota (rotas and cover)", link: { label: "See the care software", url: "care.html" }, note: "Infection control evidence is the deliverable, not the spray." },
     { id: "education", name: "Education", icon: "✎", protection: "GS75 + Fogging + GS5", software: "Parent portal, attendance, safeguarding logs", note: "Treat during holidays, protect through term." },
     { id: "transport", name: "Transport & Fleet", icon: "⬗", protection: "GS5 + Fogging", software: "Fleet tracking, driver app, defect reporting", note: "Cabin turnaround in minutes, not hours." },
     { id: "hospitality", name: "Hospitality & Leisure", icon: "◆", protection: "GS5 + GS75 + Hand", software: "Booking engine, guest app, loyalty", note: "Guests notice the certificate on the door." },
@@ -360,7 +418,7 @@ window.PROTEC_KB = {
     },
     {
       keys: ["cost", "price", "how much", "budget", "quote", "pricing", "expensive"],
-      answer: "For protection, cost depends on floor area, product and traffic level, so we'd rather give you a real number than an average that's wrong for your site. A quick [site survey](contact.html#book) gets you an exact quote — usually within a day or two of the visit.\n\nFor software, a typical build lands between **£9.5k and £30k**, with ops tools at the lower end and full mobile apps at the top. The [App Scoper](apps.html#scoper) produces a costed spec in about a minute."
+      answer: "For protection, cost depends on floor area, product and traffic level, so we'd rather give you a real number than an average that's wrong for your site. A quick [site survey](contact.html#book) gets you an exact quote — usually within a day or two of the visit.\n\nFor software, a typical build lands between **£9.5k and £30k**, with ops tools at the lower end and full mobile apps at the top. The [App Scoper](apps.html#scoper) produces a costed spec in about a minute.\n\nCareOps and CareRota are priced per home, per month, and quoted directly. [Book a demo](contact.html#book) and you'll get the number on the call."
     },
     {
       keys: ["app", "build", "development", "software", "bespoke", "web app", "mobile"],
@@ -384,7 +442,7 @@ window.PROTEC_KB = {
     },
     {
       keys: ["contact", "call", "speak", "human", "email", "phone", "get in touch", "book"],
-      answer: "Straight through to a person:\n\n• **Email** — hello@protec-solutions.co.uk\n• **Phone** — +44 (0)1234 567 890\n\nOr use the [booking form](contact.html#book). Fifteen minutes, no pitch deck, and you'll get a straight answer on whether we're the right fit."
+      answer: "Straight through to a person:\n\n• **Email** — hello@protec-solutions.co.uk\n\nOr use the [booking form](contact.html#book). Fifteen minutes, no pitch deck, and you'll get a straight answer on whether we're the right fit."
     },
     {
       keys: ["distribution", "distributor", "official", "partner", "reseller", "trade"],
@@ -398,9 +456,42 @@ window.PROTEC_KB = {
       keys: ["training", "certified", "team", "in-house", "diy"],
       answer: "Yes — we train client teams to apply and maintain the protection in-house. Half-day session, certificate issued, and you keep the ongoing cost down considerably.\n\nWe still handle the periodic deep treatment and the certification audit so the evidence trail stays clean."
     },
+    /* ---- care home software (docs/CARE-UPDATE.md 6.4 + product basics) ---- */
+    {
+      keys: ["careops", "what is careops", "care home software", "care software", "care home checks", "cqc evidence"],
+      answer: "**CareOps** is care home software we built and run. It covers the operational side an inspector asks about: scheduled checks from a QR poster in each room (12 ready-made, from fridge temperatures to fire doors and legionella flushes), fault reporting, incidents, contractor services and key dates, staff compliance (DBS, right to work, training expiry), and a signed monthly governance pack.\n\nIt holds **no resident records** and works alongside the care records system you already have. Open the [sample report](https://careops.protec-solutions.co.uk/sample-report) or read more on the [CareOps page](careops.html)."
+    },
+    {
+      keys: ["carerota", "rota", "shift cover", "dropped shift", "timesheets", "clock in"],
+      answer: "**CareRota** handles rotas, cover and timesheets for care homes. When a shift drops, it's offered first to eligible staff (right role, in-date training, 11 hours' rest, under the 48-hour weekly cap), then widens in timed tiers until someone claims it.\n\nAlso: swaps, availability, leave, clock in at the door with a PIN, and payroll-ready timesheets. It holds staff data only, no resident records. More on the [CareRota page](carerota.html)."
+    },
+    {
+      keys: ["dobs", "body map", "observations", "news2", "vital signs"],
+      answer: "**DOBS** is our separate clinical observation tool: digital body maps, vital signs with NEWS2 scoring, neurological, behaviour, food and fluid, and sleep observations.\n\nUnlike CareOps and CareRota, DOBS **does hold resident clinical data**. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160. It has its own site at [dobs.app](https://dobs.app/)."
+    },
+    {
+      keys: ["care planning", "care plan", "replace our care", "care records", "replace"],
+      answer: "No. CareOps and CareRota cover operations, compliance evidence and staffing. Keep your care records system for assessments, care plans and daily notes.\n\nThey hold no resident information, so there's no clinical data migration and nothing overlaps your care planning system. [More on how it fits](care.html)."
+    },
+    {
+      keys: ["resident data", "resident information", "resident records", "hold resident", "patient data"],
+      answer: "**CareOps and CareRota do not hold resident information.** Free-text fields even carry a \"no names\" prompt.\n\nDOBS, our separate clinical observation tool, does hold resident data, and is described on [its own site](https://dobs.app/)."
+    },
+    {
+      keys: ["cqc approved", "cqc compliant", "cqc certified", "cqc", "approved"],
+      answer: "CQC does not approve software, so no software is \"CQC approved\".\n\nWhat CareOps does is produce dated, attributable records and exports organised by the regulations inspectors work to (Regs 9 to 20A). See the [sample report](https://careops.protec-solutions.co.uk/sample-report) for what that looks like."
+    },
+    {
+      keys: ["own phone", "login", "staff need", "shared tablet", "staff login"],
+      answer: "No. Staff without a login use a shared tablet with a PIN, or scan the QR poster in the room. Managers sign in with Microsoft 365 or an email link, and it installs to a phone home screen."
+    },
+    {
+      keys: ["ai on our data", "use ai on", "ai on", "our data", "customer data"],
+      answer: "No. No AI is run over customer data in CareOps or CareRota. DOBS' alerts are fixed rules, not a model.\n\nThe only AI on this site is this assistant, and it answers from published product facts. [AI information](ai-information.html) has the detail."
+    },
     {
       keys: ["hello", "hi", "hey", "help", "what can you do", "start"],
-      answer: "I can help with two things:\n\n**Protection** — Goldshield products, coverage, cost, application and certification.\n\n**Software** — bespoke web apps, mobile apps, portals, AI features, timelines and budgets.\n\nAsk me anything, or hit one of the quick prompts below. Every tool on this site runs live in your browser."
+      answer: "I can help with three things:\n\n**Protection** — Goldshield products, coverage, cost, application and certification.\n\n**Software** — bespoke web apps, mobile apps, portals, AI features, timelines and budgets.\n\n**Care home software** — CareOps (checks, incidents, compliance evidence) and CareRota (rotas and cover).\n\nAsk me anything, or hit one of the quick prompts below. Every tool on this site runs live in your browser."
     }
   ],
 

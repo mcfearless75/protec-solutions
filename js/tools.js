@@ -911,7 +911,9 @@
           </div>` : ""}
         <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem">
           <a class="btn btn-gold" href="goldshield.html#advisor">Find the right product</a>
-          <a class="btn btn-ghost" href="apps.html#scoper">Scope the software</a>
+          ${s.link
+            ? `<a class="btn btn-teal" href="${s.link.url}">${s.link.label}</a>`
+            : `<a class="btn btn-ghost" href="apps.html#scoper">Scope the software</a>`}
         </div>`;
     });
   }

@@ -73,23 +73,24 @@
     // desktop layout too) but the overlay it controls now lives outside
     // the header entirely.
     const mobileNav = $(".mobile-nav");
+    // The header is its own stacking context (z-index 2), so the toggle's
+    // z-index only counts inside it. While the menu is open the whole
+    // header is lifted above the overlay, or the close button is covered.
+    const headerEl = $(".site-header");
+    const setOpen = (open) => {
+      mobileNav.classList.toggle("open", open);
+      toggle.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      if (headerEl) headerEl.classList.toggle("menu-open", open);
+      document.body.style.overflow = open ? "hidden" : "";
+    };
     if (toggle && mobileNav) {
-      toggle.addEventListener("click", () => {
-        const open = mobileNav.classList.toggle("open");
-        // swap hamburger -> close icon so it's visually obvious the same
-        // button now dismisses the menu (see .nav-toggle z-index in
-        // style.css for why this button must stay clickable while open)
-        toggle.classList.toggle("open", open);
-        toggle.setAttribute("aria-expanded", String(open));
-        document.body.style.overflow = open ? "hidden" : "";
-      });
+      toggle.addEventListener("click", () => setOpen(!mobileNav.classList.contains("open")));
       mobileNav.addEventListener("click", (e) => {
-        if (e.target.tagName === "A") {
-          mobileNav.classList.remove("open");
-          toggle.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-          document.body.style.overflow = "";
-        }
+        if (e.target.tagName === "A") setOpen(false);
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileNav.classList.contains("open")) setOpen(false);
       });
     }
   }
@@ -292,6 +293,10 @@
       ...KB.sectors.map((s) => ({
         title: s.name, url: "sectors.html#" + s.id, icon: s.icon,
         desc: s.software, group: "Sector"
+      })),
+      ...(KB.careProducts || []).map((c) => ({
+        title: c.name, url: c.url, icon: "✚",
+        desc: c.summary, group: "Care software"
       }))
     ];
 
@@ -427,7 +432,8 @@
             <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/>
           </svg>
         </button>
-      </form>`;
+      </form>
+      <p class="ai-note">Messages are sent to Anthropic's Claude API through our proxy. Please don't include personal or confidential details. <a href="privacy.html">Privacy</a></p>`;
     document.body.appendChild(panel);
 
     const log = $(".ai-log", panel);
@@ -441,7 +447,8 @@
       "How much does an app cost?",
       "How long does protection last?",
       "Is it safe around children?",
-      "What sectors do you cover?"
+      "What sectors do you cover?",
+      "What is CareOps?"
     ];
 
     function renderQuick(list) {
@@ -776,7 +783,7 @@
     if (!footerWrap || $(".ask-ai", footerWrap)) return;
     const SITE = "https://www.protec-solutions.co.uk/";
     const DEFAULT_PROMPT = "Tell me about ProTec Solutions based on " + SITE +
-      " and " + SITE + "llms.txt. Summarise who they are, what they do, and how to get in touch.";
+      ", " + SITE + "llms.txt and " + SITE + "ai-information.html. Summarise who they are, what they do, and how to get in touch.";
     const PROVIDERS = [
       { name: "ChatGPT", url: q => "https://chatgpt.com/?q=" + encodeURIComponent(q) },
       { name: "Claude", url: q => "https://claude.ai/new?q=" + encodeURIComponent(q) },
@@ -820,7 +827,31 @@
     });
   }
 
+  /* ---------- care product cards ----------
+     Any element with [data-care-cards] gets one card per KB.careProducts
+     entry. DOBS (holdsResidentData) is styled apart and links out. */
+  function initCareCards() {
+    const esc = (s) => String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+    $$("[data-care-cards]").forEach((grid) => {
+      grid.innerHTML = (KB.careProducts || []).map((c) => {
+        const external = /^https?:/.test(c.url);
+        return `
+        <article class="card care-card reveal in${c.holdsResidentData ? " care-card--separate" : ""}">
+          <span class="tag">${esc(c.tag)}</span>
+          <h3>${esc(c.name)}</h3>
+          <p>${esc(c.summary)}</p>
+          <ul>${c.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+          <div class="card-foot">
+            <span class="boundary">${c.holdsResidentData ? "Holds resident clinical data" : "No resident records"}</span>
+            <a href="${esc(c.url)}"${external ? ' target="_blank" rel="noopener"' : ""} style="margin-left:auto;color:var(--teal);font-weight:600;font-size:.9rem">${external ? "Visit " + esc(c.url.replace(/^https?:\/\/|\/$/g, "")) + " ↗" : "Read more →"}</a>
+          </div>
+        </article>`;
+      }).join("");
+    });
+  }
+
   function boot() {
+    initCareCards();
     initHeader();
     initReveal();
     initCounters();

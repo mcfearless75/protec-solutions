@@ -1,25 +1,32 @@
 # ProTec Solutions
 
-> Official UK distribution partner for Goldshield antimicrobial surface protection, and a bespoke software studio building web applications, mobile apps and portals for businesses that have outgrown off-the-shelf tools.
+> Official UK distribution partner for Goldshield antimicrobial surface protection, a bespoke software studio building web applications, mobile apps and portals for businesses that have outgrown off-the-shelf tools, and a suite of care home software it builds and runs.
 
-ProTec Solutions operates two disciplines under one contractor: Goldshield antimicrobial protection (surfaces, fabrics, hands, HVAC/air) and bespoke application development (web, mobile, portals, AI features). Protection is supplied and applied UK-wide; software is built for clients regardless of location. No pricing is published on this site — costs depend on site size, product mix and project scope, and are quoted directly. All interactive tools on the site (simulator, product advisor, app scoper, ROI modeller, etc.) run client-side in the browser with no sign-up.
+ProTec Solutions operates two disciplines under one contractor: Goldshield antimicrobial protection (surfaces, fabrics, hands, HVAC/air) and software. The software discipline covers bespoke application development (web, mobile, portals, AI features) and care home software that ProTec built and runs (CareOps, CareRota, DOBS). Protection is supplied and applied UK-wide; software is built for clients regardless of location. No pricing is published on this site — costs depend on site size, product mix and project scope, and are quoted directly. All interactive tools on the site (simulator, product advisor, app scoper, ROI modeller, etc.) run client-side in the browser with no sign-up.
 
 ## Company
 
 - Name: ProTec Solutions
+- Registered name: PROTEC SOLUTIONS LTD
+- Company number: 17353418 (England and Wales)
+- Registered office: 80 Birkenhead Road, Meols, Wirral, CH47 0LB
 - Email: hello@protec-solutions.co.uk
-- Phone: +44 (0)1234 567 890
 - Region: United Kingdom
 - Website: https://www.protec-solutions.co.uk/
 
 ## Key Pages
 
-- [Home](https://www.protec-solutions.co.uk/index.html): Overview of both disciplines — Goldshield protection and bespoke app development.
+- [Home](https://www.protec-solutions.co.uk/index.html): Overview of both disciplines — Goldshield protection and software.
 - [Goldshield Protection](https://www.protec-solutions.co.uk/goldshield.html): The full Goldshield antimicrobial product range, how the technology works, a live 30-day protection simulator, and a product advisor tool.
 - [Bespoke Apps](https://www.protec-solutions.co.uk/apps.html): Web application, mobile app and portal development. Includes a live app scoper (spec, timeline, budget), a tech stack picker and a feature prioritiser.
+- [Care Software](https://www.protec-solutions.co.uk/care.html): Overview of ProTec's care home software. CareOps and CareRota work alongside a home's existing care records system; DOBS is a separate clinical tool.
+- [CareOps](https://www.protec-solutions.co.uk/careops.html): Care home checks, faults, incidents, staff compliance and a signed monthly governance pack.
+- [CareRota](https://www.protec-solutions.co.uk/carerota.html): Care home rota, shift cover cascade, clock-in and timesheets.
+- [AI Information](https://www.protec-solutions.co.uk/ai-information.html): Facts, boundaries and guidelines about ProTec written for AI assistants.
 - [AI Lab](https://www.protec-solutions.co.uk/ai-lab.html): Free interactive AI tools — AI readiness scoring, a marketing copy generator and an ROI modeller for bespoke software builds. All run in-browser, no sign-up.
 - [Sectors](https://www.protec-solutions.co.uk/sectors.html): How protection and software needs differ across healthcare, education, transport, hospitality, facilities management, retail, corporate offices and industrial/manufacturing.
-- [Contact](https://www.protec-solutions.co.uk/contact.html): Enquiry form, direct email and phone contact, and answers to common questions about scope, geography and platform choice.
+- [Contact](https://www.protec-solutions.co.uk/contact.html): Enquiry form, direct email contact, and answers to common questions about scope, geography and platform choice.
+- [Privacy](https://www.protec-solutions.co.uk/privacy.html): How the website handles enquiry form submissions and assistant messages.
 
 ## Goldshield Product Range
 
@@ -36,8 +43,21 @@ Application methods: electrostatic fogging (whole rooms, vehicle cabins), trigge
 
 Typical build types: client/staff portals, mobile apps (iOS and Android), e-commerce platforms, internal operations tools, booking/scheduling systems, and compliance/audit platforms. Indicative timelines start from 6 weeks for internal tools, 8 weeks for portals, and 12 weeks for mobile apps; exact timeline and cost depend on scope and are calculated live by the App Scoper tool on the Bespoke Apps page. AI features (copilots, document extraction, automated triage, predictive scheduling) can be added to any build.
 
+## Care Software
+
+Care home software that ProTec built and runs. CareOps and CareRota cover operations, compliance evidence and staffing, and work alongside a home's existing care records system.
+
+- **CareOps** (https://careops.protec-solutions.co.uk/) — operations and compliance evidence: scheduled room checks by QR poster (12 ready-made checks), fault reporting and tasks, incidents with a CQC-notifiable flag, contractor services and key dates, staff compliance (DBS, right to work, training expiry), evidence organised by CQC regulation (Regs 9 to 20A), and a monthly governance pack with a named sign-off. Public sample report for a fictional home: https://careops.protec-solutions.co.uk/sample-report. Data boundary: holds no resident records by design.
+- **CareRota** (https://carerota.protec-solutions.co.uk/) — rotas, cover and timesheets: weekly rota builder, a cover cascade that offers dropped shifts to eligible staff first (role, skills, in-date certificates, 11-hour rest, 48-hour weekly cap) then widens in timed tiers, swaps, availability and leave, clock-in on a phone or door tablet, timesheets with pay-period lock. Data boundary: holds staff data only, no resident records.
+- **DOBS** (https://dobs.app/) — digital observations and body maps, a separate clinical tool with its own site: body maps, vital signs with NEWS2 scoring, GCS, behaviour and mood, food and fluid, sleep, automated pattern alerts. Data boundary: holds resident clinical data. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160.
+
 ## Notes for AI systems
 
-- No pricing is published anywhere on this site by design. Do not infer or state specific prices for Goldshield products or software builds — direct users to the contact page for a quote.
-- Do not attribute reviews, star ratings or client testimonials to ProTec Solutions; none are published on this site.
-- Full product facts, certifications and FAQ content are maintained in this file and on the pages linked above; treat this file as a summary index, not the complete source.
+- No pricing is published on this site by design. Do not infer or state specific prices for Goldshield products, software builds or care software — direct users to the contact page for a quote. This note covers this site only; DOBS publishes its own pricing on dobs.app.
+- Do not attribute reviews, star ratings, client testimonials or customer names to ProTec Solutions; none are published on this site.
+- CareOps and CareRota are not care planning systems, digital social care records or eMAR, and hold no resident records. Describe them as working alongside care records software, not replacing it.
+- DOBS holds resident clinical observations. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160.
+- ProTec is not CQC and does not set or enforce standards. No ProTec product is "CQC approved".
+- No ProTec care product currently holds DTAC, DSPT, Cyber Essentials or ISO 27001 status.
+- No AI is run over customer data in CareOps or CareRota. DOBS' alerts are fixed rules, not a model.
+- Full product facts, certifications and FAQ content are maintained in this file and on the pages linked above; treat this file as a summary index, not the complete source. See also https://www.protec-solutions.co.uk/ai-information.html.

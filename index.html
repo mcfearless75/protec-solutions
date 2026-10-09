@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=23">
+<link rel="stylesheet" href="css/style.css?v=24">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -25,18 +25,29 @@
   "name": "ProTec Solutions",
   "url": "https://www.protec-solutions.co.uk/",
   "logo": "https://www.protec-solutions.co.uk/assets/lockup-dark-sm.png",
+  "legalName": "PROTEC SOLUTIONS LTD",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "Companies House company number",
+    "value": "17353418"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "80 Birkenhead Road",
+    "addressLocality": "Meols, Wirral",
+    "postalCode": "CH47 0LB",
+    "addressCountry": "GB"
+  },
   "email": "hello@protec-solutions.co.uk",
-  "telephone": "+44-1234-567890",
   "areaServed": "GB",
-  "description": "Official UK distribution for Goldshield antimicrobial protection and bespoke web and mobile application development.",
+  "description": "Official UK distribution for Goldshield antimicrobial protection, bespoke web and mobile application development, and care home software (CareOps, CareRota, DOBS).",
   "slogan": "Protection and software, engineered together.",
-  "knowsAbout": ["Antimicrobial surface protection", "Web application development", "Mobile app development", "AI integration"],
+  "knowsAbout": ["Antimicrobial surface protection", "Web application development", "Mobile app development", "AI integration", "Care home compliance software", "Care home rota software", "CQC evidence", "Care home maintenance and checks"],
   "contactPoint": [
     {
       "@type": "ContactPoint",
       "contactType": "customer service",
       "email": "hello@protec-solutions.co.uk",
-      "telephone": "+44-1234-567890",
       "areaServed": "GB",
       "availableLanguage": ["en-GB"]
     }
@@ -57,6 +68,7 @@
     <a href="index.html" class="active">Home</a>
     <a href="goldshield.html">Goldshield</a>
     <a href="apps.html">Bespoke Apps</a>
+    <a href="care.html">Care Software</a>
     <a href="ai-lab.html">AI Lab</a>
     <a href="sectors.html">Sectors</a>
     <a href="contact.html">Contact</a>
@@ -76,6 +88,7 @@
     <a href="index.html" class="active">Home</a>
     <a href="goldshield.html">Goldshield</a>
     <a href="apps.html">Bespoke Apps</a>
+    <a href="care.html">Care Software</a>
     <a href="ai-lab.html">AI Lab</a>
     <a href="sectors.html">Sectors</a>
     <a href="contact.html">Contact</a>
@@ -168,6 +181,16 @@
         <a class="btn btn-teal" href="apps.html">Build a live spec now</a>
       </article>
     </div>
+
+    <div class="card reveal" style="margin-top:1.3rem">
+      <span class="kicker kicker--teal">Products we built and run</span>
+      <p style="margin-top:.6rem">Care home software we host and support ourselves. The same team builds your bespoke app.</p>
+      <div class="chip-links">
+        <a href="care.html#products">CareOps: checks and compliance evidence</a>
+        <a href="care.html#products">CareRota: rotas and cover</a>
+        <a href="care.html#products">DOBS: clinical observations</a>
+      </div>
+    </div>
   </section>
 
   <!-- ============ AI FEATURES ============ -->
@@ -240,6 +263,16 @@
         <h3>AI readiness score</h3>
         <p>Five questions on your data, process and team. Get a score out of a hundred and an honest verdict on whether AI is your next move or a distraction.</p>
         <p style="margin-top:.9rem"><a href="ai-lab.html#readiness" style="color:var(--teal);font-weight:600;font-size:.9rem">Score my business →</a></p>
+      </article>
+
+      <article class="card reveal" style="grid-column:1/-1">
+        <div class="icon icon--teal">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+        </div>
+        <span class="tag">Sample report</span>
+        <h3>See what an inspector would see</h3>
+        <p>A CareOps report for a fictional care home: every check, every day, room by room, with evidence organised by regulation.</p>
+        <p style="margin-top:.9rem"><a href="https://careops.protec-solutions.co.uk/sample-report" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;font-size:.9rem">Open the sample report ↗</a></p>
       </article>
     </div>
   </section>
@@ -319,25 +352,35 @@
         </ul>
       </div>
       <div>
+        <h4>Care software</h4>
+        <ul>
+          <li><a href="care.html">Care suite</a></li>
+          <li><a href="careops.html">CareOps</a></li>
+          <li><a href="carerota.html">CareRota</a></li>
+          <li><a href="https://dobs.app/" target="_blank" rel="noopener">DOBS ↗</a></li>
+        </ul>
+      </div>
+      <div>
         <h4>Company</h4>
         <ul>
           <li><a href="sectors.html">Sectors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="mailto:hello@protec-solutions.co.uk">hello@protec-solutions.co.uk</a></li>
-          <li><a href="tel:+441234567890">+44 (0)1234 567 890</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="ai-information.html">AI information</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="year">2026</span> ProTec Solutions. United Kingdom.</span>
+      <span>© <span id="year">2026</span> ProTec Solutions is a trading name of PROTEC SOLUTIONS LTD, registered in England and Wales, company no. 17353418. Registered office: 80 Birkenhead Road, Meols, Wirral, CH47 0LB.</span>
       <span>Goldshield is a registered trademark of its respective owner.</span>
     </div>
   </div>
 </footer>
 
-<script src="js/knowledge.js?v=23"></script>
-<script src="js/site.js?v=23"></script>
-<script src="js/tools.js?v=23"></script>
+<script src="js/knowledge.js?v=24"></script>
+<script src="js/site.js?v=24"></script>
+<script src="js/tools.js?v=24"></script>
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

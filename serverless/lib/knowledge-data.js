@@ -25,14 +25,90 @@ const KNOWLEDGE = {
   company: {
     name: "ProTec Solutions",
     domain: "protec-solutions.co.uk",
+    legalName: "PROTEC SOLUTIONS LTD",
+    companyNumber: "17353418 (England and Wales)",
+    registeredOffice: "80 Birkenhead Road, Meols, Wirral, CH47 0LB",
     email: "hello@protec-solutions.co.uk",
-    phone: "+44 (0)1234 567 890",
     region: "United Kingdom",
     lines: [
       "Official UK distribution for Goldshield antimicrobial protection",
-      "Bespoke web application and mobile app development"
+      "Bespoke web application and mobile app development",
+      "Care home software it builds and runs: CareOps, CareRota and DOBS"
     ]
   },
+
+  /* care home software - mirrors KB.careProducts in js/knowledge.js,
+     with the fuller fact list from docs/CARE-UPDATE.md section 3 */
+  careProducts: [
+    {
+      name: "CareOps",
+      what: "Operations and compliance evidence for UK care homes",
+      url: "https://careops.protec-solutions.co.uk/",
+      page: "https://www.protec-solutions.co.uk/careops.html",
+      facts: [
+        "Scheduled checklists per room (per shift, daily, weekly, monthly, every N months). 12 ready-made checks including fridge and freezer temperatures, medication fridge, fire doors, fire alarm test, hot water temperatures, legionella flush, kitchen opening and closing, cleaning.",
+        "Readings are judged against a range; a failed or out-of-range line raises a task automatically. Missed checks raise a task the next morning.",
+        "One QR poster per room serves fault reporting and that room's checks. Staff without a login sign in on a shared tablet with a PIN.",
+        "Tasks: deadlines by priority, assignment with acceptance, checklists, attachments, a permanent activity trail.",
+        "Incidents: lifecycle, CQC-notifiable flag, follow-up tasks.",
+        "Services and key dates: contractor servicing, certificates, renewal reminders.",
+        "Staff compliance: DBS, right to work, training expiry, renewals raised automatically.",
+        "Reports: on-time rates, room by room, every check every day, incidents, evidence by CQC regulation (Regs 9 to 20A).",
+        "Governance: monthly pack with a named sign-off, stored unchanged; a full audit export for inspections.",
+        "Alerts by email, SMS, push and a daily digest. Sign-in with Microsoft 365 or an email link. Installs to a phone home screen.",
+        "A public sample report for a fictional home: https://careops.protec-solutions.co.uk/sample-report"
+      ],
+      dataBoundary: "Holds no resident records by design. Free-text fields carry a \"no names\" prompt."
+    },
+    {
+      name: "CareRota",
+      what: "Rotas, shift cover and timesheets for care homes",
+      url: "https://carerota.protec-solutions.co.uk/",
+      page: "https://www.protec-solutions.co.uk/carerota.html",
+      facts: [
+        "Weekly rota builder with drafts, publish, copy last week and templates; staffing-level coverage view.",
+        "Cover cascade: a dropped shift is offered to eligible staff first (role, skills, in-date certificates, 11-hour rest, 48-hour weekly cap), then widens in timed tiers until claimed.",
+        "Open shifts, shift swaps, availability, leave requests and allowances.",
+        "Clock in and out on a phone or a door tablet with a PIN.",
+        "Timesheets with pay-period lock; reports for payroll, lateness, sickness, scheduled against actual, and working time.",
+        "Calendar feed, push notifications, per-shift messages."
+      ],
+      dataBoundary: "Holds staff data only. No resident records."
+    },
+    {
+      name: "DOBS",
+      what: "Digital observations and body maps - a separate clinical tool with its own site",
+      url: "https://dobs.app/",
+      page: "https://dobs.app/",
+      facts: [
+        "Digital body maps; vital signs with NEWS2 scoring; neurological (GCS), behaviour and mood, food and fluid, sleep observations.",
+        "Observation due and overdue status per resident; automated pattern alerts (fixed rules, not a model).",
+        "Read-only family portal with a PIN. Fingerprint or face sign-in on the device."
+      ],
+      dataBoundary: "Holds resident clinical data - the one ProTec care product that does. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160."
+    }
+  ],
+
+  careFaq: [
+    { q: "Does this replace our care planning system?", a: "No. CareOps and CareRota cover operations, compliance evidence and staffing. Keep your care records system for assessments, care plans and daily notes." },
+    { q: "Does it hold resident information?", a: "CareOps and CareRota do not. DOBS, the separate clinical observation tool, does, and is described on its own site." },
+    { q: "Is it CQC approved?", a: "CQC does not approve software. CareOps produces dated, attributable records and exports organised by the regulations inspectors work to." },
+    { q: "Do staff need their own phone or login?", a: "No. A shared tablet with a PIN works, and so does scanning a room poster." },
+    { q: "Do you use AI on our data?", a: "No. No AI is run over customer data in CareOps or CareRota." },
+    { q: "What does it cost?", a: "Per home, per month, quoted directly. Book a demo via the contact page." }
+  ],
+
+  /* hard rules for anything the assistant says about care software */
+  careBoundaries: [
+    "CareOps and CareRota are not care planning systems, digital social care records or eMAR, and hold no resident records.",
+    "DOBS holds resident clinical observations. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160.",
+    "ProTec is not CQC and does not set or enforce standards. No ProTec product is \"CQC approved\", \"CQC compliant\" or \"CQC certified\" - say it \"produces the evidence CQC inspectors ask for\".",
+    "No ProTec care product currently holds DTAC, DSPT, Cyber Essentials, ISO 27001 or NHS assured status.",
+    "Never describe any care product as \"AI-powered\". No AI is run over customer data in CareOps or CareRota; DOBS' alerts are fixed rules.",
+    "Never state customer counts, name customers, or say \"trusted by care homes\".",
+    "Never compare ProTec's care products against named competitors.",
+    "Describe CareOps and CareRota as working alongside the care records system a home already has, not replacing it."
+  ],
 
   /* Goldshield product catalogue - pricePerLitre deliberately omitted */
   products: [
@@ -116,7 +192,7 @@ const KNOWLEDGE = {
   softwareApproach: "Stack is chosen to fit the project: modern JS front end with an API back end and Postgres for web, a cross-platform build for mobile so one codebase serves iOS and Android, Supabase or an equivalent managed platform for auth and data, and Railway, Netlify or Vercel for hosting depending on the shape of the project. Software runs in two-week sprints with something demonstrable at the end of each sprint. AI is built into what ProTec ships rather than bolted on afterwards - copilots inside portals, document extraction, automated triage, natural-language reporting and predictive scheduling.",
 
   sectors: [
-    { name: "Healthcare & Care", protection: "GS75 + Fogging + Air", software: "Compliance platform, staff rota, incident capture", note: "Infection control evidence is the deliverable, not the spray." },
+    { name: "Healthcare & Care", protection: "GS75 + Fogging + Air", software: "CareOps (checks, incidents, compliance), CareRota (rotas and cover)", note: "Infection control evidence is the deliverable, not the spray." },
     { name: "Education", protection: "GS75 + Fogging + GS5", software: "Parent portal, attendance, safeguarding logs", note: "Treat during holidays, protect through term." },
     { name: "Transport & Fleet", protection: "GS5 + Fogging", software: "Fleet tracking, driver app, defect reporting", note: "Cabin turnaround in minutes, not hours." },
     { name: "Hospitality & Leisure", protection: "GS5 + GS75 + Hand", software: "Booking engine, guest app, loyalty", note: "Guests notice the certificate on the door." },
@@ -133,7 +209,14 @@ const KNOWLEDGE = {
     { title: "App Scoper", url: "https://www.protec-solutions.co.uk/apps.html#scoper" },
     { title: "Tech Stack Picker", url: "https://www.protec-solutions.co.uk/apps.html#stack" },
     { title: "Sector Matcher", url: "https://www.protec-solutions.co.uk/sectors.html#matcher" },
-    { title: "Book a consultation / site survey", url: "https://www.protec-solutions.co.uk/contact.html#book" }
+    { title: "Book a consultation / site survey", url: "https://www.protec-solutions.co.uk/contact.html#book" },
+    { title: "Care software overview", url: "https://www.protec-solutions.co.uk/care.html" },
+    { title: "CareOps", url: "https://www.protec-solutions.co.uk/careops.html" },
+    { title: "CareRota", url: "https://www.protec-solutions.co.uk/carerota.html" },
+    { title: "CareOps sample report (fictional home)", url: "https://careops.protec-solutions.co.uk/sample-report" },
+    { title: "DOBS (separate clinical product)", url: "https://dobs.app/" },
+    { title: "AI information", url: "https://www.protec-solutions.co.uk/ai-information.html" },
+    { title: "Privacy notice", url: "https://www.protec-solutions.co.uk/privacy.html" }
   ]
 };
 

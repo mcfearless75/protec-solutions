@@ -1,7 +1,8 @@
 # ProTec Solutions — protec-solutions.co.uk
 
 Multi-page static site for ProTec Solutions: official UK distribution for Goldshield
-antimicrobial protection, plus bespoke web and mobile application development.
+antimicrobial protection, bespoke web and mobile application development, and the care
+home software ProTec builds and runs (CareOps, CareRota, DOBS).
 
 **Live:** hosted on GitHub Pages from the `main` branch, root directory.
 No build step — every file is served exactly as committed.
@@ -16,6 +17,11 @@ No build step — every file is served exactly as committed.
 | `ai-lab.html` | AI readiness score, copy generator, ROI modeller |
 | `sectors.html` | Sector matcher across 8 verticals |
 | `contact.html` | Smart enquiry form (posts to Formspree, mailto fallback if unreachable) |
+| `care.html` | Care software hub: product cards (from `KB.careProducts`), by-role, FAQ with matching `FAQPage` JSON-LD |
+| `careops.html` | CareOps product page, `SoftwareApplication` + breadcrumb JSON-LD |
+| `carerota.html` | CareRota product page, cover cascade diagram |
+| `ai-information.html` | Plain facts and boundaries for AI assistants (linked from footer, cited by the Ask AI block) |
+| `privacy.html` | Privacy notice for the enquiry form and the assistant |
 
 **Site-wide:** ProTec AI assistant (intent matching over `js/knowledge.js`, voice input
 via Web Speech API), Ctrl+K command palette with fuzzy search across pages, tools,
@@ -24,7 +30,7 @@ products and sectors. Everything runs client-side. No API keys, no backend, noth
 ## Structure
 
 ```
-index.html … contact.html   six pages + 404.html
+index.html … privacy.html   eleven pages + 404.html
 css/style.css               design system (brand tokens at the top of :root)
 js/knowledge.js             single source of truth: products, sectors, FAQ
 js/site.js                  header, reveals, canvas, palette, AI assistant
@@ -33,8 +39,14 @@ assets/                     brand logos
 CNAME                       www.protec-solutions.co.uk
 ```
 
-To change prices, products, sectors or assistant answers, edit `js/knowledge.js` only —
-every tool and the assistant read from it.
+To change prices, products, sectors or assistant answers, edit `js/knowledge.js` — every
+tool, the care product cards and the keyword assistant read from it.
+
+**There are two knowledge files.** The live assistant (Claude via the proxy in
+`serverless/`) reads `serverless/lib/knowledge-data.js`, a price-stripped copy. Any
+knowledge change must be made in both files and the proxy redeployed, or the live
+assistant will not know about it. Care-software wording must follow the claims rules
+in `docs/CARE-UPDATE.md` section 4.
 
 ## Custom domain — DNS to set at your registrar
 
@@ -67,7 +79,8 @@ CSS/JS links when changing those files so returning visitors get the fresh asset
 
 ## Placeholders to replace before going live
 
-- Phone number `+44 (0)1234 567 890` (in page footers and `js/knowledge.js`)
+- No phone number is published (removed Oct 2026). If one is added, put it in the
+  footers, `contact.html`, both knowledge files, `llms.txt` and the JSON-LD in `index.html`
 - Confirm `hello@protec-solutions.co.uk` is a live mailbox
 - `pricePerLitre` in `js/knowledge.js` is unverified and used only internally, to rank
   products against each other when the Product Advisor's "lowest running cost" option

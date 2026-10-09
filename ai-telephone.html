@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Telephone Answering for Business | ProTec Solutions</title>
+<meta name="description" content="An AI voice agent that answers the calls your office misses and logs each one as a ticket in your own system. Built for Traknet, Truth Care and PRL Site Solutions.">
+<link rel="canonical" href="https://www.protec-solutions.co.uk/ai-telephone.html">
+<meta property="og:title" content="AI Telephone Answering for Business | ProTec Solutions">
+<meta property="og:description" content="An AI voice agent that answers the calls your office misses and logs each one as a ticket in your own system. Built for Traknet, Truth Care and PRL Site Solutions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.protec-solutions.co.uk/ai-telephone.html">
+<meta property="og:image" content="https://www.protec-solutions.co.uk/assets/light-protec.png">
+<meta name="theme-color" content="#060b14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d10'/%3E%3Cpath d='M16 5l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V9z' fill='none' stroke='%232ad4f0' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=25">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI telephone answering",
+  "serviceType": "AI voice agent and call handling integration",
+  "provider": {
+    "@id": "https://www.protec-solutions.co.uk/#organization"
+  },
+  "areaServed": "GB",
+  "url": "https://www.protec-solutions.co.uk/ai-telephone.html",
+  "description": "An AI voice agent that answers calls an office misses, takes the details and logs each call as a ticket in the client's own system, with the right people alerted."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will callers know they are talking to an AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They should, and we set it up that way. Truth Care's agent tells every caller it is an automated assistant before anything else."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it put a caller through to a person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. None of these systems transfers calls live. The AI takes the details, logs them and alerts the right people, and your team calls back. Your own phones still ring first wherever you want them to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens in an emergency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The agent is not an emergency service. For a care setting we give it a fixed instruction to tell the caller to hang up and dial 999, and the call is still logged as urgent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do we need new software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The calls land in the system you already run, or in one we build for you. Traknet's land in its job and ticket system; PRL's land in their bespoke operations app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are calls recorded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is your decision, set per client. Truth Care runs with call recording off and transcripts kept for seven days at the voice provider. Transcripts stored in your own system are visible to staff only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the call volume and what the calls need to connect to, so it is quoted directly. Book a call and we'll scope it with you."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="ProTec Solutions home">
+    <img src="assets/shield-sm.png" alt="" style="height:38px;width:auto">
+    <span class="logo-word">Pro<em>Tec</em><small>Solutions</small></span>
+  </a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="goldshield.html">Goldshield</a>
+    <a href="apps.html">Bespoke Apps</a>
+    <a href="care.html">Care Software</a>
+    <a href="ai-lab.html">AI Lab</a>
+    <a href="sectors.html">Sectors</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div style="display:flex;gap:.6rem;align-items:center">
+    <button class="search-trigger" aria-label="Search the site">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="label">Search</span><kbd>Ctrl K</kbd>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="nt-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="nt-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="goldshield.html">Goldshield</a>
+    <a href="apps.html">Bespoke Apps</a>
+    <a href="care.html">Care Software</a>
+    <a href="ai-lab.html">AI Lab</a>
+    <a href="sectors.html">Sectors</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<main id="main">
+
+  <section class="page-hero wrap">
+    <div class="reveal in">
+      <span class="kicker kicker--teal">AI telephone answering</span>
+      <h1>The calls your office misses <span class="teal-text">become tickets, not lost work.</span></h1>
+      <p class="lede">
+        An AI voice agent picks up when your team can't, takes the details, and puts every call into the
+        system you already run, with the right people alerted. We have built it for a security firm,
+        a brain-injury rehabilitation service and a construction recruitment agency.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-teal" href="contact.html#book">Book a call</a>
+        <a class="btn btn-ghost" href="#builds">See the three builds</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">How it works</span>
+      <h2>Four steps from ringing phone to named owner.</h2>
+    </div>
+    <div class="grid-2">
+      <article class="card reveal">
+        <div style="font-family:var(--font-display);font-size:2.6rem;color:var(--teal);line-height:1;margin-bottom:.6rem">01</div>
+        <h3>Your phones ring first</h3><p>Calls go to your office as they do now. The AI picks up the ones nobody can answer, and out-of-hours calls if you want it to.</p>
+      </article>
+      <article class="card reveal reveal-d1">
+        <div style="font-family:var(--font-display);font-size:2.6rem;color:var(--teal);line-height:1;margin-bottom:.6rem">02</div>
+        <h3>The AI takes the details</h3><p>It finds out why the person is calling, takes their name and callback number, and sorts the call into the categories you choose.</p>
+      </article>
+      <article class="card reveal reveal-d2">
+        <div style="font-family:var(--font-display);font-size:2.6rem;color:var(--teal);line-height:1;margin-bottom:.6rem">03</div>
+        <h3>A ticket lands in your system</h3><p>With the transcript and a short summary attached. Hang-ups can still be logged, so a dropped call doesn't disappear.</p>
+      </article>
+      <article class="card reveal reveal-d3">
+        <div style="font-family:var(--font-display);font-size:2.6rem;color:var(--teal);line-height:1;margin-bottom:.6rem">04</div>
+        <h3>The right people are told</h3><p>By email, with urgent calls flagged. For Traknet, out-of-hours faults go straight to the nearest guard on call.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="builds">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">Built and running</span>
+      <h2>Three clients, three different jobs for the phone.</h2>
+      <p>Same idea underneath. What happens after the call is built around how each business actually works.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card care-card reveal" id="traknet">
+        <span class="tag">Security operations</span>
+        <h3>Traknet</h3>
+        <p class="client-meta">Operations platform for a security guarding and patrol company</p>
+        <p>Faults and incidents reported by phone become urgent tickets. Out of hours, the job is dispatched to a guard automatically.</p>
+        <ul><li>Out of hours, the nearest on-call guard is offered the job by WhatsApp or SMS and an app alert</li><li>Not accepted in 5 minutes? It moves to the next nearest guard, and management is alerted if nobody is left</li><li>In office hours, faults go to the named office contact; messages for accounts or sales go to that team</li><li>Known clients can check an existing job from their registered number</li><li>A call that ends before anything is logged still becomes a missed-call ticket</li></ul>
+      </article>
+      <article class="card care-card reveal reveal-d1" id="truthcare">
+        <span class="tag">Care</span>
+        <h3>Truth Care</h3>
+        <p class="client-meta">Specialist residential brain-injury rehabilitation service</p>
+        <p>A careful agent for a sensitive setting. It logs every call as a ticket and reads the caller their ticket number.</p>
+        <ul><li>Says it is an automated assistant at the start of every call</li><li>Sorts referrals, staff calling in, concerns about a resident and general messages</li><li>Never gives clinical advice or confirms who is a resident; emergencies are told to dial 999</li><li>Staff work tickets from a board or by replying to the email, with a daily digest</li><li>Call recording off; caller details redacted 12 months after a ticket closes</li></ul>
+      </article>
+      <article class="card care-card reveal reveal-d2" id="prl">
+        <span class="tag">Recruitment</span>
+        <h3>PRL Site Solutions</h3>
+        <p class="client-meta">Construction recruitment agency, Wirral</p>
+        <p>Built into the bespoke operations app we made for PRL, so calls arrive where the team already works.</p>
+        <ul><li>Picks up calls the office can't answer</li><li>Sorts calls into new applicant, contractor query, client enquiry, urgent or other</li><li>Urgent calls are flagged in the subject line of the staff email</li><li>A staff-only calls page with the transcript and a mark-actioned button</li><li>Matches the caller to an existing contractor record where it can</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="reviews">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">From the client</span>
+      <h2>In their words.</h2>
+    </div>
+    <div class="grid-2">
+      <blockquote class="quote reveal">
+        <p>&ldquo;ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we&rsquo;re really pleased with the results. Highly recommended!&rdquo;</p>
+        <footer><strong>Keenan</strong>, PRL Site Solutions</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="panel panel--teal reveal">
+      <div class="panel-glow" aria-hidden="true"></div>
+      <span class="kicker kicker--teal">What it won't do</span>
+      <h3>Straight answers about the limits.</h3>
+      <ul>
+        <li>It doesn't transfer calls live. It takes the details and your team calls back.</li>
+        <li>It isn't an emergency service, and it doesn't give clinical, legal or financial advice.</li>
+        <li>It doesn't pretend to be a person.</li>
+        <li>It doesn't decide what matters. You set the categories and what counts as urgent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">Under the hood</span>
+      <h2>Proven parts, wired into your systems.</h2>
+    </div>
+    <div class="grid-3">
+      <article class="card reveal"><h3>Voice agent</h3><p>Retell AI handles the call itself. Each call is sent to your system over a signed connection, so nothing else can post fake calls into it.</p></article>
+      <article class="card reveal reveal-d1"><h3>Alerts</h3><p>Email through Microsoft 365, plus SMS, WhatsApp and app push where the job needs it, as Traknet's guard dispatch does.</p></article>
+      <article class="card reveal reveal-d2"><h3>Your data</h3><p>Transcripts are stored as staff-only notes in your own system. Recording and retention are set with you, client by client.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <div class="sec-head reveal">
+      <span class="kicker kicker--teal">Questions</span>
+      <h2>What people ask first.</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Will callers know they are talking to an AI?</summary><p>They should, and we set it up that way. Truth Care's agent tells every caller it is an automated assistant before anything else.</p></details>
+      <details><summary>Can it put a caller through to a person?</summary><p>No. None of these systems transfers calls live. The AI takes the details, logs them and alerts the right people, and your team calls back. Your own phones still ring first wherever you want them to.</p></details>
+      <details><summary>What happens in an emergency?</summary><p>The agent is not an emergency service. For a care setting we give it a fixed instruction to tell the caller to hang up and dial 999, and the call is still logged as urgent.</p></details>
+      <details><summary>Do we need new software?</summary><p>No. The calls land in the system you already run, or in one we build for you. Traknet's land in its job and ticket system; PRL's land in their bespoke operations app.</p></details>
+      <details><summary>Are calls recorded?</summary><p>That is your decision, set per client. Truth Care runs with call recording off and transcripts kept for seven days at the voice provider. Transcripts stored in your own system are visible to staff only.</p></details>
+      <details><summary>What does it cost?</summary><p>It depends on the call volume and what the calls need to connect to, so it is quoted directly. Book a call and we'll scope it with you.</p></details>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="panel panel--teal reveal" style="text-align:center;padding-block:clamp(3rem,6vw,5rem)">
+      <div class="panel-glow" aria-hidden="true" style="left:50%;right:auto;transform:translateX(-50%);top:-50%"></div>
+      <span class="kicker kicker--teal" style="justify-content:center">Next step</span>
+      <h2 style="font-size:var(--text-h2);max-width:22ch;margin-inline:auto">Tell us what your missed calls are costing you.</h2>
+      <p class="lede" style="margin:1.2rem auto 0">Fifteen minutes on what calls come in, where they should go, and who needs to know. You'll get a straight answer on whether this fits.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+        <a class="btn btn-teal" href="contact.html#book">Book a call</a>
+        <a class="btn btn-ghost" href="apps.html">See bespoke apps</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><img src="assets/lockup-dark-sm.png" alt="ProTec Solutions" style="height:64px;width:auto"></a>
+        <p>Official UK distribution for Goldshield antimicrobial protection, and bespoke application development for businesses that have outgrown off-the-shelf.</p>
+      </div>
+      <div>
+        <h4>Protection</h4>
+        <ul>
+          <li><a href="goldshield.html">The range</a></li>
+          <li><a href="goldshield.html#simulator">Protection simulator</a></li>
+          <li><a href="goldshield.html#advisor">Product advisor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Software</h4>
+        <ul>
+          <li><a href="apps.html">Bespoke apps</a></li>
+          <li><a href="apps.html#scoper">App scoper</a></li>
+          <li><a href="apps.html#stack">Stack picker</a></li>
+          <li><a href="ai-lab.html">AI Lab</a></li>
+          <li><a href="ai-telephone.html">AI telephone answering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Care software</h4>
+        <ul>
+          <li><a href="care.html">Care suite</a></li>
+          <li><a href="careops.html">CareOps</a></li>
+          <li><a href="carerota.html">CareRota</a></li>
+          <li><a href="https://dobs.app/" target="_blank" rel="noopener">DOBS ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="sectors.html">Sectors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mailto:hello@protec-solutions.co.uk">hello@protec-solutions.co.uk</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="ai-information.html">AI information</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> ProTec Solutions is a trading name of PROTEC SOLUTIONS LTD, registered in England and Wales, company no. 17353418. Registered office: 80 Birkenhead Road, Meols, Wirral, CH47 0LB.</span>
+      <span>Goldshield is a registered trademark of its respective owner.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/knowledge.js?v=25"></script>
+<script src="js/site.js?v=25"></script>
+<script src="js/tools.js?v=25"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

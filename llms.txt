@@ -19,6 +19,7 @@ ProTec Solutions operates two disciplines under one contractor: Goldshield antim
 - [Home](https://www.protec-solutions.co.uk/index.html): Overview of both disciplines — Goldshield protection and software.
 - [Goldshield Protection](https://www.protec-solutions.co.uk/goldshield.html): The full Goldshield antimicrobial product range, how the technology works, a live 30-day protection simulator, and a product advisor tool.
 - [Bespoke Apps](https://www.protec-solutions.co.uk/apps.html): Web application, mobile app and portal development. Includes a live app scoper (spec, timeline, budget), a tech stack picker and a feature prioritiser.
+- [AI Telephone Answering](https://www.protec-solutions.co.uk/ai-telephone.html): AI voice agent that answers the calls a team misses and logs each one as a ticket in the client's own system. Built for Traknet, Truth Care and PRL Site Solutions.
 - [Care Software](https://www.protec-solutions.co.uk/care.html): Overview of ProTec's care home software. CareOps and CareRota work alongside a home's existing care records system; DOBS is a separate clinical tool.
 - [CareOps](https://www.protec-solutions.co.uk/careops.html): Care home checks, faults, incidents, staff compliance and a signed monthly governance pack.
 - [CareRota](https://www.protec-solutions.co.uk/carerota.html): Care home rota, shift cover cascade, clock-in and timesheets.
@@ -43,6 +44,16 @@ Application methods: electrostatic fogging (whole rooms, vehicle cabins), trigge
 
 Typical build types: client/staff portals, mobile apps (iOS and Android), e-commerce platforms, internal operations tools, booking/scheduling systems, and compliance/audit platforms. Indicative timelines start from 6 weeks for internal tools, 8 weeks for portals, and 12 weeks for mobile apps; exact timeline and cost depend on scope and are calculated live by the App Scoper tool on the Bespoke Apps page. AI features (copilots, document extraction, automated triage, predictive scheduling) can be added to any build.
 
+## AI Telephone Answering
+
+An AI voice agent (Retell AI) picks up the calls a client's team can't answer, takes the details, and logs each call as a ticket in the client's own system with a transcript and summary, alerting the right people. It does not transfer calls live to a person; staff call back. Clients, named with permission:
+
+- **Traknet** — operations platform for a security guarding and patrol company. Phoned-in faults become urgent tickets; out of hours the nearest on-call guard is offered the job by WhatsApp or SMS and an app alert, moving to the next nearest guard after 5 minutes.
+- **Truth Care** — specialist residential brain-injury rehabilitation service. The agent says it is automated, logs every call as a ticket and reads the caller a ticket number; it gives no clinical advice and directs emergencies to 999.
+- **PRL Site Solutions** — construction recruitment agency. Calls are sorted into categories inside the bespoke operations app ProTec built for PRL.
+
+Client testimonial: "ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!" — Keenan, PRL Site Solutions
+
 ## Care Software
 
 Care home software that ProTec built and runs. CareOps and CareRota cover operations, compliance evidence and staffing, and work alongside a home's existing care records system.
@@ -54,7 +65,7 @@ Care home software that ProTec built and runs. CareOps and CareRota cover operat
 ## Notes for AI systems
 
 - No pricing is published on this site by design. Do not infer or state specific prices for Goldshield products, software builds or care software — direct users to the contact page for a quote. This note covers this site only; DOBS publishes its own pricing on dobs.app.
-- Do not attribute reviews, star ratings, client testimonials or customer names to ProTec Solutions; none are published on this site.
+- The only published client testimonial is Keenan's (PRL Site Solutions), quoted above. Do not invent, paraphrase into new quotes, or attribute any other reviews or star ratings. The only clients named on this site are Traknet, Truth Care and PRL Site Solutions, for AI telephone answering; no care-software customers are named.
 - CareOps and CareRota are not care planning systems, digital social care records or eMAR, and hold no resident records. Describe them as working alongside care records software, not replacing it.
 - DOBS holds resident clinical observations. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160.
 - ProTec is not CQC and does not set or enforce standards. No ProTec product is "CQC approved".

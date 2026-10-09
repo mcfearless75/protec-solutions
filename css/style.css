@@ -1662,3 +1662,10 @@ input[type="range"]:focus-visible {
 
 /* lifted above .mobile-nav (z 150) while open; see initHeader in site.js */
 header.site-header.menu-open { z-index: 160; }
+
+/* client quotes (ai-telephone.html) */
+.quote { margin: 0; padding: 1.8rem; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius); background: var(--bg-raised); }
+.quote p { font-size: 1.08rem; line-height: 1.6; color: var(--text); }
+.quote footer { margin-top: 1rem; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); }
+.quote footer strong { color: var(--teal); font-weight: 500; }
+.client-meta { font-size: .85rem; color: var(--text-faint); margin-top: -.2rem; margin-bottom: .6rem; }

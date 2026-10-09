@@ -17,6 +17,7 @@ No build step — every file is served exactly as committed.
 | `ai-lab.html` | AI readiness score, copy generator, ROI modeller |
 | `sectors.html` | Sector matcher across 8 verticals |
 | `contact.html` | Smart enquiry form (posts to Formspree, mailto fallback if unreachable) |
+| `ai-telephone.html` | AI telephone answering: Traknet, Truth Care and PRL builds, client quote, FAQ with matching `FAQPage` JSON-LD |
 | `care.html` | Care software hub: product cards (from `KB.careProducts`), by-role, FAQ with matching `FAQPage` JSON-LD |
 | `careops.html` | CareOps product page, `SoftwareApplication` + breadcrumb JSON-LD |
 | `carerota.html` | CareRota product page, cover cascade diagram |
@@ -30,7 +31,7 @@ products and sectors. Everything runs client-side. No API keys, no backend, noth
 ## Structure
 
 ```
-index.html … privacy.html   eleven pages + 404.html
+index.html … privacy.html   twelve pages + 404.html
 css/style.css               design system (brand tokens at the top of :root)
 js/knowledge.js             single source of truth: products, sectors, FAQ
 js/site.js                  header, reveals, canvas, palette, AI assistant

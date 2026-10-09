@@ -26,6 +26,7 @@ window.PROTEC_KB = {
     { title: "Home", url: "index.html", icon: "⌂", desc: "Protection and software, engineered together" },
     { title: "Goldshield Protection", url: "goldshield.html", icon: "◈", desc: "Official UK distribution, 24/7 antimicrobial surface protection" },
     { title: "Bespoke Apps", url: "apps.html", icon: "◐", desc: "Web apps, mobile apps and portals built for your sector" },
+    { title: "AI Telephone Answering", url: "ai-telephone.html", icon: "☎", desc: "AI voice agent that turns missed calls into tickets. Built for Traknet, Truth Care and PRL" },
     { title: "Care Software", url: "care.html", icon: "✚", desc: "CareOps and CareRota for UK care homes. Works alongside your care records" },
     { title: "CareOps", url: "careops.html", icon: "☑", desc: "Care home checks, incidents, maintenance and CQC evidence" },
     { title: "CareRota", url: "carerota.html", icon: "◷", desc: "Care home rota, shift cover cascade and timesheets" },
@@ -455,6 +456,15 @@ window.PROTEC_KB = {
     {
       keys: ["training", "certified", "team", "in-house", "diy"],
       answer: "Yes — we train client teams to apply and maintain the protection in-house. Half-day session, certificate issued, and you keep the ongoing cost down considerably.\n\nWe still handle the periodic deep treatment and the certification audit so the evidence trail stays clean."
+    },
+    /* ---- AI telephone answering (facts verified in each client repo, Oct 2026) ---- */
+    {
+      keys: ["ai telephone", "ai phone", "phone answering", "call answering", "voice agent", "receptionist", "missed calls", "answer calls", "phone system"],
+      answer: "We build **AI telephone answering**: a voice agent picks up the calls your team can't, takes the details, and logs each call as a ticket in the system you already run, with the right people alerted.\n\nIt's running for **Traknet** (out-of-hours faults dispatched to the nearest on-call guard), **Truth Care** (a careful agent for a brain-injury rehabilitation service) and **PRL Site Solutions** (calls sorted straight into their bespoke app). It doesn't transfer calls live; your team calls back.\n\nMore on the [AI telephone page](ai-telephone.html)."
+    },
+    {
+      keys: ["review", "reviews", "testimonial", "testimonials", "what do clients say", "what clients say"],
+      answer: "From Keenan at PRL Site Solutions: \"ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!\"\n\nThere's more on what we built for PRL on the [AI telephone page](ai-telephone.html#prl)."
     },
     /* ---- care home software (docs/CARE-UPDATE.md 6.4 + product basics) ---- */
     {

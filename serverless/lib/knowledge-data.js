@@ -89,6 +89,25 @@ const KNOWLEDGE = {
     }
   ],
 
+  /* AI telephone answering - facts verified in each client's repo, Oct 2026.
+     The three clients and Keenan's quote are published with permission. */
+  aiTelephone: {
+    summary: "An AI voice agent (Retell AI) picks up calls the client's team can't answer, takes the details, and logs each call as a ticket in the client's own system with a transcript and summary, alerting the right people. Calls are sent over a signature-checked webhook.",
+    limits: [
+      "No live transfer to a person: the AI takes the details and staff call back.",
+      "Not an emergency service; no clinical, legal or financial advice.",
+      "Do not claim 24/7 answering, guaranteed response times, call volumes or uptime."
+    ],
+    clients: [
+      { name: "Traknet", what: "operations platform for a security guarding and patrol company", facts: "Phoned-in faults become urgent tickets. Out of hours the nearest on-call guard is offered the job by WhatsApp or SMS and an app alert; after 5 minutes it moves to the next nearest guard, and management is alerted if nobody is left. In office hours faults go to the named office contact, and messages for accounts or sales go to that team. Known clients can check an existing job from their registered number. Calls that end before anything is logged still become a missed-call ticket." },
+      { name: "Truth Care", what: "specialist residential brain-injury rehabilitation service", facts: "The agent says it is automated, sorts referrals, staff calling in, concerns about a resident and general messages, and reads the caller a ticket number. It never gives clinical advice or confirms who is a resident, and tells emergencies to dial 999. Staff work tickets from a board or by email reply, with a daily digest. Call recording is off; caller details are redacted 12 months after a ticket closes." },
+      { name: "PRL Site Solutions", what: "construction recruitment agency in the Wirral", facts: "Built into the bespoke operations app ProTec made for PRL. Calls are sorted into new applicant, contractor query, client enquiry, urgent or other; urgent calls are flagged in the staff email; staff see transcripts on a calls page and mark them actioned; callers are matched to existing contractor records where possible." }
+    ],
+    testimonials: [
+      { quote: "ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!", by: "Keenan, PRL Site Solutions" }
+    ]
+  },
+
   careFaq: [
     { q: "Does this replace our care planning system?", a: "No. CareOps and CareRota cover operations, compliance evidence and staffing. Keep your care records system for assessments, care plans and daily notes." },
     { q: "Does it hold resident information?", a: "CareOps and CareRota do not. DOBS, the separate clinical observation tool, does, and is described on its own site." },
@@ -105,7 +124,7 @@ const KNOWLEDGE = {
     "ProTec is not CQC and does not set or enforce standards. No ProTec product is \"CQC approved\", \"CQC compliant\" or \"CQC certified\" - say it \"produces the evidence CQC inspectors ask for\".",
     "No ProTec care product currently holds DTAC, DSPT, Cyber Essentials, ISO 27001 or NHS assured status.",
     "Never describe any care product as \"AI-powered\". No AI is run over customer data in CareOps or CareRota; DOBS' alerts are fixed rules.",
-    "Never state customer counts, name customers, or say \"trusted by care homes\".",
+    "Never state care-software customer counts, name care-software customers, or say \"trusted by care homes\".",
     "Never compare ProTec's care products against named competitors.",
     "Describe CareOps and CareRota as working alongside the care records system a home already has, not replacing it."
   ],
@@ -210,6 +229,7 @@ const KNOWLEDGE = {
     { title: "Tech Stack Picker", url: "https://www.protec-solutions.co.uk/apps.html#stack" },
     { title: "Sector Matcher", url: "https://www.protec-solutions.co.uk/sectors.html#matcher" },
     { title: "Book a consultation / site survey", url: "https://www.protec-solutions.co.uk/contact.html#book" },
+    { title: "AI telephone answering", url: "https://www.protec-solutions.co.uk/ai-telephone.html" },
     { title: "Care software overview", url: "https://www.protec-solutions.co.uk/care.html" },
     { title: "CareOps", url: "https://www.protec-solutions.co.uk/careops.html" },
     { title: "CareRota", url: "https://www.protec-solutions.co.uk/carerota.html" },

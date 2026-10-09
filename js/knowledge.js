@@ -464,7 +464,7 @@ window.PROTEC_KB = {
     },
     {
       keys: ["review", "reviews", "testimonial", "testimonials", "what do clients say", "what clients say"],
-      answer: "From Keenan at PRL Site Solutions: \"ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!\"\n\nThere's more on what we built for PRL on the [AI telephone page](ai-telephone.html#prl)."
+      answer: "Three clients, in their own words:\n\n• **Kyle, Traknet** — \"ProTec built the AI systems behind Traknet, including the phone line that logs faults and gets out-of-hours jobs to the nearest guard. Just as important has been the support: quick answers when we needed tech help, and real interest in getting things right for how we actually work. Excellent all-round service.\"\n\n• **Kumi, Truth Care** — \"ProTec set up our AI telephone system and handled everything from planning to go-live. It was built carefully around our setting, and the technical support during setup was patient and thorough. We'd happily recommend them.\"\n\n• **Keenan, PRL Site Solutions** — \"ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!\"\n\nSee them on the [AI telephone page](ai-telephone.html#reviews)."
     },
     /* ---- care home software (docs/CARE-UPDATE.md 6.4 + product basics) ---- */
     {

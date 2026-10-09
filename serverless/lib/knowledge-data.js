@@ -90,7 +90,7 @@ const KNOWLEDGE = {
   ],
 
   /* AI telephone answering - facts verified in each client's repo, Oct 2026.
-     The three clients and Keenan's quote are published with permission. */
+     The three clients and their quotes are published with permission. */
   aiTelephone: {
     summary: "An AI voice agent (Retell AI) picks up calls the client's team can't answer, takes the details, and logs each call as a ticket in the client's own system with a transcript and summary, alerting the right people. Calls are sent over a signature-checked webhook.",
     limits: [
@@ -104,6 +104,8 @@ const KNOWLEDGE = {
       { name: "PRL Site Solutions", what: "construction recruitment agency in the Wirral", facts: "Built into the bespoke operations app ProTec made for PRL. Calls are sorted into new applicant, contractor query, client enquiry, urgent or other; urgent calls are flagged in the staff email; staff see transcripts on a calls page and mark them actioned; callers are matched to existing contractor records where possible." }
     ],
     testimonials: [
+      { quote: "ProTec built the AI systems behind Traknet, including the phone line that logs faults and gets out-of-hours jobs to the nearest guard. Just as important has been the support: quick answers when we needed tech help, and real interest in getting things right for how we actually work. Excellent all-round service.", by: "Kyle, Traknet" },
+      { quote: "ProTec set up our AI telephone system and handled everything from planning to go-live. It was built carefully around our setting, and the technical support during setup was patient and thorough. We'd happily recommend them.", by: "Kumi, Truth Care" },
       { quote: "ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!", by: "Keenan, PRL Site Solutions" }
     ]
   },

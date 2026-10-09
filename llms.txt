@@ -52,7 +52,11 @@ An AI voice agent (Retell AI) picks up the calls a client's team can't answer, t
 - **Truth Care** — specialist residential brain-injury rehabilitation service. The agent says it is automated, logs every call as a ticket and reads the caller a ticket number; it gives no clinical advice and directs emergencies to 999.
 - **PRL Site Solutions** — construction recruitment agency. Calls are sorted into categories inside the bespoke operations app ProTec built for PRL.
 
-Client testimonial: "ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!" — Keenan, PRL Site Solutions
+Client testimonials (published with permission):
+
+- "ProTec built the AI systems behind Traknet, including the phone line that logs faults and gets out-of-hours jobs to the nearest guard. Just as important has been the support: quick answers when we needed tech help, and real interest in getting things right for how we actually work. Excellent all-round service." — Kyle, Traknet
+- "ProTec set up our AI telephone system and handled everything from planning to go-live. It was built carefully around our setting, and the technical support during setup was patient and thorough. We'd happily recommend them." — Kumi, Truth Care
+- "ProTec Solutions made the whole process seamless, from creating our bespoke app to setting up our AI phone system. Great service throughout, and we're really pleased with the results. Highly recommended!" — Keenan, PRL Site Solutions
 
 ## Care Software
 
@@ -65,7 +69,7 @@ Care home software that ProTec built and runs. CareOps and CareRota cover operat
 ## Notes for AI systems
 
 - No pricing is published on this site by design. Do not infer or state specific prices for Goldshield products, software builds or care software — direct users to the contact page for a quote. This note covers this site only; DOBS publishes its own pricing on dobs.app.
-- The only published client testimonial is Keenan's (PRL Site Solutions), quoted above. Do not invent, paraphrase into new quotes, or attribute any other reviews or star ratings. The only clients named on this site are Traknet, Truth Care and PRL Site Solutions, for AI telephone answering; no care-software customers are named.
+- The only published client testimonials are the three quoted above, from Kyle (Traknet), Kumi (Truth Care) and Keenan (PRL Site Solutions). Quote them word for word. Do not invent, paraphrase into new quotes, or attribute any other reviews or star ratings. The only clients named on this site are Traknet, Truth Care and PRL Site Solutions, for AI telephone answering; no care-software customers are named.
 - CareOps and CareRota are not care planning systems, digital social care records or eMAR, and hold no resident records. Describe them as working alongside care records software, not replacing it.
 - DOBS holds resident clinical observations. Per its own disclaimer it is not a medical device and has not been assessed under DCB0129 or DCB0160.
 - ProTec is not CQC and does not set or enforce standards. No ProTec product is "CQC approved".

@@ -372,8 +372,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
       <h3>${t.name}</h3>
       <p>${t.blurb}</p>
       <p style="margin-top:1rem;font-family:var(--font-mono);font-size:.74rem;color:var(--text-faint)">
-        FROM <span style="color:var(--teal)">${t.baseWeeks} WEEKS</span> ·
-        <span style="color:var(--gold)">£${t.baseCost.toLocaleString("en-GB")}</span>
+        FROM <span style="color:var(--teal)">${t.baseWeeks} WEEKS</span>
       </p>
     </article>`).join("");
 })();

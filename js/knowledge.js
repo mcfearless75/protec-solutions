@@ -40,7 +40,7 @@ window.PROTEC_KB = {
   actions: [
     { title: "Protection Simulator", url: "goldshield.html#simulator", icon: "◉", desc: "Watch microbial load over 30 days, treated vs untreated" },
     { title: "Product Advisor", url: "goldshield.html#advisor", icon: "◈", desc: "Answer four questions, get the right Goldshield product" },
-    { title: "App Scoper", url: "apps.html#scoper", icon: "◑", desc: "Build a live spec, timeline and budget for your app" },
+    { title: "App Scoper", url: "apps.html#scoper", icon: "◑", desc: "Build a live spec and timeline for your app" },
     { title: "Tech Stack Picker", url: "apps.html#stack", icon: "⬡", desc: "Get a recommended stack for your project shape" },
     { title: "Feature Prioritiser", url: "apps.html#prioritiser", icon: "▦", desc: "Rank features by impact versus effort" },
     { title: "AI Readiness Score", url: "ai-lab.html#readiness", icon: "◎", desc: "Score your business on AI adoption readiness" },
@@ -419,11 +419,11 @@ window.PROTEC_KB = {
     },
     {
       keys: ["cost", "price", "how much", "budget", "quote", "pricing", "expensive"],
-      answer: "For protection, cost depends on floor area, product and traffic level, so we'd rather give you a real number than an average that's wrong for your site. A quick [site survey](contact.html#book) gets you an exact quote — usually within a day or two of the visit.\n\nFor software, a typical build lands between **£9.5k and £30k**, with ops tools at the lower end and full mobile apps at the top. The [App Scoper](apps.html#scoper) produces a costed spec in about a minute.\n\nCareOps and CareRota are priced per home, per month, and quoted directly. [Book a demo](contact.html#book) and you'll get the number on the call."
+      answer: "For protection, cost depends on floor area, product and traffic level, so we'd rather give you a real number than an average that's wrong for your site. A quick [site survey](contact.html#book) gets you an exact quote — usually within a day or two of the visit.\n\nFor software, the price depends on scope, so you get one fixed number after a short discovery session, never an open-ended day rate. The [App Scoper](apps.html#scoper) builds a spec and timeline in about a minute to start that conversation.\n\nCareOps and CareRota are priced per home, per month, and quoted directly. [Book a demo](contact.html#book) and you'll get the number on the call."
     },
     {
       keys: ["app", "build", "development", "software", "bespoke", "web app", "mobile"],
-      answer: "We build bespoke web applications, mobile apps and portals — client portals, booking systems, compliance platforms, internal ops tools and e-commerce.\n\nTypical timelines: internal tools from **6 weeks**, portals from **8 weeks**, mobile apps from **12 weeks**. Everything is built to your process rather than bent around off-the-shelf software.\n\nUse the [App Scoper](apps.html#scoper) to get a live spec with timeline and budget."
+      answer: "We build bespoke web applications, mobile apps and portals — client portals, booking systems, compliance platforms, internal ops tools and e-commerce.\n\nTypical timelines: internal tools from **6 weeks**, portals from **8 weeks**, mobile apps from **12 weeks**. Everything is built to your process rather than bent around off-the-shelf software.\n\nUse the [App Scoper](apps.html#scoper) to get a live spec and timeline."
     },
     {
       keys: ["tech", "stack", "technology", "framework", "language", "hosting"],

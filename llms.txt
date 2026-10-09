@@ -18,7 +18,7 @@ ProTec Solutions operates two disciplines under one contractor: Goldshield antim
 
 - [Home](https://www.protec-solutions.co.uk/index.html): Overview of both disciplines — Goldshield protection and software.
 - [Goldshield Protection](https://www.protec-solutions.co.uk/goldshield.html): The full Goldshield antimicrobial product range, how the technology works, a live 30-day protection simulator, and a product advisor tool.
-- [Bespoke Apps](https://www.protec-solutions.co.uk/apps.html): Web application, mobile app and portal development. Includes a live app scoper (spec, timeline, budget), a tech stack picker and a feature prioritiser.
+- [Bespoke Apps](https://www.protec-solutions.co.uk/apps.html): Web application, mobile app and portal development. Includes a live app scoper (spec, timeline, delivery phases), a tech stack picker and a feature prioritiser.
 - [AI Telephone Answering](https://www.protec-solutions.co.uk/ai-telephone.html): AI voice agent that answers the calls a team misses and logs each one as a ticket in the client's own system. Built for Traknet, Truth Care and PRL Site Solutions.
 - [Care Software](https://www.protec-solutions.co.uk/care.html): Overview of ProTec's care home software. CareOps and CareRota work alongside a home's existing care records system; DOBS is a separate clinical tool.
 - [CareOps](https://www.protec-solutions.co.uk/careops.html): Care home checks, faults, incidents, staff compliance and a signed monthly governance pack.
@@ -42,7 +42,7 @@ Application methods: electrostatic fogging (whole rooms, vehicle cabins), trigge
 
 ## Bespoke Software
 
-Typical build types: client/staff portals, mobile apps (iOS and Android), e-commerce platforms, internal operations tools, booking/scheduling systems, and compliance/audit platforms. Indicative timelines start from 6 weeks for internal tools, 8 weeks for portals, and 12 weeks for mobile apps; exact timeline and cost depend on scope and are calculated live by the App Scoper tool on the Bespoke Apps page. AI features (copilots, document extraction, automated triage, predictive scheduling) can be added to any build.
+Typical build types: client/staff portals, mobile apps (iOS and Android), e-commerce platforms, internal operations tools, booking/scheduling systems, and compliance/audit platforms. Indicative timelines start from 6 weeks for internal tools, 8 weeks for portals, and 12 weeks for mobile apps; an indicative timeline is calculated live by the App Scoper tool on the Bespoke Apps page, and cost is quoted directly after a short discovery session. AI features (copilots, document extraction, automated triage, predictive scheduling) can be added to any build.
 
 ## AI Telephone Answering
 

@@ -13,7 +13,7 @@ No build step — every file is served exactly as committed.
 |------|-------------------|
 | `index.html` | Hero particle field, animated stats, dual proposition |
 | `goldshield.html` | 30-day protection simulator (canvas chart), 4-question product advisor |
-| `apps.html` | Live app scoper (cost + timeline + phases), tech stack picker, feature prioritiser with impact/effort quadrant |
+| `apps.html` | Live app scoper (timeline + phases; no prices shown), tech stack picker, feature prioritiser with impact/effort quadrant |
 | `ai-lab.html` | AI readiness score, copy generator, ROI modeller |
 | `sectors.html` | Sector matcher across 8 verticals |
 | `contact.html` | Smart enquiry form (posts to Formspree, mailto fallback if unreachable) |

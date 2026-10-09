@@ -357,9 +357,9 @@
       .join("");
 
     const URGENCY = {
-      relaxed: { weeks: 1.2, cost: 0.92, label: "Relaxed — take the time to get it right" },
-      standard: { weeks: 1, cost: 1, label: "Standard — normal sprint cadence" },
-      fast: { weeks: 0.75, cost: 1.28, label: "Accelerated — parallel workstreams" }
+      relaxed: { weeks: 1.2, label: "Relaxed — take the time to get it right" },
+      standard: { weeks: 1, label: "Standard — normal sprint cadence" },
+      fast: { weeks: 0.75, label: "Accelerated — parallel workstreams" }
     };
 
     function compute() {
@@ -368,14 +368,10 @@
       const users = parseInt(usersInput.value, 10);
       const u = URGENCY[urgency];
 
-      const scaleFactor = users > 5000 ? 1.22 : users > 1000 ? 1.12 : users > 250 ? 1.04 : 1;
       const addonWeeks = picked.reduce((s, a) => s + a.weeks, 0);
-      const addonCost = picked.reduce((s, a) => s + a.cost, 0);
 
       const weeks = Math.round((base.baseWeeks + addonWeeks) * u.weeks);
-      const cost = (base.baseCost + addonCost) * scaleFactor * u.cost;
       const sprints = Math.ceil(weeks / 2);
-      const monthly = cost * 0.012 + 180;
 
       const phases = [
         { name: "Discovery & spec", pct: 0.12 },
@@ -388,18 +384,17 @@
       out.hidden = false;
       out.innerHTML = `
         <h4>${base.name}</h4>
-        <div class="big">${gbp(cost * 0.88)} – ${gbp(cost * 1.12)}</div>
+        <div class="big">${weeks} weeks</div>
         <p style="color:var(--text-dim);font-size:.9rem;margin:.5rem 0 1rem">
           ${base.blurb} Delivered in <strong style="color:var(--text)">${weeks} weeks</strong>
           across ${sprints} two-week sprints.
         </p>
         <table>
-          <tr><td>Core build</td><td>${gbp(base.baseCost)}</td></tr>
-          ${picked.map((a) => `<tr><td>+ ${a.name}</td><td>${gbp(a.cost)}</td></tr>`).join("")}
-          <tr><td>Scale factor (${users.toLocaleString("en-GB")} users)</td><td>×${scaleFactor.toFixed(2)}</td></tr>
-          <tr><td>Delivery pace</td><td>×${u.cost.toFixed(2)}</td></tr>
-          <tr><td><strong>Estimated total</strong></td><td><strong>${gbp(cost)}</strong></td></tr>
-          <tr><td>Ongoing hosting &amp; support</td><td>${gbp(monthly)} / month</td></tr>
+          <tr><td>Core build</td><td>${base.baseWeeks} weeks</td></tr>
+          ${picked.map((a) => `<tr><td>+ ${a.name}</td><td>+${a.weeks} wk</td></tr>`).join("")}
+          <tr><td>Expected users</td><td>${users.toLocaleString("en-GB")}</td></tr>
+          <tr><td>Delivery pace</td><td>${u.label.split(" — ")[0]}</td></tr>
+          <tr><td><strong>Estimated timeline</strong></td><td><strong>${weeks} weeks</strong></td></tr>
         </table>
 
         <h4 style="margin-top:1.5rem">Delivery phases</h4>
@@ -418,7 +413,7 @@
           <button class="btn btn-ghost" type="button" id="scope-copy">Copy spec</button>
         </div>
         <p style="margin-top:1rem;font-size:.82rem;color:var(--text-faint)">
-          Indicative range from real project data. Fixed price confirmed after a discovery session — no open-ended day rates.
+          Indicative timeline from real project data. Send the spec over and you get one fixed price after a short discovery session — no open-ended day rates.
         </p>`;
 
       $("#scope-copy", out).addEventListener("click", () => {
@@ -429,8 +424,6 @@
           `Expected users: ${users.toLocaleString("en-GB")}`,
           `Delivery pace: ${u.label}`,
           `Timeline: ${weeks} weeks (${sprints} sprints)`,
-          `Estimated total: ${gbp(cost * 0.88)} – ${gbp(cost * 1.12)}`,
-          `Ongoing: ${gbp(monthly)} / month`,
           ``,
           `Generated at protec-solutions.co.uk/apps`
         ].join("\n");

@@ -833,13 +833,15 @@
   function initCareCards() {
     const esc = (s) => String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
     $$("[data-care-cards]").forEach((grid) => {
+      // data-care-cards="mini": compact hero version, no summary paragraph
+      const mini = grid.dataset.careCards === "mini";
       grid.innerHTML = (KB.careProducts || []).map((c) => {
         const external = /^https?:/.test(c.url);
         return `
-        <article class="card care-card reveal in${c.holdsResidentData ? " care-card--separate" : ""}">
+        <article class="card care-card reveal in${mini ? " care-card--mini" : ""}${c.holdsResidentData ? " care-card--separate" : ""}">
           <span class="tag">${esc(c.tag)}</span>
           <h3>${esc(c.name)}</h3>
-          <p>${esc(c.summary)}</p>
+          ${mini ? "" : `<p>${esc(c.summary)}</p>`}
           <ul>${c.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
           <div class="card-foot">
             <span class="boundary">${c.holdsResidentData ? "Holds resident clinical data" : "No resident records"}</span>

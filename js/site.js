@@ -837,6 +837,8 @@
       const mini = grid.dataset.careCards === "mini";
       grid.innerHTML = (KB.careProducts || []).map((c) => {
         const external = /^https?:/.test(c.url);
+        // no "Read more" back to the page you're already on
+        const here = !external && location.pathname.endsWith("/" + c.url);
         return `
         <article class="card care-card reveal in${mini ? " care-card--mini" : ""}${c.holdsResidentData ? " care-card--separate" : ""}">
           <span class="tag">${esc(c.tag)}</span>
@@ -845,7 +847,7 @@
           <ul>${c.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
           <div class="card-foot">
             <span class="boundary">${c.holdsResidentData ? "Holds resident clinical data" : "No resident records"}</span>
-            <a href="${esc(c.url)}"${external ? ' target="_blank" rel="noopener"' : ""} style="margin-left:auto;color:var(--teal);font-weight:600;font-size:.9rem">${external ? "Visit " + esc(c.url.replace(/^https?:\/\/|\/$/g, "")) + " ↗" : "Read more →"}</a>
+            ${here ? "" : `<a href="${esc(c.url)}"${external ? ' target="_blank" rel="noopener"' : ""} style="margin-left:auto;color:var(--teal);font-weight:600;font-size:.9rem">${external ? "Visit " + esc(c.url.replace(/^https?:\/\/|\/$/g, "")) + " ↗" : "Read more →"}</a>`}
           </div>
         </article>`;
       }).join("");

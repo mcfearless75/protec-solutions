@@ -854,8 +854,32 @@
     });
   }
 
+  /* ---------- Goldshield range cards (goldshield.html hero) ----------
+     Same compact card style as the care pages, from KB.products. Only
+     facts the site already shows: durability, coverage, certification. */
+  function initGoldshieldCards() {
+    const esc = (s) => String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+    $$("[data-gs-cards]").forEach((grid) => {
+      grid.innerHTML = (KB.products || []).map((p) => `
+        <article class="card care-card care-card--mini reveal in">
+          <span class="tag">${esc(p.tag)}</span>
+          <h3>${esc(p.name.replace(/^Goldshield /, ""))}</h3>
+          <ul>
+            <li>${p.durabilityDays > 1 ? `Up to ${p.durabilityDays} days between applications` : "Active for hours per application"}</li>
+            <li>${p.coveragePerLitre} m² per litre</li>
+            <li>${esc(p.certs.join(", "))}</li>
+          </ul>
+          <div class="card-foot">
+            <span class="boundary">${esc(p.surfaces.slice(0, 2).join(" · "))}</span>
+            <a href="#products" style="margin-left:auto;color:var(--teal);font-weight:600;font-size:.9rem">Details ↓</a>
+          </div>
+        </article>`).join("");
+    });
+  }
+
   function boot() {
     initCareCards();
+    initGoldshieldCards();
     initHeader();
     initReveal();
     initCounters();

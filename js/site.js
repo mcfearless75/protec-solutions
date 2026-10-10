@@ -877,9 +877,26 @@
     });
   }
 
+  /* ---------- build-type cards (apps.html hero), from KB.appTypes ---------- */
+  function initAppTypeCards() {
+    const esc = (s) => String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+    $$("[data-app-cards]").forEach((grid) => {
+      grid.innerHTML = (KB.appTypes || []).map((t) => `
+        <article class="card care-card care-card--mini reveal in">
+          <h3>${esc(t.name)}</h3>
+          <p class="mini-blurb">${esc(t.blurb)}</p>
+          <div class="card-foot">
+            <span class="boundary">From ${t.baseWeeks} weeks</span>
+            <a href="#scoper" style="margin-left:auto;color:var(--teal);font-weight:600;font-size:.9rem">Scope it ↓</a>
+          </div>
+        </article>`).join("");
+    });
+  }
+
   function boot() {
     initCareCards();
     initGoldshieldCards();
+    initAppTypeCards();
     initHeader();
     initReveal();
     initCounters();

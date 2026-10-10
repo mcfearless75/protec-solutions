@@ -893,10 +893,23 @@
     });
   }
 
+  /* ---------- sector cards (sectors.html hero), from KB.sectors ---------- */
+  function initSectorCards() {
+    const esc = (s) => String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+    $$("[data-sector-cards]").forEach((grid) => {
+      grid.innerHTML = (KB.sectors || []).map((s) => `
+        <a class="card care-card care-card--mini care-card--link reveal in" href="#${esc(s.id)}">
+          <h3>${s.icon} ${esc(s.name)} <span aria-hidden="true">↓</span></h3>
+          <ul><li>${esc(s.protection)}</li><li>${esc(s.software)}</li></ul>
+        </a>`).join("");
+    });
+  }
+
   function boot() {
     initCareCards();
     initGoldshieldCards();
     initAppTypeCards();
+    initSectorCards();
     initHeader();
     initReveal();
     initCounters();
